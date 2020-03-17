@@ -4,6 +4,15 @@ DROP TABLE IF EXISTS customers;
 DROP TABLE IF EXISTS airlines;
 DROP TABLE IF EXISTS airports;
 DROP TABLE IF EXISTS reservations;
+DROP TABLE IF EXISTS preferences;
+
+CREATE TABLE preferences(
+pref_id int NOT NULL,
+account_num int NOT NULL,
+meal varchar(25) NOT NULL,
+PRIMARY KEY(account_num, pref_id),
+FOREIGN KEY(account_num) REFERENCES customers (account_num)
+);
 
 CREATE TABLE customers (
 account_num int NOT NULL,
