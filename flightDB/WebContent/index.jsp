@@ -4,9 +4,33 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Airline Ticketing System</title>
 </head>
 <body>
+<h1> Welcome to Airline Booking Service</h1>
+      <form method="post" action="login.jsp">
+         <table>
+            <tr>
+               <td>Username: </td>
+               <td><input type="text" placeholder="Enter username" name="username" required></td>
+               <td>Password: </td>
+               <td><input type="password" placeholder="Enter Password" name = "password" required></td>
+               <td>
+                  <input type="checkbox" name="myCheck" value="checked" > I'm a customer representative<br>
+               </td>
+            </tr>
+            <tr>
+               <td style="padding:0 15px 0 15px;"> <input type="submit" value="Login" /> </td>
+            </tr>
+         </table>
+      </form>
+      <br>
+      <table>
+         <tr>
+            <td>Need an account? <a href="register.jsp">Register</a></td>
+         </tr>
+      </table>
+
 
 </body>
 </html>
