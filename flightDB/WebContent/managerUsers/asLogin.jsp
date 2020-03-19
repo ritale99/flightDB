@@ -24,7 +24,7 @@
       <input type="text" placeholder="account name" name="user_name"/>
       <input type="password" placeholder="password" name="password"/>
       <button>login</button>
-      <p class="message">An ordinary user?<a href="../login.jsp"> Please log in here</a></p>
+      <p class="message">An ordinary user?<a href="../index.jsp"> Please log in here</a></p>
       
     </form>
     
