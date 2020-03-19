@@ -35,7 +35,7 @@
 		    if((newEmail.equals("admin"))&&(newPswd.equals("admin"))){
 		    	session.setAttribute("user_name", "admin");
 		    	%><script>
-		    	window.location.href = "admin-syssup/admin.jsp";
+		    	window.location.href = "managerUsers/asLogin.jsp";
 		    	</script>
 		    	<%
 		    	return;

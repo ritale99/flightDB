@@ -36,7 +36,7 @@ session.setAttribute("user_email", "");
       <p class="message">Not registered? <a href="#">Create an account</a></p>
       
       <!-- have to change this file path and filename to match ours -->
-      <p class="message">Manager? <a href="admin-syssup/asLogin.jsp">Please log in here</a></p>
+      <p class="message">Manager? <a href="managerUsers/asLogin.jsp">Please log in here</a></p>
       
     </form>
      
