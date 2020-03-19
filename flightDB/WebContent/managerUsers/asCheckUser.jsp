@@ -16,12 +16,12 @@
 
 		try {
 			//Create a connection string
-			String url = "jdbc:mysql://cs336project.crnaoqpbquqk.us-east-1.rds.amazonaws.com:3306/cs336project";
+			String url = "jdbc:mysql://127.0.0.1/local_flight_db";
 			//Load JDBC driver - the interface standardizing the connection procedure. Look at WEB-INF\lib for a mysql connector jar file, otherwise it fails.
 			Class.forName("com.mysql.jdbc.Driver");
 
 			//Create a connection to your DB
-			Connection con = DriverManager.getConnection(url, "bbq", "12345678");
+			Connection con = DriverManager.getConnection(url, "root", "admin");
 			
 			//Create a SQL statement
 			Statement stmt = con.createStatement();
@@ -50,19 +50,16 @@
 				</script>
 				<% 
 			} else {
-				String str = "SELECT * FROM system_support s WHERE s.user_name='" + newName + "' and s.password='" + newPswd + "'";
+				String str = "SELECT * FROM managers s WHERE s.user_name='" + newName + "' and s.password='" + newPswd + "'";
 	
 				//Run the query against the database.
 				ResultSet result = stmt.executeQuery(str);
 				System.out.println(str);
 	
 				if (result.next()) {
-					//out.print("login success! Welcome: ");
-					//out.print(result.getString("user_name"));
 					
 					session.setAttribute("user_name", result.getString("user_name"));
 					session.setAttribute("user_type", "syssup");
-					//session.setAttribute("user_email", newEmail);
 					%>
 					<script> 
 					    //alert("login success!");

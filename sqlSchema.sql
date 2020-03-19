@@ -7,6 +7,8 @@ DROP TABLE IF EXISTS reservations;
 DROP TABLE IF EXISTS preferences;
 DROP TABLE IF EXISTS operates;
 DROP TABLE IF EXISTS flights;
+DROP TABLE IF EXISTS managers;
+DROP TABLE IF EXISTS users;
 
 CREATE TABLE preferences(
 pref_id int NOT NULL,
@@ -28,6 +30,17 @@ city varchar(25) NOT NULL,
 state varchar(25) NOT NULL,
 zip int NOT NULL,
 primary key(account_num)
+);
+
+CREATE TABLE managers (
+user_name varchar(25) NOT NULL,
+password varchar(25) NOT NULL
+);
+
+CREATE TABLE users (
+user_name varchar(25) NOT NULL,
+password varchar(25) NOT NULL, 
+email varchar(64) NOT NULL,
 );
 
 CREATE TABLE flights (
