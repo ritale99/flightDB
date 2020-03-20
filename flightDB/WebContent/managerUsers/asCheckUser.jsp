@@ -16,12 +16,12 @@
 
 		try {
 			//Create a connection string
-			String url = "jdbc:mysql://127.0.0.1/local_flight_db";
+			String url = "jdbc:mysql://localhost:3306/cs336project";
 			//Load JDBC driver - the interface standardizing the connection procedure. Look at WEB-INF\lib for a mysql connector jar file, otherwise it fails.
 			Class.forName("com.mysql.jdbc.Driver");
 
 			//Create a connection to your DB
-			Connection con = DriverManager.getConnection(url, "root", "admin");
+			Connection con = DriverManager.getConnection(url, "root", "password");
 			
 			//Create a SQL statement
 			Statement stmt = con.createStatement();

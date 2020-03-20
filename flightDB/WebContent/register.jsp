@@ -28,12 +28,14 @@
 	try {
 
 		//Create a connection string
-		String url = "jdbc:mysql://127.0.0.1/local_flight_db";
+		String url = "jdbc:mysql://localhost:3306/cs336project";
 		//Load JDBC driver - the interface standardizing the connection procedure. Look at WEB-INF\lib for a mysql connector jar file, otherwise it fails.
 		Class.forName("com.mysql.jdbc.Driver");
 
 		//Create a connection to your DB
-		Connection con = DriverManager.getConnection(url, "root", "admin");
+		Connection con = DriverManager.getConnection(url, "root", "password");
+		
+				if (con !=null){System.out.println("we connected !!");}
 
 		//Create a SQL statement
 		Statement stmt = con.createStatement();
@@ -67,9 +69,9 @@
         }
 
 		// 3. check if email already used
-	    String checkEmailStr = "SELECT * FROM customers e WHERE e.email='" + newEmail + "'";
+	    String checkEmailStr = "SELECT * FROM users e WHERE e.email='" + newEmail + "'";
 		System.out.println(checkEmailStr);
-		
+		System.out.println("Checked if exists");
 		//HAVE TO DOUBLECHECK THE LINES WHICH SAY "  window.location.href = "login.jsp?signup";" 
 
 		ResultSet checkEmailResult = stmt.executeQuery(checkEmailStr);
@@ -112,8 +114,8 @@
 		//HAVE TO CHANGE THE SQL BELOW
 		
 		//Make an insert statement for the Sells table:
-		String insert = "INSERT INTO customers (user_name, email, password, rate, locked)"
-				+ " VALUES (?, ?, ?, 0, 0)";
+		String insert = "INSERT INTO users (user_name, email, password1)"
+				+ " VALUES (?, ?, ?)";
 		//Create a Prepared SQL statement allowing you to introduce the parameters of the query
 		PreparedStatement ps = con.prepareStatement(insert);
 		System.out.println(insert);
@@ -135,7 +137,7 @@
 		session.setAttribute("user_email", newEmail);
 		%>
 		<script> 
-		    alert("Congratulation! Your new account is created!");
+		    alert("Congratulations! Your new account is created!");
 		    //CHANGE THIS!!!!!
 	    	window.location.href = "driverOrPassenger.jsp";
 		</script>

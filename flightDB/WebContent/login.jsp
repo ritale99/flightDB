@@ -16,12 +16,12 @@
 
 		try {
 			//Create a connection string
-			String url = "jdbc:mysql://127.0.0.1/local_flight_db";
+			String url = "jdbc:mysql://localhost:3306/cs336project";
 			//Load JDBC driver - the interface standardizing the connection procedure. Look at WEB-INF\lib for a mysql connector jar file, otherwise it fails.
 			Class.forName("com.mysql.jdbc.Driver");
 
 			//Create a connection to your DB
-			Connection con = DriverManager.getConnection(url, "root", "admin");
+			Connection con = DriverManager.getConnection(url, "root", "password");
 			
 			//Create a SQL statement
 			Statement stmt = con.createStatement();
@@ -50,7 +50,7 @@
 				<% 
 			} else {
 				//have to change this sql!!!
-				String str = "SELECT * FROM customers e WHERE e.email='" + newEmail + "' and e.password='" + newPswd + "'";
+				String str = "SELECT * FROM users e WHERE e.email='" + newEmail + "' and e.password='" + newPswd + "'";
 	
 				//Run the query against the database.
 				ResultSet result = stmt.executeQuery(str);
