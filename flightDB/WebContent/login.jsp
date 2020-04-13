@@ -78,7 +78,7 @@
 
 						%>
 						<script> 
-				    		window.location.href = "driverOrPassenger.jsp";
+				    		window.location.href = "customerLandingPage.jsp";
 						</script>
 					<%						
 					}
