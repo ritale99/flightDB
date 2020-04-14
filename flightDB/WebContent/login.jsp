@@ -38,9 +38,12 @@
 		    	window.location.href = "managerUsers/asLogin.jsp";
 		    	</script>
 		    	<%
+		    	System.out.println("Works up to checkpoint:1 ");
 		    	return;
+		    	
 		    }
 		    
+		    //This if statement checks if the login username/password fields are left blank
 			if ((newEmail.equals(""))&&(newPswd.equals(""))){
 				%>
 				<script> 
@@ -50,46 +53,31 @@
 				<% 
 			} else {
 				//have to change this sql!!!
-				String str = "SELECT * FROM users e WHERE e.email='" + newEmail + "' and e.password='" + newPswd + "'";
+				String str = "SELECT * FROM users e WHERE e.email='" + newEmail + "' and e.password1='" + newPswd + "'";
 	
 				//Run the query against the database.
 				ResultSet result = stmt.executeQuery(str);
 	
 				if (result.next()) {
 
-		
+					System.out.println("Works up to checkpoint:2 ");
 					//check the "locked param in this following statement"
-					if( result.getObject("locked") == null ){
+					//if( result.getObject("locked") == null ){
+						System.out.println("Works up to checkpoint:2.6 ");
 						session.setAttribute("user_name", result.getString("user_name"));
 						session.setAttribute("user_email", newEmail);
-						
+						System.out.println("Works up to checkpoint:2.9 ");
 						//what should we change this to????
 						%>
 						
 						<script> 
-				    		window.location.href = "driverOrPassenger.jsp";
-						</script>
-					<%
-					}
-					else if(result.getInt("locked")==0){
-						session.setAttribute("user_name", result.getString("user_name"));
-						session.setAttribute("user_email", newEmail);
-						session.setAttribute("user_type", "end_user");
-
-						%>
-						<script> 
 				    		window.location.href = "customerLandingPage.jsp";
 						</script>
-					<%						
-					}
-					else if (result.getInt("locked")==1){
-						%>
-						<script> 
-					    	alert("Sorry, the user is locked and cannot log in now");
-					    	window.location.href = "index.jsp";
-						</script>
-						<%						
-					}
+					<%
+					System.out.println("Works up to checkpoint:3 ");
+					//}
+						
+					
 					//close the connection.
 				} else {
 					out.print("User not found");
@@ -99,15 +87,19 @@
 				    	window.location.href = "index.jsp";
 					</script>
 					<%
+					System.out.println("Works up to checkpoint:6 ");
 				}
+				System.out.println("Works up to checkpoint:7 ");
 			}
+			
+			System.out.println("Works up to checkpoint:8 ");
 			con.close();
 
 		} catch (Exception e) {
 			out.print("failed");
 			%>
 			<script> 
-		    	alert("Sorry, unexcepted error happens.");
+		    	alert("Sorry, unexcepted error happened.");
 		    	window.location.href = "index.jsp";
 			</script>
 			<%			

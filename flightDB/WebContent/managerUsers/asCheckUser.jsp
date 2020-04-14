@@ -50,7 +50,7 @@
 				</script>
 				<% 
 			} else {
-				String str = "SELECT * FROM users s WHERE s.user_name='" + newName + "' and s.password='" + newPswd + "'";
+				String str = "SELECT * FROM users s WHERE s.user_name='" + newName + "' and s.password1='" + newPswd + "'";
 	
 				//Run the query against the database.
 				ResultSet result = stmt.executeQuery(str);

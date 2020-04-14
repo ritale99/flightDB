@@ -139,7 +139,7 @@
 		<script> 
 		    alert("Congratulations! Your new account is created!");
 		    //CHANGE THIS!!!!!
-	    	window.location.href = "driverOrPassenger.jsp";
+	    	window.location.href = "customerLandingPage.jsp";
 		</script>
 		<%
 	} catch (Exception ex) {
