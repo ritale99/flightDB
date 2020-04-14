@@ -1,13 +1,46 @@
 create database cs336project;
 use cs336project;
-
+DROP TABLE IF EXISTS customers;
+DROP TABLE IF EXISTS airlines;
+DROP TABLE IF EXISTS airports;
+DROP TABLE IF EXISTS reservations;
+DROP TABLE IF EXISTS preferences;
+DROP TABLE IF EXISTS operates;
+DROP TABLE IF EXISTS flights;
 DROP TABLE IF EXISTS managers;
 DROP TABLE IF EXISTS users;
 
+CREATE TABLE preferences(
+pref_id int NOT NULL,
+account_num int NOT NULL,
+meal varchar(25) NOT NULL,
+PRIMARY KEY(account_num, pref_id),
+FOREIGN KEY(account_num) REFERENCES customers (account_num)
+);
+
+CREATE TABLE customers (
+account_num int NOT NULL,
+first_name varchar(25) NOT NULL,
+last_name varchar(25)  NOT NULL,
+email varchar(64) NOT NULL,
+creation_date Date NOT NULL,
+creditcard_num int NOT NULL,
+address varchar(100) NOT NULL,
+city varchar(25) NOT NULL,
+state varchar(25) NOT NULL,
+zip int NOT NULL,
+primary key(account_num)
+);
+
+CREATE TABLE managers (
+user_name varchar(25) NOT NULL,
+password varchar(25) NOT NULL
+);
+
 CREATE TABLE users (
 user_name varchar(25) NOT NULL,
-password1 varchar(25) NOT NULL, 
-email varchar(64) NOT NULL
+password varchar(25) NOT NULL, 
+email varchar(64) NOT NULL,
 );
 
 CREATE TABLE flights (
@@ -57,4 +90,3 @@ primary key (Airline_id, flight_num),
 foreign key(flight_num) references flights(flight_num),
 foreign key(Airline_id) references airlines(Airline_id)
 );
-
