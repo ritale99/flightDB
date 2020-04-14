@@ -63,11 +63,11 @@
 					System.out.println("Works up to checkpoint:2 ");
 					//check the "locked param in this following statement"
 					//if( result.getObject("locked") == null ){
-						System.out.println("Works up to checkpoint:2.6 ");
+						
 						session.setAttribute("user_name", result.getString("user_name"));
 						session.setAttribute("user_email", newEmail);
-						System.out.println("Works up to checkpoint:2.9 ");
-						//what should we change this to????
+						
+						
 						%>
 						
 						<script> 
