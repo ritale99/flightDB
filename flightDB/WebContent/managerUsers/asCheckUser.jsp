@@ -50,7 +50,7 @@
 				</script>
 				<% 
 			} else {
-				String str = "SELECT * FROM users s WHERE s.user_name='" + newName + "' and s.password1='" + newPswd + "'";
+				String str = "SELECT * FROM managers s WHERE s.user_name='" + newName + "' and s.password1='" + newPswd + "'";
 	
 				//Run the query against the database.
 				ResultSet result = stmt.executeQuery(str);
@@ -63,7 +63,7 @@
 					%>
 					<script> 
 					    //alert("login success!");
-				    	window.location.href = "systemSupport.jsp";
+				    	window.location.href = "managerLandingPage.jsp";
 					</script>
 					<%
 					
