@@ -10,6 +10,25 @@ password1 varchar(25) NOT NULL,
 email varchar(64) NOT NULL
 );
 
+CREATE TABLE managers (
+user_name varchar(25) NOT NULL,
+password1 varchar(25) NOT NULL
+);
+
+CREATE TABLE airlines (
+Airline_id varchar(2) NOT NULL,
+a_name varchar(25) NOT NULL,
+primary key(Airline_id)
+);
+
+CREATE TABLE airports (
+Airport_id varchar(3) NOT NULL,
+ap_name varchar(50) NOT NULL,
+city varchar(25) NOT NULL,
+state CHAR(20) NOT NULL,
+country varchar(25) NOT NULL,
+primary key(Airport_id));
+
 CREATE TABLE flights (
 airline_id varchar(2) NOT NULL,
 flight_num INT NOT NULL,
@@ -26,35 +45,25 @@ foreign key(arrive_aid) references airports(Airport_id),
 foreign key(airline_id)references airlines (Airline_id),
 primary key (flight_num, airline_id)
 );
-CREATE TABLE airlines (
-Airline_id varchar(2) NOT NULL,
-a_name varchar(25) NOT NULL,
-primary key(Airline_id)
-);
+/*insert manger accounts for login since manager account can't be created on the interface*/
+INSERT INTO managers VALUES ('Rithvik', 'password');
+INSERT INTO managers VALUES ('Harsh', 'password');
+INSERT INTO managers VALUES ('Bhasit', 'password');
+INSERT INTO managers VALUES ('Tamay', 'password');
+INSERT INTO mangers VALUES ('Noman', 'password');
 
-CREATE TABLE airports (
-Airport_id varchar(3) NOT NULL,
-ap_name varchar(25) NOT NULL,
-city varchar(25) NOT NULL,
-country varchar(25) NOT NULL,
-primary key(Airport_id));
+/*Insertion of Some Domestic Flight Data*/
+INSERT INTO Airport VALUES('EWR', 'Newark Liberty International Airport', 'Newark', 'New Jersey', 'United States');
+INSERT INTO Airport VALUES('JFK', 'John F. Kennedy International Airport', 'New York City', 'New York', 'United States');
+INSERT INTO Airport VALUES('MIA', 'Miami International Airport', 'Miami', 'Florida', 'United States');
+INSERT INTO Airport VALUES('SFO', 'San Francisco International Airport', 'San Franciso', 'California', 'United States');
+INSERT INTO Airport VALUES('MDW', 'Midway International Airport', 'Chicago', 'Illinois', 'United States');
+INSERT INTO Airport VALUES ('LAX', 'Los Angeles International Airport', 'Los Angeles', 'California', 'United States');
 
-CREATE TABLE reservations(
-res_number int NOT NULL,
-booking_fee int NOT NULL,
-passengers int NOT NULL,
-cust_rep varchar(25),
-total_fare int NOT NULL,
-date_ date,
-fare_rest varchar(25) NOT NULL,
-primary key (res_number)
-);
-
-CREATE TABLE operates(
-Airline_id varchar(2) NOT NULL,
-flight_num int,
-primary key (Airline_id, flight_num),
-foreign key(flight_num) references flights(flight_num),
-foreign key(Airline_id) references airlines(Airline_id)
-);
+/*Insertion of Some International Flights*/
+INSERT INTO Airport VALUES('LCY','London City Airport', 'London', 'Greater London', 'England');
+INSERT INTO Airport VALUES('DUB', 'Dublin Airport', 'Dublin', 'Leinster', 'Ireland');
+INSERT INTO Airport VALUES('PEK', 'Beijing Capital International Airport', 'Beijing', 'Hebei', 'China');
+INSERT INTO Airport VALUES('SYD', 'Sydney Airport', 'Sydney', 'New South Wales', 'Australia');
+INSERT INTO Airport VALUES('YTZ', 'Billy Bishop Toronto City Airport', 'Toronto', 'Ontario', 'Cananda');
 
