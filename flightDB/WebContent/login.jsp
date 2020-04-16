@@ -9,7 +9,7 @@
 <link rel="stylesheet" type="text/css" href="css/login.css">
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Title</title>
 </head>
 <body>
 	<%
