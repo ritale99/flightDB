@@ -25,14 +25,64 @@
 						<td>Departing Airport</td>
 						</tr>
 						<tr><td>
-							<input type="text" name="depport" placeholder="Enter 3 letter Airport ID">
+							<select type="text" name="depport" placeholder="Enter 3 letter Airport ID">
+							<option> Select </option>
+							<option>EWR</option>
+							<option>JFK</option>
+							<option>MIA</option>
+							<option>SFO</option>
+							<option>MDW</option>
+							<option>LAX</option>
+							<option>ATL</option>
+							<option>ORD</option>
+							<option>DFW</option>
+							<option>DEN</option>
+							<option>SEA</option>
+							<option>LAS</option>
+							<option>MCO</option>
+							<option>CLT</option>
+							<option>PHX</option>
+							<option>IAH</option>
+							<option>BOS</option>
+							<option>MSP</option>
+							<option>FLL</option>
+							<option>DTW</option>
+							<option>PHL</option>
+							<option>DTW</option>
+							<option>LGA</option>
+							</select>
 						</td>
 					</tr>
 					<tr>
 						<td>Arriving Airport</td>
 						</tr>
 						<tr><td>
-							<input type="text" name="arrivport" placeholder="Enter 3 letter Airport ID">
+							<select type="text" name="arrivport" placeholder="Enter 3 letter Airport ID">
+							<option> Select </option>
+							<option>EWR</option>
+							<option>JFK</option>
+							<option>MIA</option>
+							<option>SFO</option>
+							<option>MDW</option>
+							<option>LAX</option>
+							<option>ATL</option>
+							<option>ORD</option>
+							<option>DFW</option>
+							<option>DEN</option>
+							<option>SEA</option>
+							<option>LAS</option>
+							<option>MCO</option>
+							<option>CLT</option>
+							<option>PHX</option>
+							<option>IAH</option>
+							<option>BOS</option>
+							<option>MSP</option>
+							<option>FLL</option>
+							<option>DTW</option>
+							<option>PHL</option>
+							<option>DTW</option>
+							<option>LGA</option>
+							</select>
 						</td>
 					</tr>
 					<td>Take off date</td>
