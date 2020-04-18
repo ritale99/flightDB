@@ -111,7 +111,7 @@
 			</form>
 		
 		<br>
-		<a href="success.jsp">Want to go back?</a>
+		<a href="customerLandingPage.jsp">Want to go back?</a>
 		
 	</body>
 </html>
