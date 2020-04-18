@@ -74,7 +74,7 @@
  //Now we need the more advanced query by the date and airport search
  
  			String str2 = "SELECT FlightDate.flight_id, flights.fare_first, flights.flight_type " + "FROM flights, FlightDate " + "WHERE flights.flight_num = FlightDate.flight_id AND flights.depart_aid = ? " 
- 			+  " AND flights.arrive_aid = ? AND FlightDate.depart_date = ? AND FlightDate.arrive_date = ?";
+ 			+  " AND flights.arrive_aid = ? AND FlightDate.depart_date >= ? AND FlightDate.depart_date <= ?";
 				
  
  			PreparedStatement stmt2 = con.prepareStatement(str2);

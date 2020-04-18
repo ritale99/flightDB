@@ -89,7 +89,7 @@
 						</tr>
 						<br>
 					<tr>
-						 <td> Arrive date </td>
+						 <td>Return Back Flight Date</td>
 						</tr>
 					<tr> 
 						
