@@ -6,7 +6,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="css/login.css">
+<link rel="stylesheet" type="text/css" href="css/HTMLTable.css">
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Showing One Way Flight Search Results</title>
@@ -37,7 +37,7 @@
 				System.out.println("Works up to checkpoint:1 ");
 				
 				//Match by flightID
-				String str0 = "SELECT FlightDate.flight_id, flights.airline_id " + "FROM flights, FlightDate " + "WHERE flights.flight_num = FlightDate.flight_id  AND FlightDate.flight_id = ? ";
+				String str0 = "SELECT FlightDate.flight_id, flights.fare_first, flights.flight_type " + "FROM flights, FlightDate " + "WHERE flights.flight_num = FlightDate.flight_id  AND FlightDate.flight_id = ? ";
 				System.out.println("Works up to checkpoint:2 ");
 				
 				PreparedStatement stmt0 = con.prepareStatement(str0);
@@ -49,40 +49,65 @@
 				while (flights0.next()) {
 					
 					
-					//SOMEONE HELP ME WITH THIS FORMATTING PLEASE!!!
-					//make a row
-					out.print("<tr>");
-					//make a column
-					out.print("<td>");
-					//print out column header
-					out.print("flight id");
-					out.print("</td>");
-					//make a column
-					out.print("<td>");
-					out.print("departure date");
-					out.print("</td>");
-					//make a column
-					out.print("<td>");
-					out.print("departure airport");
-					out.print("</td>");
-					//print out column header
-					out.print("<td>");
-					out.print("arrive date");
-					out.print("</td>");
+					out.print("<table>");
+						out.print("</tr>");
+							out.print("<th>FlightId</th>");
+							out.print("<th>Fare</th>");
+							out.print("<th>Flight Type</th>");
+						out.print("</tr>");
 					
 					//parse out the results
-					
-					//make a row
-					out.print("<tr>");
-					//make a column
-					out.print("<td>");
-					//Print out current flightid:
-					out.print(flights0.getString("FlightDate.flight_id"));
-					out.print("</td>");
-					out.print("<td>");
-					
+						out.print("<tr>");
+							out.print("<td>");
+								out.print(flights0.getString("FlightDate.flight_id"));
+							out.print("</td>");	
+							out.print("<td>");	
+								out.print(flights0.getString("flights.fare_first"));
+							out.print("</td>");
+							out.print("<td>");	
+								out.print(flights0.getString("flights.flight_type"));
+							out.print("</td>");
+						out.print("</tr>");
+					out.print("</table>");
 }
 				
+ //Now we need the more advanced query by the date and airport search
+ 
+ 			String str2 = "SELECT FlightDate.flight_id, flights.fare_first, flights.flight_type " + "FROM flights, FlightDate " + "WHERE flights.flight_num = FlightDate.flight_id AND flights.depart_aid = ? " 
+ 			+  " AND flights.arrive_aid = ? AND FlightDate.depart_date = ? AND FlightDate.arrive_date = ?";
+				
+ 
+ 			PreparedStatement stmt2 = con.prepareStatement(str2);
+ 			stmt2.setString(1,departing_port);
+ 			stmt2.setString(2,arriving_port);
+ 			stmt2.setString(3,takeoffd1);
+ 			stmt2.setString(4,takeoffd2);
+ 			
+ 			ResultSet flights2 = stmt2.executeQuery();
+ 			
+ 				while (flights2.next()){
+ 					out.print("<table>");
+					out.print("</tr>");
+						out.print("<th>FlightId</th>");
+						out.print("<th>Fare</th>");
+						out.print("<th>Flight Type</th>");
+					out.print("</tr>");
+				
+				//parse out the results
+					out.print("<tr>");
+						out.print("<td>");
+							out.print(flights2.getString("FlightDate.flight_id"));
+						out.print("</td>");	
+						out.print("<td>");	
+							out.print(flights2.getString("flights.fare_first"));
+						out.print("</td>");
+						out.print("<td>");	
+							out.print(flights2.getString("flights.flight_type"));
+						out.print("</td>");
+					out.print("</tr>");
+				out.print("</table>");
+ 				}
+ 			
 			con.close();
 
 		}catch (Exception e) {
