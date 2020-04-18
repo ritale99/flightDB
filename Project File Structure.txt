@@ -1,5 +1,0 @@
-Index.jsp: Initial file that is seen, has the login page for the regular user (customer), Customer can also register here
-    Also links manager login page
-
-asLogin.jsp: Where the manager logs in 
-
