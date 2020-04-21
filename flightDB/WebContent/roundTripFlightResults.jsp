@@ -89,9 +89,9 @@
 							out.print("<th>Fare</th>");
 							out.print("<th>Flight Type</th>");
 							out.print("<th>Depart</th>");
-							out.print("<th> Arrive </th>");
+							out.print("<th>Arrive</th>");
 							out.print("<th>Departing Airport</th>");
-							out.print("<th> Arriving Airport </th>");				
+							out.print("<th>Arriving Airport </th>");				
 							out.print("</tr>");
 					
 					while(flightsBA.next()){
@@ -166,6 +166,21 @@
 			<%			
 		}
 	%>
+	<br> Type out the flightId of the flight you would like to book!
+
+		<form action="booking_OW.jsp">
+			<input type="text" placeholder="flight ID" name="flightnum"
+				required> <br>
+			<br>How many Passengers for your reservation?
+			<input type="text" placeholder="number Passengers" name="passengersNum"
+				required> <br>
+				
+				
+			<button type="submit">Book</button>		
+			
+			
+			   
+		</form>
 
 </body>
 </html>

@@ -69,6 +69,8 @@
 							out.print("</td>");
 						out.print("</tr>");
 					out.print("</table>");
+					
+					
 }
 				
  //Now we need the more advanced query by the date and airport search
@@ -120,6 +122,24 @@
 			<%			
 		}
 	%>
+	
+	<br> Type out the flightId of the flight you would like to book!
+
+		<form action="booking_OW.jsp">
+			<input type="text" placeholder="flight ID" name="flightnum"
+				required> <br>
+			<br>How many Passengers for your reservation?
+			<input type="text" placeholder="number Passengers" name="passengersNum"
+				required> <br>
+				
+				
+			<button type="submit">Book</button>		
+			
+			
+			   
+		</form>
+		
+		
 
 </body>
 </html>
