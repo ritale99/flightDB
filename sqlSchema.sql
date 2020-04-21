@@ -68,6 +68,17 @@ FOREIGN KEY (flight_id) REFERENCES flights(flight_num)
 on delete cascade
 on update cascade
 );
+
+CREATE TABLE Reservations (
+res_num INT NOT NULL,
+res_date date NOT NULL,
+customer VARCHAR(64) NOT NULL,
+num_passengers INT,
+total_fare DECIMAL,
+PRIMARY KEY (res_num),
+FOREIGN KEY (customer) REFERENCES users (email)
+);
+
 /*insert manger accounts for login since manager account can't be created on the interface*/
 INSERT INTO managers VALUES ('Rithvik', 'password');
 INSERT INTO managers VALUES ('Harsh', 'password');
