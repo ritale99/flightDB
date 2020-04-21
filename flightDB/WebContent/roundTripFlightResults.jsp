@@ -44,7 +44,9 @@
 				System.out.println("Works up to checkpoint:1 ");
 				
 				//Check to see matches of the first to go plane
-				String str0 = "SELECT FlightDate.flight_id, flights.fare_first, flights.flight_type " + "FROM flights, FlightDate " + "WHERE flights.flight_num = FlightDate.flight_id "+ 
+				String str0 = "SELECT FlightDate.flight_id, flights.fare_first, flights.flight_type, FlightDate.depart_date, FlightDate.arrive_date, flights.arrive_aid, flights.depart_aid  " +
+				"FROM flights, FlightDate " + 
+				"WHERE flights.flight_num = FlightDate.flight_id "+ 
 						"and FlightDate.depart_date >= ? " +
 						"and FlightDate.depart_date <= ? " +
 						"and flights.depart_aid = ? " +
@@ -65,7 +67,7 @@
 			//then we can proceed to display the results later...
 				 if (flightsAB.next()) {
 					 
-					 String str2 = 	"SELECT FlightDate.flight_id, flights.fare_first, flights.flight_type " +
+					 String str2 = 	"SELECT FlightDate.flight_id, flights.fare_first, flights.flight_type, FlightDate.depart_date, FlightDate.arrive_date " +
 								"from FlightDate, flights " +
 								"WHERE FlightDate.flight_id = flights.flight_num "+
 								"and FlightDate.depart_date >= ? " +
@@ -86,7 +88,11 @@
 							out.print("<th>FlightId</th>");
 							out.print("<th>Fare</th>");
 							out.print("<th>Flight Type</th>");
-						out.print("</tr>");
+							out.print("<th>Depart</th>");
+							out.print("<th> Arrive </th>");
+							out.print("<th>Departing Airport</th>");
+							out.print("<th> Arriving Airport </th>");				
+							out.print("</tr>");
 					
 					while(flightsBA.next()){
 						
@@ -100,11 +106,20 @@
 						out.print("<td>");	
 							out.print(flightsAB.getString("flights.flight_type"));
 						out.print("</td>");
+						out.print("<td>");	
+						out.print(flightsAB.getString("FlightDate.depart_date"));
+						out.print("</td>");			
+					out.print("<td>");	
+					out.print(flightsAB.getString("FlightDate.arrive_date"));
+					out.print("</td>");	
+					out.print("<td>");	
+					out.print(flightsAB.getString("flights.depart_aid"));
+					out.print("</td>");			
+					out.print("<td>");	
+					out.print(flightsAB.getString("flights.arrive_aid"));
+					out.print("</td>");	
 					out.print("</tr>");
 				//out.print("</table>");
-						
-					
-					
 					out.print("<tr>");
 					out.print("<td>");
 						out.print(flightsBA.getString("FlightDate.flight_id"));
@@ -115,6 +130,18 @@
 					out.print("<td>");	
 						out.print(flightsBA.getString("flights.flight_type"));
 					out.print("</td>");
+					out.print("<td>");	
+					out.print(flightsAB.getString("FlightDate.depart_date"));
+				out.print("</td>");			
+				out.print("<td>");	
+				out.print(flightsAB.getString("FlightDate.arrive_date"));
+			out.print("</td>");		
+			out.print("<td>");	
+			out.print(flightsAB.getString("flights.arrive_aid"));
+		out.print("</td>");			
+		out.print("<td>");	
+		out.print(flightsAB.getString("flights.depart_aid"));
+	out.print("</td>");	
 				out.print("</tr>");
 			out.print("</table>");
 					
