@@ -5,7 +5,7 @@
 <head>
 <link rel="stylesheet" type="text/css" href="css/login.css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Corona Time</title>
+<title>Flight Database</title>
 </head>
 <body>
 <%

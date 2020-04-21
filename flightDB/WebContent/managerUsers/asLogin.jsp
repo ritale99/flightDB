@@ -14,7 +14,7 @@
 </head>
 <body>
 
-<p class="app-name"> CoronaTime Flight DB!</p>      
+<p class="app-name">Flight Database!!</p>      
 <p class="app-name"> Manager board</p>      
 
 <div class="login-page">
