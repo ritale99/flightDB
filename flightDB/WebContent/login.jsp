@@ -61,21 +61,22 @@
 				if (result.next()) {
 
 					System.out.println("Works up to checkpoint:2 ");
-					//check the "locked param in this following statement"
-					//if( result.getObject("locked") == null ){
+					
 						
-						session.setAttribute("user_name", result.getString("user_name"));
+						//session.setAttribute("user_name", result.getString("user_name"));
 						session.setAttribute("user_email", newEmail);
+						System.out.println("New Email is: " + newEmail);
+						String u_email = (String) session.getAttribute("user_email");
+						   System.out.println("Email IS:" + u_email);
 						
-						
+						response.sendRedirect("customerLandingPage.jsp");
 						%>
 						
 						<script> 
-				    		window.location.href = "customerLandingPage.jsp";
+				    	//	window.location.href = "customerLandingPage.jsp";
 						</script>
 					<%
 					System.out.println("Works up to checkpoint:3 ");
-					//}
 						
 					
 					//close the connection.
@@ -94,6 +95,10 @@
 			
 			System.out.println("Works up to checkpoint:8 ");
 			con.close();
+			session.setAttribute("user_email", newEmail);
+			String u2_email = (String) session.getAttribute("user_email");
+			   System.out.println("Email IS:" + u2_email);
+			
 
 		} catch (Exception e) {
 			out.print("failed");

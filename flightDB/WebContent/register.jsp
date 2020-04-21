@@ -138,7 +138,7 @@
 		%>
 		<script> 
 		    alert("Congratulations! Your new account is created!");
-		    //CHANGE THIS!!!!!
+		    
 	    	window.location.href = "customerLandingPage.jsp";
 		</script>
 		<%
