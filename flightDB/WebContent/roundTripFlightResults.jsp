@@ -9,7 +9,7 @@
 <link rel="stylesheet" type="text/css" href="css/HTMLTable.css">
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Showing Round Trip Flight Search Results</title>
+<title>Showing One Way Flight Search Results</title>
 </head>
 <body>
 	<%
@@ -23,30 +23,62 @@
 			//Create a connection to your DB
 			Connection con = DriverManager.getConnection(url, "root", "password");
 			
-			//Create a SQL statement
-			Statement stmt = con.createStatement();
-			//Get the combobox from the HelloWorld.jsp
+			
 			
 				//Get parameters from the HTML form at the roundTripForm.jsp
 				String takeoffd1 = request.getParameter("take_off_date");
 				String takeoffd2 = request.getParameter("take_off_date_2");
-				String flightid = request.getParameter("flight_id");
+				String arrived1 = request.getParameter("arrive_date");
+				String arrived2 = request.getParameter("arrive_date_2");
 				String departing_port = request.getParameter("depport");
 				String arriving_port = request.getParameter("arrivport");
+				String flight1id;
+				String flight2id;
+				String flight3id;
+				String flight4id;
+				String flight5id;
+				String flight6id;
 		    
+				List<String> list = new ArrayList<String>();
+
 				System.out.println("Works up to checkpoint:1 ");
 				
-				//Match by flightID
-				String str0 = "SELECT FlightDate.flight_id, flights.fare_first, flights.flight_type " + "FROM flights, FlightDate " + "WHERE flights.flight_num = FlightDate.flight_id  AND FlightDate.flight_id = ? ";
+				//Check to see matches of the first to go plane
+				String str0 = "SELECT FlightDate.flight_id, flights.fare_first, flights.flight_type " + "FROM flights, FlightDate " + "WHERE flights.flight_num = FlightDate.flight_id "+ 
+						"and FlightDate.depart_date >= ? " +
+						"and FlightDate.depart_date <= ? " +
+						"and flights.depart_aid = ? " +
+						"and flights.arrive_aid = ?";
 				System.out.println("Works up to checkpoint:2 ");
 				
-				PreparedStatement stmt0 = con.prepareStatement(str0);
-				stmt0.setString(1, flightid);
-				ResultSet flights0 = stmt0.executeQuery();
+				PreparedStatement stmt = con.prepareStatement(str0);
+				stmt.setString(1, takeoffd1);
+				stmt.setString(2, takeoffd2);
+				stmt.setString(3, departing_port);
+				stmt.setString(4, arriving_port);
+				ResultSet flightsAB = stmt.executeQuery();
 				
 				System.out.println("Works up to checkpoint:4 ");
 	
-				while (flights0.next()) {
+				
+			
+			//then we can proceed to display the results later...
+				 if (flightsAB.next()) {
+					 
+					 String str2 = 	"SELECT FlightDate.flight_id, flights.fare_first, flights.flight_type " +
+								"from FlightDate, flights " +
+								"WHERE FlightDate.flight_id = flights.flight_num "+
+								"and FlightDate.depart_date >= ? " +
+								"and FlightDate.depart_date <= ? " +
+								"and flights.arrive_aid = ? " +
+								"and flights.depart_aid = ? ";
+						
+							PreparedStatement stmt2 = con.prepareStatement(str2);
+							stmt2.setString(1, arrived1);
+							stmt2.setString(2, arrived2);
+							stmt2.setString(3, departing_port);
+							stmt2.setString(4, arriving_port);
+							ResultSet flightsBA = stmt2.executeQuery();
 					
 					
 					out.print("<table>");
@@ -56,57 +88,44 @@
 							out.print("<th>Flight Type</th>");
 						out.print("</tr>");
 					
-					//parse out the results
+					while(flightsBA.next()){
+						
 						out.print("<tr>");
-							out.print("<td>");
-								out.print(flights0.getString("FlightDate.flight_id"));
-							out.print("</td>");	
-							out.print("<td>");	
-								out.print(flights0.getString("flights.fare_first"));
-							out.print("</td>");
-							out.print("<td>");	
-								out.print(flights0.getString("flights.flight_type"));
-							out.print("</td>");
-						out.print("</tr>");
-					out.print("</table>");
-}
-				
- //Now we need the more advanced query by the date and airport search
- 
- 			String str2 = "SELECT FlightDate.flight_id, flights.fare_first, flights.flight_type " + "FROM flights, FlightDate " + "WHERE flights.flight_num = FlightDate.flight_id AND flights.depart_aid = ? " 
- 			+  " AND flights.arrive_aid = ? AND FlightDate.depart_date = ? AND FlightDate.arrive_date = ?";
-				
- 
- 			PreparedStatement stmt2 = con.prepareStatement(str2);
- 			stmt2.setString(1,departing_port);
- 			stmt2.setString(2,arriving_port);
- 			stmt2.setString(3,takeoffd1);
- 			stmt2.setString(4,takeoffd2);
- 			
- 			ResultSet flights2 = stmt2.executeQuery();
- 			
- 				while (flights2.next()){
- 					out.print("<table>");
-					out.print("</tr>");
-						out.print("<th>FlightId</th>");
-						out.print("<th>Fare</th>");
-						out.print("<th>Flight Type</th>");
-					out.print("</tr>");
-				
-				//parse out the results
-					out.print("<tr>");
 						out.print("<td>");
-							out.print(flights2.getString("FlightDate.flight_id"));
+							out.print(flightsAB.getString("FlightDate.flight_id"));
 						out.print("</td>");	
 						out.print("<td>");	
-							out.print(flights2.getString("flights.fare_first"));
+							out.print(flightsAB.getString("flights.fare_first"));
 						out.print("</td>");
 						out.print("<td>");	
-							out.print(flights2.getString("flights.flight_type"));
+							out.print(flightsAB.getString("flights.flight_type"));
 						out.print("</td>");
 					out.print("</tr>");
-				out.print("</table>");
- 				}
+				//out.print("</table>");
+						
+					
+					
+					out.print("<tr>");
+					out.print("<td>");
+						out.print(flightsBA.getString("FlightDate.flight_id"));
+					out.print("</td>");	
+					out.print("<td>");	
+						out.print(flightsBA.getString("flights.fare_first"));
+					out.print("</td>");
+					out.print("<td>");	
+						out.print(flightsBA.getString("flights.flight_type"));
+					out.print("</td>");
+				out.print("</tr>");
+			out.print("</table>");
+					
+					}
+						
+}
+				
+		 	//we need the reservation feature as well!!
+ 			//also need to check the sql here to make sure it matches correctly
+ 
+ 			
  			
 			con.close();
 
