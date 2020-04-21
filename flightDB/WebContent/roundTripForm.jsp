@@ -86,7 +86,7 @@
 							<option>DUB</option>
 							<option>PEK</option>
 							<option>SYD</option>
-							<option>YTZ</option
+							<option>YTZ</option>
 							
 							</select>
 						</td>

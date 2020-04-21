@@ -26,7 +26,7 @@
 						</tr>
 						<tr><td>
 							<select type="text" name="depport" placeholder="Enter 3 letter Airport ID">
-							<option> Select </option>
+							<option>--Select--</option>
 							<option>EWR</option>
 							<option>JFK</option>
 							<option>MIA</option>
@@ -50,6 +50,12 @@
 							<option>PHL</option>
 							<option>DTW</option>
 							<option>LGA</option>
+							<option>---INTERNATIONAL---</option>
+							<option>LCY</option>
+							<option>DUB</option>
+							<option>PEK</option>
+							<option>SYD</option>
+							<option>YTZ</option>
 							</select>
 						</td>
 					</tr>
@@ -58,7 +64,7 @@
 						</tr>
 						<tr><td>
 							<select type="text" name="arrivport" placeholder="Enter 3 letter Airport ID">
-							<option> Select </option>
+							<option>--Select--</option>
 							<option>EWR</option>
 							<option>JFK</option>
 							<option>MIA</option>
@@ -82,6 +88,13 @@
 							<option>PHL</option>
 							<option>DTW</option>
 							<option>LGA</option>
+							<option>---INTERNATIONAL---</option>
+							<option>LCY</option>
+							<option>DUB</option>
+							<option>PEK</option>
+							<option>SYD</option>
+							<option>YTZ</option>
+							
 							</select>
 						</td>
 					</tr>
