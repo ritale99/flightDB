@@ -28,16 +28,18 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
     <a href="OneWayForm.jsp" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">One Way</a>
     <a href="roundTripForm.jsp" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Round Trip</a>
     <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Edit Reservations</a>
+    <a href="editCustomerDetails.jsp" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Edit Account Details</a>
     <a href="logout.jsp" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Logout</a>
   </div>
 
   <!-- Navbar on small screens -->
   <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
     <a href="#" class="w3-bar-item w3-button w3-padding-large">Home</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding-large">One Way</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding-large">Round Trip</a>
+    <a href="OneWayForm.jsp" class="w3-bar-item w3-button w3-padding-large">One Way</a>
+    <a href="roundTripForm.jsp" class="w3-bar-item w3-button w3-padding-large">Round Trip</a>
     <a href="#" class="w3-bar-item w3-button w3-padding-large">Edit Reservations</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding-large">Logout</a>
+    <a href="editCustomerDetails.jsp" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Edit Account Details</a>
+    <a href="logout.jsp" class="w3-bar-item w3-button w3-padding-large">Logout</a>
   </div>
 </div>
 
@@ -102,7 +104,7 @@ Keep your distance from others (about 6 feet or 2 meters).</p>
     <i class="fa fa-twitter w3-hover-opacity"></i>
     <i class="fa fa-linkedin w3-hover-opacity"></i>
  </div>
- <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+ <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">CSS</a></p>
 </footer>
 
 <script>
