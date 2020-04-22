@@ -31,7 +31,7 @@
 			//Get parameters from the HTML form at the editCustomerDetails.jsp
 		     String phone = request.getParameter("phone");
 		     String u_email = (String) session.getAttribute("user_email");
-			 System.out.println("Email ISvg:" + u_email);
+			 System.out.println("Email IS here:" + u_email);
 			 System.out.println(phone);
 		   
 		    //This if statement checks if the fields are left blank
