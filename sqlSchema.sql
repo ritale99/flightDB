@@ -15,6 +15,8 @@ user_name varchar(25) NOT NULL,
 password1 varchar(25) NOT NULL, 
 email varchar(64) NOT NULL,
 phone varchar(16),
+credit_card varchar(19),
+credit_cvv varchar(5),
 primary key(email)
 );
 

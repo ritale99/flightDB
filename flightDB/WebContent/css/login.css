@@ -180,6 +180,19 @@
 .container .info span .fa {
   color: #EF3B3A;
 }
+
+.buttonSubmit {
+  transition-duration: 0.4s;
+  padding: 12px 28px;
+  background-color: #808080;
+  display: inline-block;
+}
+
+.buttonSubmit:hover {
+  background-color: #ffffff; /* White */
+  color: black;
+}
+
 body {
 	
   background: #f73741; /* fallback for old browsers */

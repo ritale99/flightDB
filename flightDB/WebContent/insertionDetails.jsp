@@ -29,23 +29,21 @@
 		
 			
 			//Get parameters from the HTML form at the editCustomerDetails.jsp
-		     String phone = request.getParameter("phone");
+		     String newPhone = request.getParameter("new_phone");
+			 String newName = request.getParameter("new_name");
+			 String newEmail = request.getParameter("new_email");
+			 String newCC = request.getParameter("new_credit_card");
+			 String newCVV = request.getParameter("new_cvv");
 		     String u_email = (String) session.getAttribute("user_email");
-			 System.out.println("Email ISvg:" + u_email);
-			 System.out.println(phone);
+			 System.out.println("Email IS:" + u_email);
+			 System.out.println("New Name is:" + newName);
+			 System.out.println("New Email is:" + newEmail);
+			 System.out.println("New Phone is:" + newPhone);
 		   
 		    //This if statement checks if the fields are left blank
-			if (phone.equals("")){
-				%>
-				<script> 
-				    alert("Please enter your phone number");
-				    window.location.href = "editCustomerDetails.jsp";
-				</script>
-				<% 
-			} else {
-				
+			if (!newPhone.equals("")){
 				//have to change this sql!!!
-				String str = "UPDATE users SET users.phone = '" + phone + "'WHERE users.email = '" + u_email + "';";
+				String str = "UPDATE users SET users.phone = '" + newPhone + "'WHERE users.email = '" + u_email + "';";
 				System.out.println("Works up to checkpoint:6 ");
 				
 				//Run the query against the database.
@@ -55,10 +53,56 @@
 						
 				
 			}
-		    
+			if (!newName.equals("")){
+				//have to change this sql!!!
+				String str = "UPDATE users SET users.user_name = '" + newName + "'WHERE users.email = '" + u_email + "';";
+				System.out.println("Works up to checkpoint:6 ");
+				
+				//Run the query against the database.
+				stmt.executeUpdate(str);
+	
+				//should we check if value was inserted??
+						
+				
+			}
+			if (!newEmail.equals("")){
+				//have to change this sql!!!
+				String str = "UPDATE users SET users.email = '" + newEmail + "'WHERE users.email = '" + u_email + "';";
+				System.out.println("Works up to checkpoint:6 ");
+				
+				//Run the query against the database.
+				stmt.executeUpdate(str);
+	
+				//For this specific case, we need to update session email as well
+				session.setAttribute("user_email", newEmail); 
+				//should we check if value was inserted??
+						
+				
+			}
+			if (!newCC.equals("")){
+				if(!newCVV.equals("")){
+				//have to change this sql!!!
+				String str = "UPDATE users SET users.credit_card = '" + newCC + "'WHERE users.email = '" + u_email + "';";
+				String str2 = "UPDATE users SET users.credit_cvv = '" + newCVV + "'WHERE users.email = '" + u_email + "';";
+				System.out.println("Works up to checkpoint:6 ");
+				
+				//Run the query against the database.
+				stmt.executeUpdate(str);
+				stmt.executeUpdate(str2);
+				//should we check if value was inserted??
+						
+				}else{
+					%>
+					<script>
+						alert("You need to enter a CVV");
+						window.location.href = "editCustomerDetails.jsp";
+					</script>
+					<%
+				}
+			}
 			%>
 			<script> 
-		    	alert("Phone Number Added! Returning to Home Page...");
+		    	alert("User information has been successfully updated!\nReturning to Home Page...");
 		    	window.location.href = "customerLandingPage.jsp";
 			</script>
 			<%	
