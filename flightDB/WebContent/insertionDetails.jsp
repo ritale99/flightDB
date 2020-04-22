@@ -39,6 +39,7 @@
 			 System.out.println("New Name is:" + newName);
 			 System.out.println("New Email is:" + newEmail);
 			 System.out.println("New Phone is:" + newPhone);
+			 System.out.println("Email IS here:" + u_email);
 		   
 		    //This if statement checks if the fields are left blank
 			if (!newPhone.equals("")){

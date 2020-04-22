@@ -6,6 +6,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<script>
+    history.forward();
+</script>
 <link rel="stylesheet" type="text/css" href="css/HTMLTable.css">
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -45,7 +48,8 @@
 				stmt0.setString(1, flightid);
 				ResultSet flights0 = stmt0.executeQuery();
 			
-	
+				String u_email = (String) session.getAttribute("user_email");
+				 System.out.println("Email ISOWR:" + u_email);
 				while (flights0.next()) {
 					out.print("<table>");
 						out.print("</tr>");
@@ -159,21 +163,19 @@
 		}
 	%>
 	
-	<br> Type out the flightId of the flight you would like to book!
-
+	 <br>Type out the flightId of the flight you would like to book!
 		<form action="booking_OW.jsp">
-			<input type="text" placeholder="flight ID" name="flightnum"
-				required> <br>
-			<br>How many Passengers for your reservation?
-			<input type="text" placeholder="number Passengers" name="passengersNum"
-				required> <br>
+			<br><input type="text" placeholder="flight ID" name="flightnum"required> <br>
+		<br>	How many Passengers for your reservation? <br>
+			<br><input type="text" placeholder="number Passengers" name="passengersNum"
+				required> 
 				
 				
-			<button type="submit">Book</button>		
+			<br><button type="submit">Book</button>		
 			
-			
-			   
 		</form>
+		
+		<a href="OneWayForm.jsp">Want to go back?</a>
 		
 		
 

@@ -75,14 +75,13 @@ res_num INT NOT NULL,
 res_date date NOT NULL,
 customer VARCHAR(64) NOT NULL,
 num_passengers INT,
-total_fare DECIMAL,
 PRIMARY KEY (res_num),
 FOREIGN KEY (customer) REFERENCES users (email)
 );
 
 CREATE TABLE Trips(
 res_num INT NOT NULL,
-FOREIGN KEY (res_num) REFERENCES Reservations(res_num)
+flights INT
 );
 
 /*insert manger accounts for login since manager account can't be created on the interface*/
@@ -188,9 +187,6 @@ INSERT INTO flights VALUES ('VA', '97500', '940','210','09:02', 'SYD', '14:10','
 INSERT INTO FlightDate VALUES('2020-05-06', '2020-05-07', '97500');
 
 /*Insertion of international to international flights*/
-
-
-
 
 
 
