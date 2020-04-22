@@ -37,45 +37,60 @@
 				System.out.println("Works up to checkpoint:1 ");
 				
 				//Match by flightID
-				String str0 = "SELECT FlightDate.flight_id, flights.fare_first, flights.flight_type " + "FROM flights, FlightDate " + "WHERE flights.flight_num = FlightDate.flight_id  AND FlightDate.flight_id = ? ";
+				String str0 = "SELECT FlightDate.flight_id, flights.fare_first, flights.flight_type, FlightDate.depart_date, FlightDate.arrive_date, flights.depart_aid, flights.arrive_aid "
+				+ "FROM flights, FlightDate " + "WHERE flights.flight_num = FlightDate.flight_id  AND FlightDate.flight_id = ? ;";
 				System.out.println("Works up to checkpoint:2 ");
 				
 				PreparedStatement stmt0 = con.prepareStatement(str0);
 				stmt0.setString(1, flightid);
 				ResultSet flights0 = stmt0.executeQuery();
-				
-				System.out.println("Works up to checkpoint:4 ");
+			
 	
 				while (flights0.next()) {
-					
-					
 					out.print("<table>");
 						out.print("</tr>");
 							out.print("<th>FlightId</th>");
 							out.print("<th>Fare</th>");
 							out.print("<th>Flight Type</th>");
+							out.print("<th>Depart</th>");
+							out.print("<th>Arrive</th>");
+							out.print("<th>Departing Airport</th>");
+							out.print("<th>Arriving Airport </th>");
 						out.print("</tr>");
-					
 					//parse out the results
 						out.print("<tr>");
-							out.print("<td>");
-								out.print(flights0.getString("FlightDate.flight_id"));
-							out.print("</td>");	
-							out.print("<td>");	
-								out.print(flights0.getString("flights.fare_first"));
-							out.print("</td>");
-							out.print("<td>");	
-								out.print(flights0.getString("flights.flight_type"));
-							out.print("</td>");
-						out.print("</tr>");
-					out.print("</table>");
+						out.print("<td>");
+							out.print(flights0.getString("FlightDate.flight_id"));
+						out.print("</td>");	
+						out.print("<td>");	
+							out.print(flights0.getString("flights.fare_first"));
+						out.print("</td>");
+						out.print("<td>");	
+							out.print(flights0.getString("flights.flight_type"));
+						out.print("</td>");
+						out.print("<td>");	
+						out.print(flights0.getString("FlightDate.depart_date"));
+						out.print("</td>");			
+					out.print("<td>");	
+					out.print(flights0.getString("FlightDate.arrive_date"));
+					out.print("</td>");	
+					out.print("<td>");	
+					out.print(flights0.getString("flights.depart_aid"));
+					out.print("</td>");			
+					out.print("<td>");	
+					out.print(flights0.getString("flights.arrive_aid"));
+					out.print("</td>");	
+					out.print("</tr>");
+				//out.print("</table>");
+					
+			out.print("</table>");
 					
 					
 }
 				
  //Now we need the more advanced query by the date and airport search
  
- 			String str2 = "SELECT FlightDate.flight_id, flights.fare_first, flights.flight_type " + "FROM flights, FlightDate " + "WHERE flights.flight_num = FlightDate.flight_id AND flights.depart_aid = ? " 
+ 			String str2 = "SELECT FlightDate.flight_id, flights.fare_first, flights.flight_type, FlightDate.depart_date, FlightDate.arrive_date, flights.depart_aid, flights.arrive_aid " + "FROM flights, FlightDate " + "WHERE flights.flight_num = FlightDate.flight_id AND flights.depart_aid = ? " 
  			+  " AND flights.arrive_aid = ? AND FlightDate.depart_date >= ? AND FlightDate.depart_date <= ?";
 				
  
@@ -93,21 +108,42 @@
 						out.print("<th>FlightId</th>");
 						out.print("<th>Fare</th>");
 						out.print("<th>Flight Type</th>");
+						out.print("<th>Depart</th>");
+						out.print("<th>Arrive</th>");
+						out.print("<th>Departing Airport</th>");
+						out.print("<th>Arriving Airport </th>");
 					out.print("</tr>");
-				
+					//System.out.println("Works up to checkpoint:6 ");
 				//parse out the results
 					out.print("<tr>");
-						out.print("<td>");
-							out.print(flights2.getString("FlightDate.flight_id"));
-						out.print("</td>");	
-						out.print("<td>");	
-							out.print(flights2.getString("flights.fare_first"));
-						out.print("</td>");
-						out.print("<td>");	
-							out.print(flights2.getString("flights.flight_type"));
-						out.print("</td>");
-					out.print("</tr>");
-				out.print("</table>");
+					out.print("<td>");
+						out.print(flights2.getString("FlightDate.flight_id"));
+					out.print("</td>");	
+					out.print("<td>");	
+						out.print(flights2.getString("flights.fare_first"));
+					out.print("</td>");
+					out.print("<td>");	
+						out.print(flights2.getString("flights.flight_type"));
+					out.print("</td>");
+					out.print("<td>");	
+					//System.out.println("Works up to checkpoint:6.5 ");
+					out.print(flights2.getString("FlightDate.depart_date"));
+					out.print("</td>");			
+				out.print("<td>");
+				out.print(flights2.getString("FlightDate.arrive_date"));
+				out.print("</td>");	
+				out.print("<td>");	
+				out.print(flights2.getString("flights.depart_aid"));
+				out.print("</td>");			
+				out.print("<td>");	
+				System.out.println("Works up to checkpoint:6.6 ");
+				//System.out.println("Works up to checkpoint:7 ");
+				out.print(flights2.getString("flights.arrive_aid"));
+				out.print("</td>");	
+				out.print("</tr>");
+			//out.print("</table>");
+				
+		out.print("</table>");
  				}
  			
 			con.close();
