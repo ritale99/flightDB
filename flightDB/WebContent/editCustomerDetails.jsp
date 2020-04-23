@@ -38,7 +38,7 @@
       
       <button class="buttonSubmit">Update</button>
       </pre>
-      
+      <a href="customerLandingPage.jsp">Want to go back?</a>
     </form>
      
 </div>

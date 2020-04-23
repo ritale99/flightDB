@@ -26,6 +26,15 @@
 	int passengersNumber = Integer.parseInt(passengersNum);
 	String u_email = (String) session.getAttribute("user_email");
 	 System.out.println("Email ISvg:" + u_email);
+	 if (u_email == null || u_email.equals("")){
+		 %> 
+			<!-- if error, show the alert and go back --> 
+			<script> 
+			    alert("Sorry, session Invalidated! Please log in Again.");
+			    window.location.href = "logout.jsp";
+			</script>
+			<%
+	 }
 	try {
 
 		//Create a connection string
