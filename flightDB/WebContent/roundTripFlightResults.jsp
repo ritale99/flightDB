@@ -166,11 +166,16 @@
 			<%			
 		}
 	%>
-	<br> Type out the flightId of the flight you would like to book!
+	<br> Type out the flightId of the flight you would like to book!               
 
 		<form action="booking_OW.jsp">
 			<input type="text" placeholder="flight ID" name="flightnum"
 				required> <br>
+	<br> Type out the flightId of the flight you would like to book on the way back!
+
+		<form action="booking_OW.jsp">
+			<input type="text" placeholder="flight ID" name="flightnum"
+				required> <br>				
 			<br>How many Passengers for your reservation?
 			<input type="text" placeholder="number Passengers" name="passengersNum"
 				required> <br>
