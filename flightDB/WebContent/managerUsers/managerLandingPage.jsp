@@ -48,7 +48,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
   <h1 class="w3-margin w3-jumbo">WELCOME MANAGERS!</h1>
   <p class="w3-xlarge">ENJOY YOUR MANAGEMENT!</p>
   <button  onclick = "window.location.href='salesReportForm.jsp';" class="w3-button w3-black w3-padding-large w3-large w3-margin-top">Get Sales Report Here!</button>
-  <button onclick = "window.location.href='cancelReservation.jsp';"class="w3-button w3-black w3-padding-large w3-large w3-margin-top">Cancel Reservation Here!</button>
+  <button onclick = "window.location.href='queryReservations.jsp';"class="w3-button w3-black w3-padding-large w3-large w3-margin-top">View Reservations Here!</button>
 </header>
 
 <!-- First Grid -->
