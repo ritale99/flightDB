@@ -40,6 +40,15 @@
 			 System.out.println("New Email is:" + newEmail);
 			 System.out.println("New Phone is:" + newPhone);
 			 System.out.println("Email IS here:" + u_email);
+			 if (u_email == null || u_email.equals("")){
+				 %> 
+					<!-- if error, show the alert and go back --> 
+					<script> 
+					    alert("Sorry, session Invalidated!, Please log in Again.");
+					    window.location.href = "logout.jsp";
+					</script>
+					<%
+			 }
 		   
 		    //This if statement checks if the fields are left blank
 			if (!newPhone.equals("")){
