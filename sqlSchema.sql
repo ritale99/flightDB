@@ -73,6 +73,7 @@ on update cascade
 CREATE TABLE Reservations (
 res_num INT NOT NULL,
 res_date date NOT NULL,
+res_fare DECIMAL,
 customer VARCHAR(64) NOT NULL,
 num_passengers INT,
 PRIMARY KEY (res_num),
