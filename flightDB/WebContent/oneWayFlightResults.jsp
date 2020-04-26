@@ -41,7 +41,7 @@
 				
 				//Match by flightID
 				String str0 = "SELECT FlightDate.flight_id, flights.fare_first, flights.flight_type, FlightDate.depart_date, FlightDate.arrive_date, flights.depart_aid, flights.arrive_aid "
-				+ "FROM flights, FlightDate " + "WHERE flights.flight_num = FlightDate.flight_id  AND FlightDate.flight_id = ? ;";
+				+ "FROM flights, FlightDate " + "WHERE flights.flight_num = FlightDate.flight_id  AND FlightDate.flight_id = ? AND flights.num_seats > 0;";
 				System.out.println("Works up to checkpoint:2 ");
 				
 				PreparedStatement stmt0 = con.prepareStatement(str0);
@@ -95,7 +95,7 @@
  //Now we need the more advanced query by the date and airport search
  
  			String str2 = "SELECT FlightDate.flight_id, flights.fare_first, flights.flight_type, FlightDate.depart_date, FlightDate.arrive_date, flights.depart_aid, flights.arrive_aid " + "FROM flights, FlightDate " + "WHERE flights.flight_num = FlightDate.flight_id AND flights.depart_aid = ? " 
- 			+  " AND flights.arrive_aid = ? AND FlightDate.depart_date >= ? AND FlightDate.depart_date <= ?";
+ 			+  " AND flights.arrive_aid = ? AND FlightDate.depart_date >= ? AND FlightDate.depart_date <= ? AND flights.num_seats > 0;";
 				
  
  			PreparedStatement stmt2 = con.prepareStatement(str2);
