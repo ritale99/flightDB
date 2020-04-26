@@ -112,7 +112,7 @@
 								
 						<td>
 								<input type="text" name="take_off_date" placeholder="YEAR-MM-DD"> To:
-					 			<input type= "text" name= "take_off_date_2" placeholder="YEAR-MM-DD"> 
+					 			<!-- <input type= "text" name= "take_off_date_2" placeholder="YEAR-MM-DD"> -->
 							</td> 
 						</tr>
 						<br>

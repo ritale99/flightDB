@@ -95,14 +95,17 @@
  //Now we need the more advanced query by the date and airport search
  
  			String str2 = "SELECT FlightDate.flight_id, flights.fare_first, flights.flight_type, FlightDate.depart_date, FlightDate.arrive_date, flights.depart_aid, flights.arrive_aid " + "FROM flights, FlightDate " + "WHERE flights.flight_num = FlightDate.flight_id AND flights.depart_aid = ? " 
- 			+  " AND flights.arrive_aid = ? AND FlightDate.depart_date >= ? AND FlightDate.depart_date <= ? AND flights.num_seats > 0;";
-				
+ 			+  " AND flights.arrive_aid = ? AND FlightDate.depart_date = ? AND flights.num_seats > 0;";
+ 			
+ 			//flexible dates +1 -1 from depart_date
+ 			String str3 = "SELECT FlightDate.flight_id, flights.fare_first, flights.flight_type, FlightDate.depart_date, FlightDate.arrive_date, flights.depart_aid, flights.arrive_aid " + "FROM flights, FlightDate " + "WHERE flights.flight_num = FlightDate.flight_id AND flights.depart_aid = ? " 
+ 			+  " AND flights.arrive_aid = ? AND FlightDate.depart_date >= ? AND FlightDate.depart_date <= ? AND flights.num_seats > 0;";		
  
  			PreparedStatement stmt2 = con.prepareStatement(str2);
  			stmt2.setString(1,departing_port);
  			stmt2.setString(2,arriving_port);
  			stmt2.setString(3,takeoffd1);
- 			stmt2.setString(4,takeoffd2);
+ 			//stmt2.setString(4,takeoffd2);
  			
  			ResultSet flights2 = stmt2.executeQuery();
  			
@@ -147,8 +150,9 @@
 				out.print("</tr>");
 			//out.print("</table>");
 				
-		out.print("</table>");
+					out.print("</table>");
  				}
+ 				
  			
 			con.close();
 
@@ -161,7 +165,10 @@
 			</script>
 			<%			
 		}
+	
 	%>
+
+			
 	
 	 <br>Type out the flightId of the flight you would like to book!
 		<form action="booking_OW.jsp">
@@ -176,6 +183,10 @@
 			<br><button type="submit">Book</button>		
 			
 		</form>
+		
+			 <h2>More Flights...</h2>
+			<a href="moreFlights.jsp">Want to fly a late early or Later?</a>
+		
 		
 		<a href="OneWayForm.jsp">Want to go back?</a>
 		

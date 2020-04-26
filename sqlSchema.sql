@@ -64,7 +64,6 @@ CREATE Table FlightDate (
 depart_date date NOT NULL,
 arrive_date date NOT NULL,
 flight_id INT NOT NULL,
-seats_left int NOT NULL,
 PRIMARY KEY (depart_date, arrive_date, flight_id),
 FOREIGN KEY (flight_id) REFERENCES flights(flight_num)
 on delete cascade
