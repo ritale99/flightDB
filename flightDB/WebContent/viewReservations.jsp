@@ -53,6 +53,7 @@
 				while (flights0.next()) {
 					out.print("<table>");
 						out.print("</tr>");
+							out.print("<th>Reservation number</th>");
 							out.print("<th>Flight Type</th>");
 							out.print("<th>Number of Passengers</th>");
 							out.print("<th>Date Reserved</th>");
@@ -63,6 +64,9 @@
 						out.print("</tr>");
 					//parse out the results
 						out.print("<tr>");
+						out.print("<td>");
+						out.print(flights0.getString("Reservations.res_num"));
+					out.print("</td>");	
 						out.print("<td>");
 							out.print(flights0.getString("flights.flight_type"));
 						out.print("</td>");	
