@@ -14,18 +14,16 @@
 	<style>
      
     </style>
+    <p class="app-name">Select a Airport</p>  
     <div class="login-page">
 <div class="form">
 	<body>
 		<br>
-		<h3>Select the Airport</h3>
+    
 			<form method="get" action="listFlightsByPort.jsp" enctype=text/plain>
 
 
-		<table>
-				<tr>
-					<!-- textbox for flight search -->
-					<tr>
+	
 						<td>Flights by Airport!</td>
 						</tr>
 						<tr><td>
