@@ -14,10 +14,11 @@
 
 
 <div class="login-page">
-    <form class="register-form" method="post" action="insertionDetails.jsp">
+<div class="form">
+     <form class="login-form" method="post" action="insertionDetails.jsp">
       
-      <pre>
-      <label>Update your name: </label>
+     
+     	<label>Update your name:</label>
       <input type="text" placeholder="name" name="new_name"/>
       
       

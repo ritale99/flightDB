@@ -5,34 +5,45 @@
 <head>
 <link rel="stylesheet" type="text/css" href="../css/login.css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Corona Time</title>
+<title>Customer Details</title>
 </head>
 <body>
 
 
-<p class="app-name">Add Details for a Customer!</p>      
+<p class="app-name">Update your details</p>      
+
 
 <div class="login-page">
-  <div class="form">
-    <form class="register-form" method="post" action="insertionDetails.jsp">
+<div class="form">
+     <form class="login-form" method="post" action="managerInsertionsCustomer.jsp">
       
-      <input type="email" placeholder="email" name="email"/>
+     	<label>Enter Customers current email:</label>
+      <input type="text" placeholder="name" name="new_name"/>
+     	
+     	<label>Update Customers name:</label>
+      <input type="text" placeholder="name" name="new_name"/>
       
-      <button>create</button>
       
-    </form>
-    
-    <form class="login-form" method="post" action="managerInsertionsCustomer.jsp">
-    
-      <input type="email" placeholder="Customer Email" name="email"/>	
-      <input type="phone" placeholder="+_ ___-___-___" name="phone"/>
       
-      <button>Submit</button>
-
+      <label>Update Customers email:</label>
+      <input type="email" placeholder="email" name="new_email"/>
       
+      
+      
+      <label>Update  Customers number: </label>
+      <label>+</label><input type="phone" placeholder="" name="new_phone"/>
+      
+      
+      <label>Update Customers credit-card number</label>
+      <input type="password" name ="new_credit_card"/>
+      <label>Input Customer CVV</label>
+      <input type="password" name = "new_cvv"/>
+      
+      <button class="buttonSubmit">Update</button>
+      </pre>
+      <a href="customerLandingPage.jsp">Want to go back?</a>
     </form>
      
-  </div>
 </div>
 
 <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
