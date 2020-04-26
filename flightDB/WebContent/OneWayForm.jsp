@@ -12,9 +12,13 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<title>Search for Flights!</title>
 	</head>
+	 <link rel="stylesheet" type="text/css" href="css/login.css">
 	<style>
-     
+ 
+
     </style>
+    <div class="login-page">
+<div class="form">
 	<body>
 		<br>
 		<h3>What type of flight?</h3>
@@ -28,6 +32,7 @@
 						<td>Departing Airport</td>
 						</tr>
 						<tr><td>
+						
 							<select type="text" name="depport" placeholder="Enter 3 letter Airport ID">
 							<option>--Select--</option>
 							<option>EWR</option>

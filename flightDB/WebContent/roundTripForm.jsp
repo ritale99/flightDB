@@ -6,6 +6,10 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<title>Search for Flights!</title>
 	</head>
+		 <link rel="stylesheet" type="text/css" href="css/login.css">
+	
+	<div class="login-page">
+<div class="form">
 	<body>
 		<br>
 		<h3>What type of flight?</h3>
