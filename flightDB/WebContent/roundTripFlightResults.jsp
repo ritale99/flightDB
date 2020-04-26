@@ -41,17 +41,19 @@
 		    
 				List<String> list = new ArrayList<String>();
 
-				System.out.println("Works up to checkpoint:1 ");
+				
 				
 				//Check to see matches of the first to go plane
-				String str0 = "SELECT FlightDate.flight_id, flights.fare_first, flights.flight_type, FlightDate.depart_date, FlightDate.arrive_date, flights.arrive_aid, flights.depart_aid  " +
-				"FROM flights, FlightDate " + 
-				"WHERE flights.flight_num = FlightDate.flight_id "+ 
+				String str0 = 
+						"SELECT FlightDate.flight_id, flights.fare_first, flights.flight_type, FlightDate.depart_date, FlightDate.arrive_date, flights.arrive_aid, flights.depart_aid  " +
+						"FROM flights, FlightDate " + 
+						"WHERE flights.flight_num = FlightDate.flight_id "+ 
 						"and FlightDate.depart_date >= ? " +
 						"and FlightDate.depart_date <= ? " +
 						"and flights.depart_aid = ? " +
-						"and flights.arrive_aid = ?";
-				System.out.println("Works up to checkpoint:2 ");
+						"and flights.arrive_aid = ? AND flights.num_seats > 0;";
+				
+					System.out.println("Works up to checkpoint:2 ");
 				
 				PreparedStatement stmt = con.prepareStatement(str0);
 				stmt.setString(1, takeoffd1);
@@ -59,21 +61,20 @@
 				stmt.setString(3, departing_port);
 				stmt.setString(4, arriving_port);
 				ResultSet flightsAB = stmt.executeQuery();
-				
-				System.out.println("Works up to checkpoint:4 ");
 	
 				
-			
 			//then we can proceed to display the results later...
-				 if (flightsAB.next()) {
+				 if (flightsAB.isBeforeFirst()) {
 					 
-					 String str2 = 	"SELECT FlightDate.flight_id, flights.fare_first, flights.flight_type, FlightDate.depart_date, FlightDate.arrive_date " +
+					 
+					 //select the return flights
+					 String str2 = 	"SELECT FlightDate.flight_id, flights.fare_first, flights.flight_type, flights.depart_aid, flights.arrive_aid, FlightDate.depart_date, FlightDate.arrive_date " +
 								"from FlightDate, flights " +
 								"WHERE FlightDate.flight_id = flights.flight_num "+
 								"and FlightDate.depart_date >= ? " +
 								"and FlightDate.depart_date <= ? " +
 								"and flights.arrive_aid = ? " +
-								"and flights.depart_aid = ? ";
+								"and flights.depart_aid = ? AND flights.num_seats > 0;";
 						
 							PreparedStatement stmt2 = con.prepareStatement(str2);
 							stmt2.setString(1, arrived1);
@@ -81,7 +82,8 @@
 							stmt2.setString(3, departing_port);
 							stmt2.setString(4, arriving_port);
 							ResultSet flightsBA = stmt2.executeQuery();
-					
+							
+							System.out.println("Works up to checkpoint:3 ");
 					
 					out.print("<table>");
 						out.print("</tr>");
@@ -94,8 +96,7 @@
 							out.print("<th>Arriving Airport </th>");				
 							out.print("</tr>");
 					
-					while(flightsBA.next()){
-						
+					while(flightsAB.next()){
 						out.print("<tr>");
 						out.print("<td>");
 							out.print(flightsAB.getString("FlightDate.flight_id"));
@@ -109,46 +110,49 @@
 						out.print("<td>");	
 						out.print(flightsAB.getString("FlightDate.depart_date"));
 						out.print("</td>");			
-					out.print("<td>");	
-					out.print(flightsAB.getString("FlightDate.arrive_date"));
-					out.print("</td>");	
-					out.print("<td>");	
-					out.print(flightsAB.getString("flights.depart_aid"));
-					out.print("</td>");			
-					out.print("<td>");	
-					out.print(flightsAB.getString("flights.arrive_aid"));
-					out.print("</td>");	
-					out.print("</tr>");
-				//out.print("</table>");
-					out.print("<tr>");
-					out.print("<td>");
-						out.print(flightsBA.getString("FlightDate.flight_id"));
-					out.print("</td>");	
-					out.print("<td>");	
-						out.print(flightsBA.getString("flights.fare_first"));
-					out.print("</td>");
-					out.print("<td>");	
-						out.print(flightsBA.getString("flights.flight_type"));
-					out.print("</td>");
-					out.print("<td>");	
-					out.print(flightsAB.getString("FlightDate.depart_date"));
-				out.print("</td>");			
-				out.print("<td>");	
-				out.print(flightsAB.getString("FlightDate.arrive_date"));
-			out.print("</td>");		
-			out.print("<td>");	
-			out.print(flightsAB.getString("flights.arrive_aid"));
-		out.print("</td>");			
-		out.print("<td>");	
-		out.print(flightsAB.getString("flights.depart_aid"));
-	out.print("</td>");	
-				out.print("</tr>");
-			out.print("</table>");
-					
+						out.print("<td>");	
+						out.print(flightsAB.getString("FlightDate.arrive_date"));
+						out.print("</td>");	
+						out.print("<td>");	
+						out.print(flightsAB.getString("flights.depart_aid"));
+						out.print("</td>");			
+						out.print("<td>");	
+						out.print(flightsAB.getString("flights.arrive_aid"));
+						out.print("</td>");	
+						out.print("</tr>");
 					}
+					//out.print("</table>");
+				while (flightsBA.next()){
+						out.print("<tr>");
+						out.print("<td>");
+						out.print(flightsBA.getString("FlightDate.flight_id"));
+						out.print("</td>");	
+						out.print("<td>");	
+						out.print(flightsBA.getString("flights.fare_first"));
+						out.print("</td>");
+						out.print("<td>");	
+						out.print(flightsBA.getString("flights.flight_type"));
+						out.print("</td>");
+						out.print("<td>");	
+						out.print(flightsBA.getString("FlightDate.depart_date"));
+						out.print("</td>");			
+						out.print("<td>");	
+						out.print(flightsBA.getString("FlightDate.arrive_date"));
+						out.print("</td>");		
+						out.print("<td>");	
+						out.print(flightsBA.getString("flights.depart_aid"));
+						out.print("</td>");			
+						out.print("<td>");	
+						out.print(flightsBA.getString("flights.arrive_aid"));
+						out.print("</td>");	
+						out.print("</tr>");
 						
-}
-				
+					
+					}}
+				 out.print("</table>");
+						
+				 System.out.println("Works up to checkpoint:5 ");
+			
 		 	//we need the reservation feature as well!!
  			//also need to check the sql here to make sure it matches correctly
  
@@ -183,7 +187,8 @@
 				
 			<button type="submit">Book</button>		
 			
-			
+			<br>
+		<a href="roundTripForm.jsp">Want to go back?</a>
 			   
 		</form>
 
