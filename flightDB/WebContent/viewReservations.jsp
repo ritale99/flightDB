@@ -31,15 +31,7 @@
 	
 			//parameters
 			String u_email = (String) session.getAttribute("user_email");
-			 if (u_email == null || u_email.equals("")){
-				 %> 
-					<!-- if error, show the alert and go back --> 
-					<script> 
-					    alert("Sorry, session Invalidated!, Please log in Again.");
-					    window.location.href = "logout.jsp";
-					</script>
-					<%
-			 }
+			
 			
 		
 				String stringy = "SELECT FlightDate.arrive_date, FlightDate.depart_date, flights.depart_aid, flights.arrive_aid, Trips.flights, Reservations.res_num, Reservations.res_date, Reservations.num_passengers, flights.flight_type FROM flights, Reservations, FlightDate, Trips WHERE Reservations.customer = '" + u_email + 
