@@ -90,7 +90,7 @@ flights INT
 INSERT INTO managers VALUES ('Rithvik', 'password');
 INSERT INTO managers VALUES ('Harsh', 'password');
 INSERT INTO managers VALUES ('Bhasit', 'password');
-INSERT INTO managers VALUES ('Tamay', 'password');
+INSERT INTO managers VALUES ('Tanmay', 'password');
 INSERT INTO managers VALUES ('Noman', 'password');
 
 /*Insertion of Some Domestic Flight Data*/
