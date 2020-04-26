@@ -11,6 +11,8 @@
 
 
 <p class="app-name">Select a Month</p>      
+<div class="login-page">
+<div class="form">
 <form method="get" action="salesReportResults.jsp" enctype=text/plain>
 <select type="text" name="month" placeholder="Enter 3 letter Airport ID">
 							<option>--Select--</option>
