@@ -169,7 +169,9 @@
 		<br>	How many Passengers for your reservation? <br>
 			<br><input type="text" placeholder="number Passengers" name="passengersNum"
 				required> 
-				
+			<br>	What is the departure date? <br>
+				<br><input type="text" placeholder="YEAR-MM-DD" name="departure"
+				required> 
 				
 			<br><button type="submit">Book</button>		
 			
