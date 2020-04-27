@@ -12,7 +12,7 @@
 <link rel="stylesheet" type="text/css" href="css/HTMLTable.css">
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Showing One Way Flight Search Results</title>
+<title>Viewing Results </title>
 </head>
 <body>
 	<%
@@ -38,66 +38,50 @@
 					    alert("Sorry, session Invalidated!, Please log in Again.");
 					    window.location.href = "logout.jsp";
 					</script>
-					<%
-			 }
+				<%
+			}
+			 
+			String string = "SELECT COUNT(*) FROM Reservations WHERE customer='" + u_email + "';";
+			ResultSet resCount = stmt.executeQuery(string);
+			resCount.next();
+			if(resCount.getInt(1) == 0){
+				%>
+					<h2 style="text-align:center;" style="font-family:arial,sans-serif;" > OH NO! Looks like you don't have any reservations, please come back when you make some!</h2>
+				<%
+			}else{
+				%>
+					<h2>Please click on a reservation for a detailed itinerary</h2><br>
+				<%
+			}
 			
-		
-				String stringy = "SELECT FlightDate.arrive_date, FlightDate.depart_date, flights.depart_aid, flights.arrive_aid, Trips.flights, Reservations.res_num, Reservations.res_date, Reservations.num_passengers, flights.flight_type FROM flights, Reservations, FlightDate, Trips WHERE Reservations.customer = '" + u_email + 
-						"' AND Trips.res_num = Reservations.res_num AND flights.flight_num = Trips.flights AND FlightDate.flight_id = flights.flight_num;";
+			
+			String stringy = "SELECT R.res_num, R.res_date, R.res_fare FROM Reservations R WHERE R.customer='" + u_email + "' ORDER BY R.res_date;";
+			System.out.println(stringy);
+			ResultSet reservations = stmt.executeQuery(stringy);
+		    
+			out.print("<table>");
+			out.print("</tr>");
+				out.print("<th>Reservation number</th>");
+				out.print("<th>Date Reserved</th>");
+				out.print("<th>Cost of Fare</th>");
+			out.print("</tr>");
+			while (reservations.next()) {
 				
-				System.out.println(stringy);
-				ResultSet flights0 = stmt.executeQuery(stringy);
-			    
-				
-				
-				while (flights0.next()) {
-					out.print("<table>");
-						out.print("</tr>");
-							out.print("<th>Reservation number</th>");
-							out.print("<th>Flight Type</th>");
-							out.print("<th>Number of Passengers</th>");
-							out.print("<th>Date Reserved</th>");
-							out.print("<th>Departure Date</th>");
-							out.print("<th>Arrive Date</th>");
-							out.print("<th>Depart Airport</th>");
-							out.print("<th>Arrive Airport</th>");
-						out.print("</tr>");
-					//parse out the results
-						out.print("<tr>");
+				//parse out the results
+					out.print("<tr>");
 						out.print("<td>");
-						out.print(flights0.getString("Reservations.res_num"));
-					out.print("</td>");	
+							out.print(reservations.getString("R.res_num"));
+						out.print("</td>");	
 						out.print("<td>");
-							out.print(flights0.getString("flights.flight_type"));
+							out.print(reservations.getString("R.res_date"));
 						out.print("</td>");	
 						out.print("<td>");	
-							out.print(flights0.getString("Reservations.num_passengers"));
+							out.print(reservations.getString("R.res_fare"));
 						out.print("</td>");
-						out.print("<td>");	
-							out.print(flights0.getString("Reservations.res_date"));
-						out.print("</td>");
-						out.print("<td>");	
-						out.print(flights0.getString("FlightDate.depart_date"));
-						out.print("</td>");			
-					out.print("<td>");	
-					out.print(flights0.getString("FlightDate.arrive_date"));
-					out.print("</td>");	
-					out.print("<td>");	
-					out.print(flights0.getString("flights.depart_aid"));
-					out.print("</td>");			
-					out.print("<td>");	
-					out.print(flights0.getString("flights.arrive_aid"));
-					out.print("</td>");	
 					out.print("</tr>");
-				//out.print("</table>");
-					
-			out.print("</table>");
-					
-					
-}	
- 			
+			}
+			out.print("</form>");
 			con.close();
-
 		}catch (Exception e) {
 			out.print("failed");
 			%>
@@ -105,11 +89,10 @@
 		    	alert("Sorry, unexcepted error happened.");
 		    	window.location.href = "customerLandingPage.jsp";
 			</script>
-			<%			
+			<%	
 		}
-	%>
 	
-		
+		%>
 		<a href="customerLandingPage.jsp">Want to go back?</a>
 		
 		

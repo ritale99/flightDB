@@ -29,7 +29,7 @@
       
       
       <label>Update your Phone-number: </label>
-      <label>+</label><input type="phone" placeholder="" name="new_phone"/>
+      <input type="phone" placeholder="+" name="new_phone"/>
       
       
       <label>Update your credit-card number</label>

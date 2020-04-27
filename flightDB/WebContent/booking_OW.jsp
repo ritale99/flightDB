@@ -23,6 +23,7 @@
 	//Get parameters from the HTML form at the index.jsp
 	String flightnum = request.getParameter("flightnum");
 	String passengersNum = request.getParameter("passengersNum");
+	String depDate = request.getParameter("departure");
 	int passengersNumber = Integer.parseInt(passengersNum);
 	String u_email = (String) session.getAttribute("user_email");
 	 System.out.println("Email ISvg:" + u_email);
@@ -141,6 +142,13 @@
 		//Update profits
 		String updateCus = "UPDATE users SET profits=profits+'" + fare + "' WHERE email='" + u_email + "';";
 		stmt.executeUpdate(updateCus);
+		
+		String updateFli = "UPDATE flights SET profits=profits+'" + fare + "' WHERE flight_num='" + flightnum + "';";
+		stmt.executeUpdate(updateFli);
+		
+		String updateAir = "UPDATE Airport SET profits=profits+'" + fare + "' JOIN flights F WHERE Airport.Airport_id = F.arrive_aid AND F.flight_num'" + flightnum + "';";
+		System.out.println(depDate);
+		stmt.executeUpdate(updateFli);
 		//Close the connection.
 		con.close();
 

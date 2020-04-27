@@ -1,4 +1,8 @@
 @charset "ISO-8859-1";
+h1 {
+	font-family: arial, sans-serif;
+	text-align: center;
+}
 table {
   font-family: arial, sans-serif;
   border-collapse: collapse;

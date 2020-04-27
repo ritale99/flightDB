@@ -27,7 +27,6 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
     <a href="#" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
     <a href="OneWayForm.jsp" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">One Way</a>
     <a href="listAllFlights.jsp" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">View All Flights</a>
-    <a href="salesReportResults.jsp" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Reporting</a>
     <a href="flightsByPortForm.jsp" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">View All Flights By Airport</a>
     <a href="customerDetailsForm.jsp" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Customer Account Details</a>
     <a href="../logout.jsp" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Logout</a>

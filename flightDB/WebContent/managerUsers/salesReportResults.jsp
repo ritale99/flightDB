@@ -25,8 +25,10 @@
 			
 			//Create a SQL statement
 			Statement stmt = con.createStatement();
-				//Landing on this page will automatically generate customer revenue
-				//Match by flightID
+			
+			String filter = request.getParameter("filter");
+			
+			if(filter.equals("Customer")){
 				String str0 = "SELECT user_name, profits FROM users ORDER BY profits DESC";
 				System.out.println("Works up to checkpoint:2 ");
 				System.out.println(str0);
@@ -34,13 +36,12 @@
 			
 				ResultSet flights0 = stmt0.executeQuery();
 			
+				out.print("<table>");
+					out.print("</tr>");
+						out.print("<th>Customer Name</th>");
+						out.print("<th>Profits</th>");
+					out.print("</tr>");
 				while (flights0.next()) {
-					out.print("<table>");
-						out.print("</tr>");
-							out.print("<th>Customer Name</th>");
-							out.print("<th>Customer Profits</th>");
-					
-						out.print("</tr>");
 					//parse out the results
 						out.print("<tr>");
 						out.print("<td>");
@@ -49,9 +50,79 @@
 						out.print("<td>");	
 							out.print(flights0.getString("profits"));
 						out.print("</td>");	
-						out.print("</tr>");
-					out.print("</table>");	
+						out.print("</tr>");	
 				}
+				out.print("</table>");
+			}else if(filter.equals("Flight")){
+				//Match by flightID
+				String str0 = "SELECT flight_num, a_name, profits FROM flights F JOIN airlines A WHERE F.airline_id = A.airline_id ORDER BY profits DESC";
+				System.out.println("Works up to checkpoint:2 ");
+				System.out.println(str0);
+				PreparedStatement stmt0 = con.prepareStatement(str0);
+			
+				ResultSet flights0 = stmt0.executeQuery();
+			
+				out.print("<table>");
+					out.print("</tr>");
+						out.print("<th>Flight Number</th>");
+						out.print("<th>Airline Name</th>");
+						out.print("<th>Profits</th>");
+					out.print("</tr>");
+				while (flights0.next()) {
+					//parse out the results
+						out.print("<tr>");
+						out.print("<td>");
+							out.print(flights0.getString("flight_num"));
+						out.print("</td>");	
+						out.print("<td>");	
+							out.print(flights0.getString("a_name"));
+						out.print("</td>");
+						out.print("<td>");	
+						out.print(flights0.getString("profits"));
+						out.print("</td>");	
+						out.print("</tr>");
+				}
+				out.print("</table>");
+			}
+// 			}else if(filter.equals("Destination City")){
+// 				//Match by flightID
+// 				String str0 = "SELECT ap_name, city, state, country, profits FROM Airport A JOIN flights F WHERE A.Airport_id = F.arrive_aid AND F.flight_num = (SELECT A.airline_id FROM airlines A JOIN flights F WHERE F.airline_id = A.airline_id) ORDER BY profits DESC";
+// 				System.out.println("Works up to checkpoint:2 ");
+// 				System.out.println(str0);
+// 				PreparedStatement stmt0 = con.prepareStatement(str0);
+			
+// 				ResultSet flights0 = stmt0.executeQuery();
+			
+// 				out.print("<table>");
+// 					out.print("</tr>");
+// 						out.print("<th>Airport Name</th>");
+// 						out.print("<th>City</th>");
+// 						out.print("<th>State</th>");
+// 						out.print("<th>Country</th>");
+// 						out.print("<th>Profits</th>");
+// 					out.print("</tr>");
+// 				while (flights0.next()) {
+// 					//parse out the results
+// 						out.print("<tr>");
+// 						out.print("<td>");
+// 							out.print(flights0.getString("ap_name"));
+// 						out.print("</td>");	
+// 						out.print("<td>");	
+// 							out.print(flights0.getString("city"));
+// 						out.print("</td>");
+// 						out.print("<td>");	
+// 						out.print(flights0.getString("state"));
+// 						out.print("</td>");
+// 						out.print("<td>");	
+// 						out.print(flights0.getString("country"));
+// 						out.print("</td>");	
+// 						out.print("<td>");	
+// 						out.print(flights0.getString("profits"));
+// 						out.print("</td>");	
+// 						out.print("</tr>");
+// 				}
+// 				out.print("</table>");
+// 			}
 			con.close();
 
 		}catch (Exception e) {

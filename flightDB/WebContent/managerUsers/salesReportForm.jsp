@@ -10,24 +10,14 @@
 <body>
 
 
-<p class="app-name">Select a Month</p>      
+<p class="app-name">Filter By...</p>      
 <div class="login-page">
 <div class="form">
 <form method="get" action="salesReportResults.jsp" enctype=text/plain>
-<select type="text" name="month" placeholder="Enter 3 letter Airport ID">
-							<option>--Select--</option>
-							<option>January</option>
-							<option>February</option>
-							<option>March</option>
-							<option>April</option>
-							<option>May</option>
-							<option>June</option>
-							<option>July</option>
-							<option>August</option>
-							<option>September</option>
-							<option>October</option>
-							<option>Novemer</option>
-							<option>December</option>
+<select type="text" name="filter" placeholder="Enter 3 letter Airport ID">
+							<option>Customer</option>
+							<option>Flight</option>
+							<option>Destination City</option>
 							<input type = 'submit' name="submit" value = "submit"> 	
       </pre>
       <a href="managerLandingPage.jsp">Want to go back?</a>
