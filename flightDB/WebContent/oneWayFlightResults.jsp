@@ -50,9 +50,8 @@
 			
 				String u_email = (String) session.getAttribute("user_email");
 				 System.out.println("Email ISOWR:" + u_email);
-				 
-				while (flights0.next()) {
-					 out.print("<table>");
+				
+				 out.print("<table>");
 					out.print("</tr>");
 						out.print("<th>FlightId</th>");
 						out.print("<th>Fare</th>");
@@ -62,6 +61,8 @@
 						out.print("<th>Departing Airport</th>");
 						out.print("<th>Arriving Airport </th>");
 					out.print("</tr>");
+				while (flights0.next()) {
+					 
 					//parse out the results
 						out.print("<tr>");
 						out.print("<td>");
@@ -87,8 +88,6 @@
 					out.print("</td>");	
 					out.print("</tr>");
 				}
-					
-			out.print("</table>");
 				
  //Now we need the more advanced query by the date and airport search
  
@@ -108,16 +107,6 @@
  			ResultSet flights2 = stmt2.executeQuery();
  			
  				while (flights2.next()){
- 					out.print("<table>");
-					out.print("</tr>");
-						out.print("<th>FlightId</th>");
-						out.print("<th>Fare</th>");
-						out.print("<th>Flight Type</th>");
-						out.print("<th>Depart</th>");
-						out.print("<th>Arrive</th>");
-						out.print("<th>Departing Airport</th>");
-						out.print("<th>Arriving Airport </th>");
-					out.print("</tr>");
 					//System.out.println("Works up to checkpoint:6 ");
 				//parse out the results
 					out.print("<tr>");
@@ -147,10 +136,9 @@
 				out.print("</td>");	
 				out.print("</tr>");
 			//out.print("</table>");
-				
-					out.print("</table>");
  				}
- 				
+				
+				out.print("</table>");	
  			
 			con.close();
 
