@@ -85,11 +85,18 @@ res_num INT NOT NULL,
 flights INT
 );
 
+/*Insert a test account user*/
+INSERT INTO users VALUES ('Tanmay', 'password', 'tanmay@test.com', NULL, NULL, NULL);
+INSERT INTO users VALUES ('Rithvik', 'password', 'rithvik@test.com', NULL, NULL, NULL);
+INSERT INTO users VALUES ('Harsh', 'password', 'harsh@test.com', NULL, NULL, NULL);
+INSERT INTO users VALUES ('Bhasit', 'password', 'bhasit@test.com', NULL, NULL, NULL);
+INSERT INTO users VALUES ('Noman', 'password', 'noman@test.com', NULL, NULL, NULL);
+
 /*insert manger accounts for login since manager account can't be created on the interface*/
 INSERT INTO managers VALUES ('Rithvik', 'password');
 INSERT INTO managers VALUES ('Harsh', 'password');
 INSERT INTO managers VALUES ('Bhasit', 'password');
-INSERT INTO managers VALUES ('Tanmay', 'password');
+INSERT INTO managers VALUES ('Tamay', 'password');
 INSERT INTO managers VALUES ('Noman', 'password');
 
 /*Insertion of Some Domestic Flight Data*/
