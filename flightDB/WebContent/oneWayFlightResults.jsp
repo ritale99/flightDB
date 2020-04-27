@@ -51,7 +51,8 @@
 				String u_email = (String) session.getAttribute("user_email");
 				 System.out.println("Email ISOWR:" + u_email);
 				 
-			 	out.print("<table>");
+				while (flights0.next()) {
+					 out.print("<table>");
 					out.print("</tr>");
 						out.print("<th>FlightId</th>");
 						out.print("<th>Fare</th>");
@@ -61,8 +62,6 @@
 						out.print("<th>Departing Airport</th>");
 						out.print("<th>Arriving Airport </th>");
 					out.print("</tr>");
-				while (flights0.next()) {
-					
 					//parse out the results
 						out.print("<tr>");
 						out.print("<td>");
