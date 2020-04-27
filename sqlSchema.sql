@@ -17,6 +17,7 @@ email varchar(64) NOT NULL,
 phone varchar(16),
 credit_card varchar(19),
 credit_cvv varchar(5),
+profits DECIMAL(15,2),
 primary key(email)
 );
 
@@ -71,7 +72,7 @@ on update cascade
 );
 
 CREATE TABLE Reservations (
-res_num INT NOT NULL,
+res_num INT NOT NULL auto_increment,
 res_date date NOT NULL,
 res_fare DECIMAL,
 customer VARCHAR(64) NOT NULL,
@@ -86,11 +87,11 @@ flights INT
 );
 
 /*Insert a test account user*/
-INSERT INTO users VALUES ('Tanmay', 'password', 'tanmay@test.com', NULL, NULL, NULL);
-INSERT INTO users VALUES ('Rithvik', 'password', 'rithvik@test.com', NULL, NULL, NULL);
-INSERT INTO users VALUES ('Harsh', 'password', 'harsh@test.com', NULL, NULL, NULL);
-INSERT INTO users VALUES ('Bhasit', 'password', 'bhasit@test.com', NULL, NULL, NULL);
-INSERT INTO users VALUES ('Noman', 'password', 'noman@test.com', NULL, NULL, NULL);
+INSERT INTO users VALUES ('Tanmay', 'password', 'tanmay@test.com', NULL, NULL, NULL, 10487234630.00);
+INSERT INTO users VALUES ('Rithvik', 'password', 'rithvik@test.com', NULL, NULL, NULL, 340.00);
+INSERT INTO users VALUES ('Harsh', 'password', 'harsh@test.com', NULL, NULL, NULL, 86.00);
+INSERT INTO users VALUES ('Bhasit', 'password', 'bhasit@test.com', NULL, NULL, NULL, 3594940.00);
+INSERT INTO users VALUES ('Noman', 'password', 'noman@test.com', NULL, NULL, NULL, 3.00);
 
 /*insert manger accounts for login since manager account can't be created on the interface*/
 INSERT INTO managers VALUES ('Rithvik', 'password');

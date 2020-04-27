@@ -111,11 +111,13 @@
 			<%
 			return;			
 		}
+		
+		
 		//HAVE TO CHANGE THE SQL BELOW
 		
 		//Make an insert statement for the Sells table:
-		String insert = "INSERT INTO users (user_name, email, password1)"
-				+ " VALUES (?, ?, ?)";
+		String insert = "INSERT INTO users (user_name, email, password1, profits)"
+				+ " VALUES (?, ?, ?, 0)";
 		//Create a Prepared SQL statement allowing you to introduce the parameters of the query
 		PreparedStatement ps = con.prepareStatement(insert);
 		System.out.println(insert);

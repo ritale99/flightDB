@@ -65,7 +65,7 @@
 		
 		//find number of passengers to see if theres enough seats left
 		
-		String select = "SELECT num_seats FROM flights WHERE flights.flight_num = '" + flightnum + "'";
+		String select = "SELECT num_seats FROM flights WHERE flights.flight_num = '" + flightnum + "';";
 		ResultSet pass = stmt.executeQuery(select);
 		if (pass.next()){
 			 int passengers = pass.getInt(1);
@@ -103,33 +103,44 @@
 			</script>
 			<%
 		}
-	
-		//generate random reservation number
-		Random rand = new Random();
-        int reservationNum = rand.nextInt(1000);
-        
+		
         //get todays date!
         java.util.Date utilDate = new Date();
         java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
 
-         System.out.println(u_email);
-         System.out.println(sqlDate);
+        System.out.println(u_email);
+        System.out.println(sqlDate);
 		
-		//HAVE TO CHANGE THE SQL BELOW
+		//Get the price of the flight
+		String selectF = "SELECT fare_first FROM flights WHERE flight_num = '" + flightnum + "';";
+		ResultSet passF = stmt.executeQuery(selectF);
+		passF.next();
+		double fare = passF.getDouble(1);
 		
 		//Make an insert statement for the Reservations table:
-		String insert = "INSERT INTO Reservations VALUES ('" + reservationNum + "','" + sqlDate + "','" + u_email +  "','" + passengersNumber + "');";
+		String insert = "INSERT INTO Reservations (res_date, res_fare, customer, num_passengers) VALUES ('" + sqlDate + "','" + fare + "','" + u_email +  "','" + passengersNumber + "');";
 	
 		//Create a Prepared SQL statement allowing you to introduce the parameters of the query
 		PreparedStatement ps = con.prepareStatement(insert);
 		System.out.println(insert);
 		//Run the update against the DB
 		ps.executeUpdate();
-
+		
+		//Get reservation number
+		String getRes = "SELECT res_num FROM reservations WHERE res_date='" + sqlDate + "';";
+		System.out.println(getRes);
+		ResultSet resNumQ = stmt.executeQuery(select);
+		resNumQ.next();
+		int resNum = resNumQ.getInt(1);
+		System.out.println(resNum);
+		
 		//Now we insert into the trips table
-		String insertTrip = "INSERT INTO Trips VALUES ('" + reservationNum + "','" +  flightnum + "');";
+		String insertTrip = "INSERT INTO Trips VALUES ('" + resNum + "','" +  flightnum + "');";
 		stmt.executeUpdate(insertTrip);
 		
+		//Update profits
+		String updateCus = "UPDATE users SET profits=profits+'" + fare + "' WHERE email='" + u_email + "';";
+		stmt.executeUpdate(updateCus);
 		//Close the connection.
 		con.close();
 
