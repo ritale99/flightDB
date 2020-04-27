@@ -119,7 +119,7 @@
 		double fare = passF.getDouble(1);
 		
 		//Make an insert statement for the Reservations table:
-		String insert = "INSERT INTO Reservations (res_date, res_fare, customer, num_passengers) VALUES ('" + sqlDate + "','" + fare + "','" + u_email +  "','" + passengersNumber + "');";
+		String insert = "INSERT INTO Reservations (res_date, res_fare, customer, num_passengers, flight_no) VALUES ('" + sqlDate + "','" + fare + "','" + u_email +  "','" + passengersNumber + "','" + flightnum + "');";
 	
 		//Create a Prepared SQL statement allowing you to introduce the parameters of the query
 		PreparedStatement ps = con.prepareStatement(insert);
@@ -143,9 +143,10 @@
 		String updateCus = "UPDATE users SET profits=profits+'" + fare + "' WHERE email='" + u_email + "';";
 		stmt.executeUpdate(updateCus);
 		
-		String updateFli = "UPDATE flights SET profits=profits+'" + fare + "' WHERE flight_num='" + flightnum + "';";
+		String updateFli = "UPDATE flights SET profits=profits+'" + fare + "', num_reserves=num_reserves+1 WHERE flight_num='" + flightnum + "';";
 		stmt.executeUpdate(updateFli);
 		
+		System.out.println("Checkpoint 2");
 		String updateAir = "UPDATE Airport SET profits=profits+'" + fare + "' JOIN flights F WHERE Airport.Airport_id = F.arrive_aid AND F.flight_num'" + flightnum + "';";
 		System.out.println(depDate);
 		stmt.executeUpdate(updateFli);

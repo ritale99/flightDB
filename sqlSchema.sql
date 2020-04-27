@@ -56,6 +56,8 @@ arrive_aid varchar(3) NOT NULL,
 flight_days VARCHAR(12) NOT NULL, 
 flight_type VARCHAR(15) NOT NULL,
 profits DECIMAL(50, 2),
+num_reserves INT NOT NULL,
+arr_dep_time VARCHAR(25) NOT NULL,
 foreign key(depart_aid) references Airport(Airport_id),
 foreign key(arrive_aid) references Airport(Airport_id),
 foreign key(airline_id)references airlines (Airline_id),
@@ -79,6 +81,8 @@ res_date date NOT NULL,
 res_fare DECIMAL,
 customer VARCHAR(64) NOT NULL,
 num_passengers INT,
+flight_no INT NOT NULL,
+foreign key (flight_no) REFERENCES flights (flight_num),
 PRIMARY KEY (res_num),
 FOREIGN KEY (customer) REFERENCES users (email)
 );
@@ -89,11 +93,11 @@ flights INT
 );
 
 /*Insert a test account user*/
-INSERT INTO users VALUES ('Tanmay', 'password', 'tanmay@test.com', NULL, NULL, NULL, 10487234630.00);
-INSERT INTO users VALUES ('Rithvik', 'password', 'rithvik@test.com', NULL, NULL, NULL, 340.00);
-INSERT INTO users VALUES ('Harsh', 'password', 'harsh@test.com', NULL, NULL, NULL, 86.00);
-INSERT INTO users VALUES ('Bhasit', 'password', 'bhasit@test.com', NULL, NULL, NULL, 3594940.00);
-INSERT INTO users VALUES ('Noman', 'password', 'noman@test.com', NULL, NULL, NULL, 3.00);
+INSERT INTO users VALUES ('Tanmay', 'password', 'tanmay@test.com', NULL, NULL, NULL, 0);
+INSERT INTO users VALUES ('Rithvik', 'password', 'rithvik@test.com', NULL, NULL, NULL, 0);
+INSERT INTO users VALUES ('Harsh', 'password', 'harsh@test.com', NULL, NULL, NULL, 0);
+INSERT INTO users VALUES ('Bhasit', 'password', 'bhasit@test.com', NULL, NULL, NULL, 0);
+INSERT INTO users VALUES ('Noman', 'password', 'noman@test.com', NULL, NULL, NULL, 0);
 
 /*insert manger accounts for login since manager account can't be created on the interface*/
 INSERT INTO managers VALUES ('Rithvik', 'password');
@@ -158,36 +162,36 @@ INSERT INTO airlines Values('Virgin Australia Regional Airlines','VA');
 INSERT INTO flights VALUES('2 DIG airline id', '12345','STOPS','FARES', 'NUM_SEATS', 'DEPART_TIME', 'depart_AID', 'Arrive_time', 'arrive_aid', 'days', 'domestic?' );
 */
 /*Insertion of some domestic flights*/
-INSERT INTO flights VALUES ('BB', '12345','160','50', '11:02', 'MIA','14:10', 'EWR', 'MTWRFSaSu', 'domestic', 0);
+INSERT INTO flights VALUES ('BB', '12345','160','50', '11:02', 'MIA','14:10', 'EWR', 'MTWRFSaSu', 'domestic', 0, 0, 'ON TIME');
 INSERT INTO FlightDate VALUES('2020-05-05', '2020-05-06', '12345');
 
-INSERT INTO flights VALUES ('BB', '12346','160','50', '11:02', 'EWR','14:10', 'MIA', 'MTWRFSaSu', 'domestic', 0);
+INSERT INTO flights VALUES ('BB', '12346','160','50', '11:02', 'EWR','14:10', 'MIA', 'MTWRFSaSu', 'domestic', 0, 0, 'ON TIME');
 INSERT INTO FlightDate VALUES('2020-05-06', '2020-05-07', '12346');
 INSERT INTO FlightDate VALUES('2020-05-07', '2020-05-08', '12346');
 INSERT INTO FlightDate VALUES('2020-05-08', '2020-05-09', '12346');
 INSERT INTO FlightDate VALUES('2020-05-09', '2020-05-10', '12346');
 INSERT INTO FlightDate VALUES('2020-05-10', '2020-05-11', '12346');
 
-INSERT INTO flights VALUES ('UA', '01234', '250','200', '09:02', 'EWR', '14:10','LAX', 'MTWRFSaSu', 'domestic', 0);
+INSERT INTO flights VALUES ('UA', '01234', '250','200', '09:02', 'EWR', '14:10','LAX', 'MTWRFSaSu', 'domestic', 0, 0, 'ON TIME');
 INSERT INTO FlightDate VALUES('2020-05-05', '2020-05-06', '01234');
 INSERT INTO FlightDate VALUES('2020-05-06', '2020-05-07', '01234');
 INSERT INTO FlightDate VALUES('2020-05-07', '2020-05-08', '01234');
 INSERT INTO FlightDate VALUES('2020-05-09', '2020-05-010', '01234');
 INSERT INTO FlightDate VALUES('2020-05-10', '2020-05-11', '01234');
 
-INSERT INTO flights VALUES ('UA', '00123', '250','200', '09:02', 'LAX', '14:10','EWR', 'MTWRFSaSu', 'domestic', 0);
+INSERT INTO flights VALUES ('UA', '00123', '250','200', '09:02', 'LAX', '14:10','EWR', 'MTWRFSaSu', 'domestic', 0, 0, 'ON TIME');
 INSERT INTO FlightDate VALUES('2020-05-06', '2020-05-07', '00123');
 INSERT INTO FlightDate VALUES('2020-05-07', '2020-05-08', '00123');
 INSERT INTO FlightDate VALUES('2020-05-09', '2020-05-10', '00123');
 INSERT INTO FlightDate VALUES('2020-05-10', '2020-05-11', '00123');
 INSERT INTO FlightDate VALUES('2020-05-11', '2020-05-12', '00123');
 
-INSERT INTO flights VALUES ('UA', '19990', '250','210','09:02', 'JFK', '14:10','SFO', 'MTWRFSaSu', 'domestic', 0);
+INSERT INTO flights VALUES ('UA', '19990', '250','210','09:02', 'JFK', '14:10','SFO', 'MTWRFSaSu', 'domestic', 0, 0, 'ON TIME');
 INSERT INTO FlightDate VALUES('2020-05-05', '2020-05-06', '19990');
 INSERT INTO FlightDate VALUES('2020-05-08', '2020-05-09', '19990');
 INSERT INTO FlightDate VALUES('2020-05-11', '2020-05-12', '19990');
 
-INSERT INTO flights VALUES ('UA', '19741', '250','210','09:02', 'SFO', '14:10','JFK', 'MTWRFSaSu', 'domestic', 0);
+INSERT INTO flights VALUES ('UA', '19741', '250','210','09:02', 'SFO', '14:10','JFK', 'MTWRFSaSu', 'domestic', 0, 0, 'ON TIME');
 INSERT INTO FlightDate VALUES('2020-05-06', '2020-05-07', '19741');
 INSERT INTO FlightDate VALUES('2020-05-07', '2020-05-08', '19741');
 INSERT INTO FlightDate VALUES('2020-05-10', '2020-05-11', '19741');
@@ -195,22 +199,22 @@ INSERT INTO FlightDate VALUES('2020-05-10', '2020-05-11', '19741');
 
 
 /*Insertion of domestic to international flights and international to domestic*/
-INSERT INTO flights VALUES ('BA', '86344', '900','210','09:02', 'JFK', '14:10','LCY', 'MTWRFSaSu', 'international', 0);
+INSERT INTO flights VALUES ('BA', '86344', '900','210','09:02', 'JFK', '14:10','LCY', 'MTWRFSaSu', 'international', 0, 0, 'ON TIME');
 INSERT INTO FlightDate VALUES('2020-05-05', '2020-05-06', '86344');
 
-INSERT INTO flights VALUES ('BA', '57354', '900','210','09:02', 'LCY', '14:10','JFK', 'MTWRFSaSu', 'international', 0);
+INSERT INTO flights VALUES ('BA', '57354', '900','210','09:02', 'LCY', '14:10','JFK', 'MTWRFSaSu', 'international', 0, 0, 'ARRIVAL DELAYED');
 INSERT INTO FlightDate VALUES('2020-05-06', '2020-05-07', '57354');
 
-INSERT INTO flights VALUES ('AF', '64257', '950','210','09:02', 'JFK', '14:10','LCY', 'MTWRFSaSu', 'international', 0);
+INSERT INTO flights VALUES ('AF', '64257', '950','210','09:02', 'JFK', '14:10','LCY', 'MTWRFSaSu', 'international', 0, 0, 'ARRIVAL DELAYED');
 INSERT INTO FlightDate VALUES('2020-05-05', '2020-05-06', '64257');
 
-INSERT INTO flights VALUES ('AF', '79527', '950','210','09:02', 'LCY', '14:10','JFK', 'MTWRFSaSu', 'international', 0);
+INSERT INTO flights VALUES ('AF', '79527', '950','210','09:02', 'LCY', '14:10','JFK', 'MTWRFSaSu', 'international', 0, 0, 'DEPARTING DELAYED');
 INSERT INTO FlightDate VALUES('2020-05-06', '2020-05-07', '79527');
 
-INSERT INTO flights VALUES ('VA', '85013', '940','210','09:02', 'EWR', '14:10','SYD', 'MTWRFSaSu', 'international', 0);
+INSERT INTO flights VALUES ('VA', '85013', '940','210','09:02', 'EWR', '14:10','SYD', 'MTWRFSaSu', 'international', 0, 0, 'DEPARTING DELAYED');
 INSERT INTO FlightDate VALUES('2020-05-05', '2020-05-06', '85013');
 
-INSERT INTO flights VALUES ('VA', '97500', '940','210','09:02', 'SYD', '14:10','EWR', 'MTWRFSaSu', 'international', 0);
+INSERT INTO flights VALUES ('VA', '97500', '940','210','09:02', 'SYD', '14:10','EWR', 'MTWRFSaSu', 'international', 0, 0, 'ON TIME');
 INSERT INTO FlightDate VALUES('2020-05-06', '2020-05-07', '97500');
 
 /*Insertion of international to international flights*/

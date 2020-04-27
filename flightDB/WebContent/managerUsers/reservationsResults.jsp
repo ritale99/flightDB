@@ -10,6 +10,7 @@
     history.forward();
 </script>
 
+<link rel="stylesheet" type="text/css" href="../css/HTMLTable.css">
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Showing Reservations Searched by FlightID or Customer Name</title>
@@ -29,92 +30,79 @@
 			//Create a SQL statement
 			Statement stmt = con.createStatement();
 	
-			String name = request.getParameter("name");
-			String flight = request.getParameter("flightID");
+			String option = request.getParameter("option");
+			
+			if(option.equals("Customer Name")){
 			
 			//if name is not empty then show the reservations by that name
-		if (!(name.equals(""))){
-				String stringy = "SELECT Reservations.res_num, Reservations.res_date, Reservations.customer, Reservations.num_passengers, Trips.flights" +
-						" FROM Reservations,Trips, users WHERE users.user_name = '" + name + "' AND Trips.res_num = Reservations.res_num AND Reservations.customer = users.email;";
+				String stringy = "SELECT U.user_name, R.customer, R.flight_no, R.res_date FROM Reservations R JOIN users U ON R.customer=U.email ORDER BY R.res_date";
 				System.out.println(stringy);
 				ResultSet flights0 = stmt.executeQuery(stringy);
 			    
-				
-				
+				out.print("<input type=\"text\" id=\"myInput\" onkeyup=\"myFunction()\" placeholder=\"Search by flight number\">");
+				out.print("<table id=\"myTable\">");
+				out.print("</tr>");
+					out.print("<th>Customer Name</th>");
+					out.print("<th>Customer Email</th>");
+					out.print("<th>Flight Number</th>");
+					out.print("<th>Reservation Date</th>");
+				out.print("</tr>");
 				while (flights0.next()) {
-					out.print("<table>");
-					out.print("</tr>");
-						out.print("<th>Reservation Number</th>");
-						out.print("<th>Reservation Date</th>");
-						out.print("<th>Customer Email</th>");
-						out.print("<th>Number of Passengers</th>");
-						out.print("<th>Flights</th>");
-				
-					out.print("</tr>");
 				//parse out the results
 					out.print("<tr>");
 					out.print("<td>");
-						out.print(flights0.getString("Reservations.res_num"));
+						out.print(flights0.getString("U.user_name"));
 					out.print("</td>");	
 					out.print("<td>");	
-						out.print(flights0.getString("Reservations.res_date"));
+						out.print(flights0.getString("R.customer"));
 					out.print("</td>");
 					out.print("<td>");	
-						out.print(flights0.getString("Reservations.customer"));
+						out.print(flights0.getString("R.flight_no"));
 					out.print("</td>");
 					out.print("<td>");	
-					out.print(flights0.getString("Reservations.num_passengers"));
-					out.print("</td>");			
-				out.print("<td>");	
-				out.print(flights0.getString("Trips.flights"));
-				out.print("</td>");	
-				out.print("<td>");	
+					out.print(flights0.getString("R.res_date"));
+					out.print("</td>");		
 				out.print("</tr>");
-			//out.print("</table>");
-				
+				}
 		out.print("</table>");
-					}	
 		}
 			
-		if (!(flight.equals(""))){
+		else if ((option.equals("Flight Number"))){
 			
-			String stringy2 = "SELECT Reservations.res_num, Reservations.res_date, Reservations.customer, Reservations.num_passengers, Trips.flights" +
-					" FROM Reservations,Trips  WHERE Trips.flights = '" + flight + "' AND Trips.res_num = Reservations.res_num;";
+			String stringy2 = "SELECT F.flight_num, F.num_reserves, F.airline_id, A.a_name, F.arr_dep_time From Flights F JOIN airlines A ON F.airline_id = A.Airline_id WHERE F.num_reserves > 0 ORDER BY F.num_reserves DESC;";
 			System.out.println(stringy2);
 			ResultSet flights1 = stmt.executeQuery(stringy2);
-			while (flights1.next()) {
-				out.print("<table>");
-				out.print("</tr>");
-					out.print("<th>Reservation Number</th>");
-					out.print("<th>Reservation Date</th>");
-					out.print("<th>Customer Email</th>");
-					out.print("<th>Number of Passengers</th>");
-					out.print("<th>Flights</th>");
 			
-				out.print("</tr>");
+			out.print("<input type=\"text\" id=\"myInput2\" onkeyup=\"myFunction2()\" placeholder=\"Search by arrival/departure time status\">");
+			out.print("<table id=\"myTable2\">");
+			out.print("</tr>");
+				out.print("<th>Flight Number</th>");
+				out.print("<th>Number of Reserves</th>");
+				out.print("<th>Airline name</th>");
+				out.print("<th>Airline id</th>");
+				out.print("<th>Arrival/Departure Status</th>");
+			out.print("</tr>");
+			while (flights1.next()) {
 			//parse out the results
 				out.print("<tr>");
 				out.print("<td>");
-					out.print(flights1.getString("Reservations.res_num"));
+					out.print(flights1.getString("F.flight_num"));
 				out.print("</td>");	
 				out.print("<td>");	
-					out.print(flights1.getString("Reservations.res_date"));
+					out.print(flights1.getString("F.num_reserves"));
 				out.print("</td>");
 				out.print("<td>");	
-					out.print(flights1.getString("Reservations.customer"));
+					out.print(flights1.getString("F.airline_id"));
 				out.print("</td>");
 				out.print("<td>");	
-				out.print(flights1.getString("Reservations.num_passengers"));
-				out.print("</td>");			
-			out.print("<td>");	
-			out.print(flights1.getString("Trips.flights"));
-			out.print("</td>");	
-			out.print("<td>");	
+				out.print(flights1.getString("A.a_name"));
+				out.print("</td>");
+				out.print("<td>");	
+				out.print(flights1.getString("F.arr_dep_time"));
+				out.print("</td>");	
 			out.print("</tr>");
-		//out.print("</table>");
-			
-	out.print("</table>");
-				}	
+			}
+		out.print("</table>");
 			
 		}
 			
@@ -131,6 +119,58 @@
 			</script>
 			<%			
 		}
+		
+		%>
+		<script>
+			function myFunction() {
+			  // Declare variables
+			  var input, filter, table, tr, td, i, txtValue;
+			  input = document.getElementById("myInput");
+			  filter = input.value.toUpperCase();
+			  table = document.getElementById("myTable");
+			  tr = table.getElementsByTagName("tr");
+			
+			  // Loop through all table rows, and hide those who don't match the search query
+			  for (i = 0; i < tr.length; i++) {
+			    td = tr[i].getElementsByTagName("td")[2];
+			    if (td) {
+			      txtValue = td.textContent || td.innerText;
+			      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+			        tr[i].style.display = "";
+			      } else {
+			        tr[i].style.display = "none";
+			      }
+			    }
+			  }
+			}
+		</script>
+		<%
+		
+		%>
+		<script>
+			function myFunction2() {
+			  // Declare variables
+			  var input, filter, table, tr, td, i, txtValue;
+			  input = document.getElementById("myInput2");
+			  filter = input.value.toUpperCase();
+			  table = document.getElementById("myTable2");
+			  tr = table.getElementsByTagName("tr");
+			
+			  // Loop through all table rows, and hide those who don't match the search query
+			  for (i = 0; i < tr.length; i++) {
+			    td = tr[i].getElementsByTagName("td")[4];
+			    if (td) {
+			      txtValue = td.textContent || td.innerText;
+			      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+			        tr[i].style.display = "";
+			      } else {
+			        tr[i].style.display = "none";
+			      }
+			    }
+			  }
+			}
+		</script>
+		<%
 	%>
 	
 		
