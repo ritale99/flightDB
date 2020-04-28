@@ -10,7 +10,7 @@
 <body>
 
 
-<p class="app-name">Update your details</p>      
+<p class="app-name">Update Customer Details</p>      
 
 
 <div class="login-page">
@@ -40,9 +40,10 @@
       <input type="password" name = "new_cvv"/>
       
       <button class="buttonSubmit">Update</button>
+    
       </pre>
-      <a href="managerLandingPage.jsp">Want to go back?</a>
     </form>
+    
      
 </div>
 

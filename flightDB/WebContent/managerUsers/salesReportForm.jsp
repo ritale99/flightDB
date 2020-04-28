@@ -18,7 +18,7 @@
 							<option>Customer</option>
 							<option>Flight</option>
 							<option>Destination City</option>
-							<input type = 'submit' name="submit" value = "submit"> 	
+							<input type = 'submit' name="submit" value = "submit" button style = "background-color:#008CBA;" > 	
       </pre>
       <a href="managerLandingPage.jsp">Want to go back?</a>
       </select>
