@@ -50,7 +50,8 @@
 				<%
 			}else{
 				%>
-					<h2>Please click on a reservation for a detailed itinerary</h2><br>
+					<h2>Click on the Itineraries for more information on your reservations! </h2><br>
+					<a href="itineraries.jsp">Itineraries Information</a>
 				<%
 			}
 			
