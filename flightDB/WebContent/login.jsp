@@ -38,7 +38,6 @@
 		    	window.location.href = "managerUsers/asLogin.jsp";
 		    	</script>
 		    	<%
-		    	System.out.println("Works up to checkpoint:1 ");
 		    	return;
 		    	
 		    }
@@ -59,16 +58,11 @@
 				ResultSet result = stmt.executeQuery(str);
 	
 				if (result.next()) {
-
-					System.out.println("Works up to checkpoint:2 ");
 					
 						
 						//session.setAttribute("user_name", result.getString("user_name"));
 						session.setAttribute("user_email", newEmail);
-						System.out.println("New Email is: " + newEmail);
-						String u_email = (String) session.getAttribute("user_email");
-						   System.out.println("Email IS:" + u_email);
-						
+						String u_email = (String) session.getAttribute("user_email");	
 						response.sendRedirect("customerLandingPage.jsp");
 						%>
 						
@@ -76,7 +70,6 @@
 				    	//	window.location.href = "customerLandingPage.jsp";
 						</script>
 					<%
-					System.out.println("Works up to checkpoint:3 ");
 						
 					
 					//close the connection.
@@ -88,16 +81,14 @@
 				    	window.location.href = "index.jsp";
 					</script>
 					<%
-					System.out.println("Works up to checkpoint:6 ");
 				}
-				System.out.println("Works up to checkpoint:7 ");
+				
 			}
-			
-			System.out.println("Works up to checkpoint:8 ");
+	
 			con.close();
 			session.setAttribute("user_email", newEmail);
 			String u2_email = (String) session.getAttribute("user_email");
-			   System.out.println("Email IS:" + u2_email);
+
 			
 
 		} catch (Exception e) {

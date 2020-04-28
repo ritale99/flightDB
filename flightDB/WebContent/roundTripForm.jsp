@@ -13,117 +13,111 @@
 	<body>
 		<br>
 		<h3>What type of flight?</h3>
-			<form method="get" action="roundTripFlightResults.jsp" enctype=text/plain>	
-		
-		<table>
-				<tr>
-					<!-- textbox for flight search -->
+			<form method="get" action="roundTripFlightResults.jsp" enctype=text/plain>
+
+				<table>
+					<tr>
+						<!-- textbox for flight search -->
 					<tr>
 						<td>Departing Airport</td>
-						</tr>
-						<tr><td>
-							<select type="text" name="depport" placeholder="Enter 3 letter Airport ID">
-							<option>--Select--</option>
-							<option>EWR</option>
-							<option>JFK</option>
-							<option>MIA</option>
-							<option>SFO</option>
-							<option>MDW</option>
-							<option>LAX</option>
-							<option>ATL</option>
-							<option>ORD</option>
-							<option>DFW</option>
-							<option>DEN</option>
-							<option>SEA</option>
-							<option>LAS</option>
-							<option>MCO</option>
-							<option>CLT</option>
-							<option>PHX</option>
-							<option>IAH</option>
-							<option>BOS</option>
-							<option>MSP</option>
-							<option>FLL</option>
-							<option>DTW</option>
-							<option>PHL</option>
-							<option>DTW</option>
-							<option>LGA</option>
-							<option>---INTERNATIONAL---</option>
-							<option>LCY</option>
-							<option>DUB</option>
-							<option>PEK</option>
-							<option>SYD</option>
-							<option>YTZ</option>
-							</select>
-						</td>
+					</tr>
+					<tr>
+						<td><select type="text" name="depport"
+							placeholder="Enter 3 letter Airport ID">
+								<option>--Select--</option>
+								<option>EWR</option>
+								<option>JFK</option>
+								<option>MIA</option>
+								<option>SFO</option>
+								<option>MDW</option>
+								<option>LAX</option>
+								<option>ATL</option>
+								<option>ORD</option>
+								<option>DFW</option>
+								<option>DEN</option>
+								<option>SEA</option>
+								<option>LAS</option>
+								<option>MCO</option>
+								<option>CLT</option>
+								<option>PHX</option>
+								<option>IAH</option>
+								<option>BOS</option>
+								<option>MSP</option>
+								<option>FLL</option>
+								<option>DTW</option>
+								<option>PHL</option>
+								<option>DTW</option>
+								<option>LGA</option>
+								<option>---INTERNATIONAL---</option>
+								<option>LCY</option>
+								<option>DUB</option>
+								<option>PEK</option>
+								<option>SYD</option>
+								<option>YTZ</option>
+						</select></td>
 					</tr>
 					<tr>
 						<td>Arriving Airport</td>
-						</tr>
-						<tr><td>
-							<select type="text" name="arrivport" placeholder="Enter 3 letter Airport ID">
-							<option>--Select--</option>
-							<option>EWR</option>
-							<option>JFK</option>
-							<option>MIA</option>
-							<option>SFO</option>
-							<option>MDW</option>
-							<option>LAX</option>
-							<option>ATL</option>
-							<option>ORD</option>
-							<option>DFW</option>
-							<option>DEN</option>
-							<option>SEA</option>
-							<option>LAS</option>
-							<option>MCO</option>
-							<option>CLT</option>
-							<option>PHX</option>
-							<option>IAH</option>
-							<option>BOS</option>
-							<option>MSP</option>
-							<option>FLL</option>
-							<option>DTW</option>
-							<option>PHL</option>
-							<option>DTW</option>
-							<option>LGA</option>
-							<option>---INTERNATIONAL---</option>
-							<option>LCY</option>
-							<option>DUB</option>
-							<option>PEK</option>
-							<option>SYD</option>
-							<option>YTZ</option>
-							
-							</select>
-						</td>
+					</tr>
+					<tr>
+						<td><select type="text" name="arrivport"
+							placeholder="Enter 3 letter Airport ID">
+								<option>--Select--</option>
+								<option>EWR</option>
+								<option>JFK</option>
+								<option>MIA</option>
+								<option>SFO</option>
+								<option>MDW</option>
+								<option>LAX</option>
+								<option>ATL</option>
+								<option>ORD</option>
+								<option>DFW</option>
+								<option>DEN</option>
+								<option>SEA</option>
+								<option>LAS</option>
+								<option>MCO</option>
+								<option>CLT</option>
+								<option>PHX</option>
+								<option>IAH</option>
+								<option>BOS</option>
+								<option>MSP</option>
+								<option>FLL</option>
+								<option>DTW</option>
+								<option>PHL</option>
+								<option>DTW</option>
+								<option>LGA</option>
+								<option>---INTERNATIONAL---</option>
+								<option>LCY</option>
+								<option>DUB</option>
+								<option>PEK</option>
+								<option>SYD</option>
+								<option>YTZ</option>
+
+						</select></td>
 					</tr>
 					<td>Take off date</td>
-						</tr>
-							<tr>
-								
-						<td>
-								<input type="text" name="take_off_date" placeholder="YEAR-MM-DD"> To:
-					 			<input type= "text" name= "take_off_date_2" placeholder="YEAR-MM-DD"> 
-							</td> 
-						</tr>
-						<br>
+					</tr>
 					<tr>
-						 <td>Return Back Flight Date</td>
-						</tr>
-					<tr> 
-						
-						<td>
-							<input type="text" name="arrive_date" placeholder= "YEAR-MM-DD"> To:
-							<input type="text" name="arrive_date_2" placeholder ="YEAR-MM-DD">
+
+						<td><input type="text" name="take_off_date"
+							placeholder="YEAR-MM-DD"> 
+						</td>
+					</tr>
+					<br>
+					<tr>
+						<td>Return Back Flight Date</td>
+					</tr>
+					<tr>
+
+						<td><input type="text" name="arrive_date"
+							placeholder="YEAR-MM-DD"> Or Search By FlightID: <input type="text"
+							name="flightID" placeholder="flightID">
 						</td>
 						<br>
 					<tr>
-						
-						
-						
-											
-					
 				</table>
-				
-		<input type = 'submit' name="submit" value = "submit"> 	
+
+				<input type = 'submit' name="submit" value = "submit"> 	
 			
 			</form>
 		
