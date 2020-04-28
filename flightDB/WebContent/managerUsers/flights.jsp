@@ -16,11 +16,13 @@
 
 	<div class="login-page">
 		<div class="form">
-			<form method="get" action="reservationsResults.jsp"
+			<form method="get" action="listAllFlights.jsp"
 				enctype=text/plain>
-				<select type="text" name="option" placeholder="">
-					<option>Customer Name</option>
-					<option>Flight Number</option>
+				<select type="text" name="flight_option" placeholder="">
+					<option>Filter Flights...</option>
+					<option>By Airport</option>
+					<option>By Departure/Arrival Status</option>
+					<option>By Customer Reservations</option>
 					<input id="submit" type='submit' name="submit" value="SUBMIT">
 					</pre>
 					<input id="button" type="button" value ="GO BACK" onclick="window.location.href = 'managerLandingPage.jsp'">

@@ -104,7 +104,7 @@ INSERT INTO managers VALUES ('Rithvik', 'password');
 INSERT INTO managers VALUES ('Harsh', 'password');
 INSERT INTO managers VALUES ('Bhasit', 'password');
 INSERT INTO managers VALUES ('Tanmay', 'password');
-/*INSERT INTO managers VALUES ('Noman', 'password');*/
+INSERT INTO managers VALUES ('Noman', 'password');
 
 /*Insertion of Some Domestic Flight Data*/
 INSERT INTO Airport VALUES('EWR', 'Newark Liberty International Airport', 'Newark', 'New Jersey', 'United States', 0);

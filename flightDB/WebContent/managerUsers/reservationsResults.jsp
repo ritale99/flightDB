@@ -35,17 +35,19 @@
 			if(option.equals("Customer Name")){
 			
 			//if name is not empty then show the reservations by that name
-				String stringy = "SELECT U.user_name, R.customer, R.flight_no, R.res_date FROM Reservations R JOIN users U ON R.customer=U.email ORDER BY R.res_date";
+				String stringy = "SELECT U.user_name, R.customer, R.flight_no, R.res_date, R.num_passengers, R.res_fare FROM Reservations R JOIN users U ON R.customer=U.email ORDER BY U.user_name";
 				System.out.println(stringy);
 				ResultSet flights0 = stmt.executeQuery(stringy);
 			    
-				out.print("<input type=\"text\" id=\"myInput\" onkeyup=\"myFunction()\" placeholder=\"Search by flight number\">");
+				out.print("<input style=\"margin:auto\" type=\"text\" id=\"myInput\" onkeyup=\"myFunction()\" placeholder=\"Search by Customer Name\">");
 				out.print("<table id=\"myTable\">");
 				out.print("</tr>");
 					out.print("<th>Customer Name</th>");
 					out.print("<th>Customer Email</th>");
 					out.print("<th>Flight Number</th>");
 					out.print("<th>Reservation Date</th>");
+					out.print("<th>Number of Passengers</th>");
+					out.print("<th>Fare Price</th>");
 				out.print("</tr>");
 				while (flights0.next()) {
 				//parse out the results
@@ -61,49 +63,57 @@
 					out.print("</td>");
 					out.print("<td>");	
 					out.print(flights0.getString("R.res_date"));
-					out.print("</td>");		
+					out.print("</td>");
+					out.print("<td>");	
+					out.print(flights0.getString("R.num_passengers"));
+					out.print("</td>");
+					out.print("<td>");	
+					out.print(flights0.getString("R.res_fare"));
+					out.print("</td>");
 				out.print("</tr>");
 				}
-		out.print("</table>");
+			out.print("</table>");
 		}
 			
 		else if ((option.equals("Flight Number"))){
 			
-			String stringy2 = "SELECT F.flight_num, F.num_reserves, F.airline_id, A.a_name, F.arr_dep_time From Flights F JOIN airlines A ON F.airline_id = A.Airline_id WHERE F.num_reserves > 0 ORDER BY F.num_reserves DESC;";
+			String stringy2 = "SELECT U.user_name, R.customer, R.flight_no, R.res_date, R.num_passengers, R.res_fare FROM Reservations R JOIN users U ON R.customer=U.email ORDER BY R.flight_no";			
 			System.out.println(stringy2);
 			ResultSet flights1 = stmt.executeQuery(stringy2);
-			
-			out.print("<input type=\"text\" id=\"myInput2\" onkeyup=\"myFunction2()\" placeholder=\"Search by arrival/departure time status\">");
+			out.print("<input style=\"margin:auto\" type=\"text\" id=\"myInput2\" onkeyup=\"myFunction2()\" placeholder=\"Search by Flight Number\">");
 			out.print("<table id=\"myTable2\">");
-			out.print("</tr>");
-				out.print("<th>Flight Number</th>");
-				out.print("<th>Number of Reserves</th>");
-				out.print("<th>Airline name</th>");
-				out.print("<th>Airline id</th>");
-				out.print("<th>Arrival/Departure Status</th>");
-			out.print("</tr>");
-			while (flights1.next()) {
-			//parse out the results
-				out.print("<tr>");
-				out.print("<td>");
-					out.print(flights1.getString("F.flight_num"));
-				out.print("</td>");	
-				out.print("<td>");	
-					out.print(flights1.getString("F.num_reserves"));
-				out.print("</td>");
-				out.print("<td>");	
-					out.print(flights1.getString("F.airline_id"));
-				out.print("</td>");
-				out.print("<td>");	
-				out.print(flights1.getString("A.a_name"));
-				out.print("</td>");
-				out.print("<td>");	
-				out.print(flights1.getString("F.arr_dep_time"));
-				out.print("</td>");	
-			out.print("</tr>");
-			}
-		out.print("</table>");
-			
+				out.print("</tr>");
+					out.print("<th>Flight Number</th>");
+					out.print("<th>Customer Name</th>");
+					out.print("<th>Customer Email</th>");
+					out.print("<th>Reservation Date</th>");
+					out.print("<th>Number of Passengers</th>");
+					out.print("<th>Fare Price</th>");
+				out.print("</tr>");
+				while (flights1.next()) {
+				//parse out the results
+					out.print("<tr>");
+					out.print("<td>");	
+						out.print(flights1.getString("R.flight_no"));
+					out.print("</td>");
+					out.print("<td>");
+						out.print(flights1.getString("U.user_name"));
+					out.print("</td>");	
+					out.print("<td>");	
+						out.print(flights1.getString("R.customer"));
+					out.print("</td>");
+					out.print("<td>");	
+						out.print(flights1.getString("R.res_date"));
+					out.print("</td>");
+					out.print("<td>");	
+						out.print(flights1.getString("R.num_passengers"));
+					out.print("</td>");
+					out.print("<td>");	
+						out.print(flights1.getString("R.res_fare"));
+					out.print("</td>");
+				out.print("</tr>");
+				}
+			out.print("</table>");
 		}
 			
 		
@@ -132,7 +142,7 @@
 			
 			  // Loop through all table rows, and hide those who don't match the search query
 			  for (i = 0; i < tr.length; i++) {
-			    td = tr[i].getElementsByTagName("td")[2];
+			    td = tr[i].getElementsByTagName("td")[0];
 			    if (td) {
 			      txtValue = td.textContent || td.innerText;
 			      if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -158,7 +168,7 @@
 			
 			  // Loop through all table rows, and hide those who don't match the search query
 			  for (i = 0; i < tr.length; i++) {
-			    td = tr[i].getElementsByTagName("td")[4];
+			    td = tr[i].getElementsByTagName("td")[0];
 			    if (td) {
 			      txtValue = td.textContent || td.innerText;
 			      if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -173,8 +183,9 @@
 		<%
 	%>
 	
-		
-		<a href="managerLandingPage.jsp">Want to go back?</a>
+		<button style="margin: 0 auto;"
+			onclick="window.location.href = 'queryReservations.jsp'">GO BACK
+		</button>
 		
 		
 

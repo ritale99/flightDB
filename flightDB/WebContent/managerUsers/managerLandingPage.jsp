@@ -26,7 +26,8 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
     <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-blue" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
     <a href="javascript:window.location.href=window.location.href" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
     <a href="customerDetailsForm.jsp" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Customer Account Details</a>
-    <a href="listAllFlights.jsp" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">View All Flights</a>
+    <a href="flights.jsp" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Flight Information</a>
+    <a href="monthlySales.jsp" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Monthly Sales</a>
     <a href="../logout.jsp" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Logout</a>
   </div>
 
@@ -51,7 +52,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 	  <div class="w3-content">
 	    <div class="w3-twothird">
 	      <h1>Covid-19 Travel Warning</h1>
-	      <h5 class="w3-padding-32">Stay home for 14 days from the time you returned home from international travel.</h5>
+	      <h5 class="w3-padding-32">Our customers are our First priority!</h5>
 	
 	      <p class="w3-text-grey">During this 14-day period, take these steps to monitor your health and practice social distancing:
 	

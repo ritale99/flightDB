@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -10,18 +10,19 @@
 <body>
 
 
-<p class="app-name">Filter By...</p>      
-<div class="login-page">
-<div class="form">
-<form method="get" action="salesReportResults.jsp" enctype=text/plain>
-<select type="text" name="filter" placeholder="Enter 3 letter Airport ID">
-							<option>Customer</option>
-							<option>Flight</option>
-							<option>Destination City</option>
-							<input type = 'submit' name="submit" value = "submit" button style = "background-color:#008CBA;" > 	
-      </pre>
-      <a href="managerLandingPage.jsp">Want to go back?</a>
-      </select>
-   </form>
-     
-</div>
+	<p class="app-name">Filter By...</p>
+	<div class="login-page">
+		<div class="form">
+			<form method="get" action="salesReportResults.jsp" enctype=text/plain>
+				<select type="text" name="filter"placeholder="Enter 3 letter Airport ID">
+					<option>By Customer</option>
+					<option>By Flight</option>
+					<option>By Destination City</option>
+					<input id= "submit" type='submit' name="submit" value="SUBMIT" buttonstyle="background-color: #008CBA;">
+					<input id="button" type="button" value ="GO BACK" onclick="window.location.href = 'managerLandingPage.jsp'">
+				</select>
+			</form>
+		</div>
+		;
+	</div>
+	
