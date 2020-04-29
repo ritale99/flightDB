@@ -20,14 +20,13 @@
 
 				<label>Enter Customers current email:</label> 
 				<input type="text" placeholder="name" name="new_name" /> 
-				<label>UpdateCustomers name:</label> 
+				<label>Update Customers name:</label> 
 				<input type="text" placeholder="name" name="new_name" /> 
 				<label>Update Customers email:</label> 
 				<input type="email" placeholder="email" name="new_email" /> 
-				<label>UpdateCustomers number: </label>
-				<pre> 
-				<label>+</label><input type="phone" placeholder="" name="new_phone" /> <label>Update Customerscredit-card number</label> 
-				</pre>
+				<label>Update Customers number: </label>
+				<input type="phone" placeholder="+" name="new_phone" />
+				<label>Update Customers credit-card number</label>
 				<input type="password" name="new_credit_card" />
 				<label>Input Customer CVV</label> 
 				<input type="password"name="new_cvv" /> 

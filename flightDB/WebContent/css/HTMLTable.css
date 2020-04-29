@@ -4,8 +4,8 @@
   background-position: 12px 12px; /* Position the search icon */
   background-repeat: no-repeat; /* Do not repeat the icon image */
   width: 100%; /* Full-width */
-  font-size: 16px; /* Increase font-size */
-  padding: 7px 10px 7px 10px; /* Add some padding */
+  font-size: 20px; /* Increase font-size */
+  padding: 17px 10px 17px 10px; /* Add some padding */
   border: 1px solid #ddd; /* Add a grey border */
   margin-bottom: 20px; /* Add some space below the input */
 }
@@ -14,8 +14,8 @@
   background-position: 12px 12px; /* Position the search icon */
   background-repeat: no-repeat; /* Do not repeat the icon image */
   width: 100%; /* Full-width */
-  font-size: 16px; /* Increase font-size */
-  padding: 7px 10px 7px 10px; /* Add some padding */
+  font-size: 20px; /* Increase font-size */
+  padding: 17px 10px 17px 10px; /* Add some padding */
   border: 1px solid #ddd; /* Add a grey border */
   margin-bottom: 20px; /* Add some space below the input */
 }

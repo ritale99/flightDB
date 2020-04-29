@@ -90,7 +90,7 @@
 			} else if (filter.equals("By Destination City")) 
 			{
 				//Match by City
-				String str0 = "SELECT ap_name, city, state, country, profits FROM Airport A JOIN flights F WHERE A.Airport_id = F.arrive_aid AND F.flight_num = (SELECT A.airline_id FROM airlines A JOIN flights F WHERE F.airline_id = A.airline_id) ORDER BY profits DESC";
+				String str0 = "SELECT ap_name, city, state, country, profits FROM Airport A ORDER BY profits DESC";
 				System.out.println("Works up to checkpoint:2 ");
 				System.out.println(str0);
 				PreparedStatement stmt0 = con.prepareStatement(str0);

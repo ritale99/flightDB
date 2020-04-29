@@ -19,12 +19,11 @@
 			<form method="get" action="listAllFlights.jsp"
 				enctype=text/plain>
 				<select type="text" name="flight_option" placeholder="">
-					<option>Filter Flights...</option>
+					<option>All Flights</option>
 					<option>By Airport</option>
 					<option>By Departure/Arrival Status</option>
-					<option>By Customer Reservations</option>
+					<option>By Flight</option>
 					<input id="submit" type='submit' name="submit" value="SUBMIT">
-					</pre>
 					<input id="button" type="button" value ="GO BACK" onclick="window.location.href = 'managerLandingPage.jsp'">
 			</form>
 

@@ -32,6 +32,20 @@
 	
 			String option = request.getParameter("option");
 			
+			String count = "SELECT COUNT(*) FROM Reservations R";
+			System.out.println(count);
+			ResultSet county = stmt.executeQuery(count);
+			county.next();
+			
+			System.out.println(county.getInt("COUNT(*)"));
+			if(county.getInt("COUNT(*)") == 0){
+				%>
+					<script>
+						alert("OH NO! There aren't any reservations");
+						window.location.href("managerLandingPage.jsp");
+					</script>
+				<%
+			}
 			if(option.equals("Customer Name")){
 			
 			//if name is not empty then show the reservations by that name
@@ -88,7 +102,7 @@
 					out.print("<th>Customer Email</th>");
 					out.print("<th>Reservation Date</th>");
 					out.print("<th>Number of Passengers</th>");
-					out.print("<th>Fare Price</th>");
+					out.print("<th>Fare Price (per person)</th>");
 				out.print("</tr>");
 				while (flights1.next()) {
 				//parse out the results

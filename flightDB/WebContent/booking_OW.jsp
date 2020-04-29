@@ -132,7 +132,7 @@
 		stmt.executeUpdate(updateFli);
 		
 		System.out.println("Checkpoint 2");
-		String updateAir = "UPDATE Airport SET profits=profits+'" + fare + "' JOIN flights F WHERE Airport.Airport_id = F.arrive_aid AND F.flight_num'" + flightnum + "';";
+		String updateAir = "UPDATE Airport A SET A.profits=A.profits+'" + fare + "' JOIN flights F ON A.Airport_id=F.depart_aid WHERE F.flight_num'" + flightnum + "';";
 		System.out.println(depDate);
 		
 

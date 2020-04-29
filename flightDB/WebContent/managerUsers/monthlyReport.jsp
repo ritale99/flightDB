@@ -71,7 +71,7 @@
 			year = Integer.parseInt(yearString);
 			System.out.println("Successfully parsed month and year");
 			
-			String str0 = "SELECT R.res_date, R.res_fare FROM Reservations R WHERE EXTRACT(MONTH FROM R.res_date) = '" + month + "' AND EXTRACT(YEAR FROM R.res_date)='" + year + "' ORDER BY res_date DESC;";
+			String str0 = "SELECT R.res_date, U.profits FROM Reservations R JOIN users U ON R.customer = U.email WHERE EXTRACT(MONTH FROM R.res_date) = '" + month + "' AND EXTRACT(YEAR FROM R.res_date)='" + year + "' ORDER BY res_date DESC;";
 			System.out.println("Works up to checkpoint:2 ");
 			System.out.println(str0);
 			PreparedStatement stmt0 = con.prepareStatement(str0);
