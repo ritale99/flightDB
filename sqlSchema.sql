@@ -79,6 +79,7 @@ CREATE TABLE Reservations (
 res_num INT NOT NULL auto_increment,
 res_date date NOT NULL,
 res_fare DECIMAL,
+res_tot DECIMAL, 
 customer VARCHAR(64) NOT NULL,
 num_passengers INT,
 flight_no INT NOT NULL,

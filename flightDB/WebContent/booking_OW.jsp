@@ -111,8 +111,10 @@
 		passF.next();
 		double fare = passF.getDouble(1);
 		
+		double totalPrice = Double.parseDouble(passengersNum)*fare;
+		
 		//Make an insert statement for the Reservations table:
-		String insert = "INSERT INTO Reservations (res_date, res_fare, customer, num_passengers, flight_no) VALUES ('" + sqlDate + "','" + fare + "','" + u_email +  "','" + passengersNumber + "','" + flightnum + "');";
+		String insert = "INSERT INTO Reservations (res_date, res_fare, res_tot, customer, num_passengers, flight_no) VALUES ('" + sqlDate + "','" + fare + "','" + (totalPrice) + "','" + u_email +  "','" + passengersNumber + "','" + flightnum + "');";
 	
 		//Create a Prepared SQL statement allowing you to introduce the parameters of the query
 		PreparedStatement ps = con.prepareStatement(insert);
@@ -125,21 +127,19 @@
 		stmt.executeUpdate(insertTrip);
 		
 		//Update profits
-		String updateCus = "UPDATE users SET profits=profits+('" + fare + "'*'"+passengersNum+"')"+ " WHERE email='" + u_email + "';";
+		String updateCus = "UPDATE users SET profits=profits+('" + totalPrice +"')"+ " WHERE email='" + u_email + "';";
 		stmt.executeUpdate(updateCus);
 		
-		String updateFli = "UPDATE flights SET profits=profits+('" + fare + "'*'"+passengersNum+"')"+ ", num_reserves=num_reserves+1 WHERE flight_num='" + flightnum + "';";
+		String updateFli = "UPDATE flights SET profits=profits+('" + totalPrice +"')"+ ", num_reserves=num_reserves+1 WHERE flight_num='" + flightnum + "';";
 		stmt.executeUpdate(updateFli);
 		
 		System.out.println("Checkpoint 2");
-		String updateAir = "UPDATE Airport SET profits=profits+profits+('" + fare + "'*'"+passengersNum+"')"+ " JOIN flights F WHERE Airport.Airport_id = F.arrive_aid AND F.flight_num'" + flightnum + "';";
+		String updateAir = "UPDATE Airport SET profits=profits+('" + totalPrice +"')"+ " JOIN flights F ON Airport.Airport_id = F.arrive_aid WHERE flight_num='" + flightnum + "';";
 		System.out.println(depDate);
 		
 		//Close the connection.
 		con.close();
-
-
-
+		
 		%>
 		<script> 
 		    alert("Congratulations! Your new reservation is created!");

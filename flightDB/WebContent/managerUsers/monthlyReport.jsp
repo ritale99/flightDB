@@ -71,24 +71,24 @@
 			year = Integer.parseInt(yearString);
 			System.out.println("Successfully parsed month and year");
 			
-			String str0 = "SELECT R.res_date, U.profits FROM Reservations R JOIN users U ON R.customer = U.email WHERE EXTRACT(MONTH FROM R.res_date) = '" + month + "' AND EXTRACT(YEAR FROM R.res_date)='" + year + "' ORDER BY res_date DESC;";
+			String str0 = "SELECT R.res_date, R.res_tot FROM Reservations R WHERE EXTRACT(MONTH FROM R.res_date) = '" + month + "' AND EXTRACT(YEAR FROM R.res_date)='" + year + "' ORDER BY res_date DESC;";
 			System.out.println("Works up to checkpoint:2 ");
 			System.out.println(str0);
 			PreparedStatement stmt0 = con.prepareStatement(str0);
 			ResultSet flights0 = stmt0.executeQuery();
 			
-			String count = "SELECT COUNT(R.res_date), SUM(R.res_fare) FROM Reservations R WHERE EXTRACT(MONTH FROM R.res_date) ='" + month + "' AND EXTRACT(YEAR FROM R.res_date)='" + year + "' ORDER BY res_date DESC;";
+			String count = "SELECT COUNT(R.res_date), SUM(R.res_tot) FROM Reservations R WHERE EXTRACT(MONTH FROM R.res_date) ='" + month + "' AND EXTRACT(YEAR FROM R.res_date)='" + year + "' ORDER BY res_date DESC;";
 			PreparedStatement stmt1 = con.prepareStatement(count);
 			ResultSet countSums = stmt1.executeQuery();
 			countSums.next();
 			int totalReservations = countSums.getInt("COUNT(R.res_date)");
-			double totalProfits = countSums.getDouble("SUM(R.res_fare)");
+			double totalProfits = countSums.getDouble("SUM(R.res_tot)");
 			
 			if(totalReservations > 0){
 				out.print("<table>");
 					out.print("<tr>");
 						out.print("<th>Reservation Date</th>");
-						out.print("<th>Fare</th>");
+						out.print("<th>Total Reservation Price</th>");
 					out.print("</tr>");
 				while (flights0.next()) {
 					//parse out the results
@@ -97,7 +97,7 @@
 					out.print(flights0.getString("R.res_date"));
 					out.print("</td>");
 					out.print("<td>");
-					out.print(flights0.getString("R.res_fare"));
+					out.print(flights0.getString("R.res_tot"));
 					out.print("</td>");
 					out.print("</tr>");
 				}

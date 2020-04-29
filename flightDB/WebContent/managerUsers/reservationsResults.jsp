@@ -49,7 +49,7 @@
 			if(option.equals("Customer Name")){
 			
 			//if name is not empty then show the reservations by that name
-				String stringy = "SELECT U.user_name, R.customer, R.flight_no, R.res_date, R.num_passengers, R.res_fare FROM Reservations R JOIN users U ON R.customer=U.email ORDER BY U.user_name";
+				String stringy = "SELECT U.user_name, R.customer, R.flight_no, R.res_date, R.num_passengers, R.res_fare, R.res_tot FROM Reservations R JOIN users U ON R.customer=U.email ORDER BY U.user_name";
 				System.out.println(stringy);
 				ResultSet flights0 = stmt.executeQuery(stringy);
 			    
@@ -61,7 +61,8 @@
 					out.print("<th>Flight Number</th>");
 					out.print("<th>Reservation Date</th>");
 					out.print("<th>Number of Passengers</th>");
-					out.print("<th>Fare Price</th>");
+					out.print("<th>Ticket Price (per passenger)</th>");
+					out.print("<th>Total Reservation Price</th>");
 				out.print("</tr>");
 				while (flights0.next()) {
 				//parse out the results
@@ -76,13 +77,16 @@
 						out.print(flights0.getString("R.flight_no"));
 					out.print("</td>");
 					out.print("<td>");	
-					out.print(flights0.getString("R.res_date"));
+						out.print(flights0.getString("R.res_date"));
 					out.print("</td>");
 					out.print("<td>");	
-					out.print(flights0.getString("R.num_passengers"));
+						out.print(flights0.getString("R.num_passengers"));
 					out.print("</td>");
 					out.print("<td>");	
-					out.print(flights0.getString("R.res_fare"));
+						out.print(flights0.getString("R.res_fare"));
+					out.print("</td>");
+					out.print("<td>");	
+						out.print(flights0.getString("R.res_tot"));
 					out.print("</td>");
 				out.print("</tr>");
 				}
@@ -91,7 +95,7 @@
 			
 		else if ((option.equals("Flight Number"))){
 			
-			String stringy2 = "SELECT U.user_name, R.customer, R.flight_no, R.res_date, R.num_passengers, R.res_fare FROM Reservations R JOIN users U ON R.customer=U.email ORDER BY R.flight_no";			
+			String stringy2 = "SELECT U.user_name, R.customer, R.flight_no, R.res_date, R.num_passengers, R.res_fare, R.res_tot FROM Reservations R JOIN users U ON R.customer=U.email ORDER BY R.flight_no";			
 			System.out.println(stringy2);
 			ResultSet flights1 = stmt.executeQuery(stringy2);
 			out.print("<input style=\"margin:auto\" type=\"text\" id=\"myInput2\" onkeyup=\"myFunction2()\" placeholder=\"Search by Flight Number\">");
@@ -102,7 +106,8 @@
 					out.print("<th>Customer Email</th>");
 					out.print("<th>Reservation Date</th>");
 					out.print("<th>Number of Passengers</th>");
-					out.print("<th>Fare Price (per person)</th>");
+					out.print("<th>Ticket Price (per passenger)</th>");
+					out.print("<th>Total Reservation Price</th>");
 				out.print("</tr>");
 				while (flights1.next()) {
 				//parse out the results
@@ -125,6 +130,9 @@
 					out.print("<td>");	
 						out.print(flights1.getString("R.res_fare"));
 					out.print("</td>");
+					out.print("<td>");	
+					out.print(flights1.getString("R.res_tot"));
+				out.print("</td>");
 				out.print("</tr>");
 				}
 			out.print("</table>");

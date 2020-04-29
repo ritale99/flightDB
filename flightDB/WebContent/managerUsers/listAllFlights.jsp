@@ -9,7 +9,7 @@
 <link rel="stylesheet" type="text/css" href="../css/HTMLTable.css">
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Showing One Way Flight Search Results</title>
+<title>Showing Flight Information</title>
 </head>
 <body>
 	<%
@@ -177,18 +177,11 @@
 						out.print("</table>");					
 				}else if(flightOption.equals("By Flight")){
 					
-					
-					//Match by flightID
-					String str0 = "SELECT F.flight_num, F.airline_id, D.depart_date, F.depart_aid, D.arrive_date, F.arrive_aid, F.arr_dep_time, U.user_name FROM flights F, FlightDate D , Reservations R JOIN Users U ON R.customer=U.email WHERE F.flight_num= D.flight_id AND R.flight_no=F.flight_num ORDER BY F.flight_num";
-					System.out.println("Works up to checkpoint:2 ");
-					
-					PreparedStatement stmt0 = con.prepareStatement(str0);
-					
-					ResultSet flights0 = stmt0.executeQuery();
-					
-					String count = "SELECT COUNT(*) FROM flights F, FlightDate D , Reservations R JOIN Users U ON R.customer=U.email WHERE F.flight_num= D.flight_id AND R.flight_no=F.flight_num ORDER BY F.flight_num";
+					String count = "SELECT COUNT(*) Reservations R;";
+					PreparedStatement stmt0 = con.prepareStatement(count);
 					ResultSet county = stmt0.executeQuery(count);
 					county.next();
+
 					
 					if(county.getInt("COUNT(*)") == 0){
 						%>
@@ -199,6 +192,12 @@
 						<%
 					}
 					
+					//Match by flightID
+					String str0 = "SELECT R.flight_no, U.user_name FROM Reservations R JOIN Users U ON R.customer=U.email ORDER BY R.flight_no;";
+					System.out.println("Works up to checkpoint:2 ");
+					ResultSet flights0 = stmt0.executeQuery(str0);
+
+					
 					out.print("<input style=\"margin:auto\" type=\"text\" id=\"myInput\" onkeyup=\"myFunction4()\" placeholder=\"Search by Flight\">");
 					
 					System.out.println("Works up to checkpoint:4 ");
@@ -207,39 +206,12 @@
 						out.print("</tr>");
 							out.print("<th>Flight</th>");
 							out.print("<th>Customer</th>");
-							out.print("<th>Departure Date</th>");
-							out.print("<th>Departure Airport</th>");
-							out.print("<th>Arrival Date</th>");
-							out.print("<th>Arrival Airport</th>");
-							out.print("<th>Departure/Arrival Time Status</th>");
 						out.print("</tr>");
 						while (flights0.next()) {
 							out.print("<tr>");
 								out.print("<td>");
-									out.print(flights0.getString("F.flight_num"));
+									out.print(flights0.getString("R.flight_no"));
 								out.print("</td>");
-								out.print("<td>");
-								out.print(flights0.getString("U.user_name"));
-								out.println("</td>");
-								out.print("<td>");
-									out.print(flights0.getString("F.airline_id"));
-								out.print("</td>");
-								out.print("<td>");
-									out.print(flights0.getString("D.depart_date"));
-								out.print("</td>");
-								out.print("<td>");
-									out.print(flights0.getString("F.depart_aid"));
-								out.print("</td>");
-								out.print("<td>");
-									out.print(flights0.getString("D.arrive_date"));
-								out.print("</td>");
-								out.print("<td>");
-									out.print(flights0.getString("F.arrive_aid"));
-								out.print("</td>");
-								out.print("<td>");
-									out.print(flights0.getString("F.arr_dep_time"));
-								out.print("</td>");
-
 							out.print("</tr>");
 						}
 						out.print("</table>");					
