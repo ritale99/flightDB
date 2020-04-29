@@ -125,14 +125,14 @@
 		stmt.executeUpdate(insertTrip);
 		
 		//Update profits
-		String updateCus = "UPDATE users SET profits=profits+'" + fare + "' WHERE email='" + u_email + "';";
+		String updateCus = "UPDATE users SET profits=profits+('" + fare + "'*'"+passengersNum+"')"+ " WHERE email='" + u_email + "';";
 		stmt.executeUpdate(updateCus);
 		
-		String updateFli = "UPDATE flights SET profits=profits+'" + fare + "', num_reserves=num_reserves+1 WHERE flight_num='" + flightnum + "';";
+		String updateFli = "UPDATE flights SET profits=profits+('" + fare + "'*'"+passengersNum+"')"+ ", num_reserves=num_reserves+1 WHERE flight_num='" + flightnum + "';";
 		stmt.executeUpdate(updateFli);
 		
 		System.out.println("Checkpoint 2");
-		String updateAir = "UPDATE Airport A SET A.profits=A.profits+'" + fare + "' JOIN flights F ON A.Airport_id=F.depart_aid WHERE F.flight_num'" + flightnum + "';";
+		String updateAir = "UPDATE Airport SET profits=profits+profits+('" + fare + "'*'"+passengersNum+"')"+ " JOIN flights F WHERE Airport.Airport_id = F.arrive_aid AND F.flight_num'" + flightnum + "';";
 		System.out.println(depDate);
 		
 
