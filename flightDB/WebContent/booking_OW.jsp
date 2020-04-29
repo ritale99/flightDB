@@ -135,8 +135,6 @@
 		String updateAir = "UPDATE Airport SET profits=profits+profits+('" + fare + "'*'"+passengersNum+"')"+ " JOIN flights F WHERE Airport.Airport_id = F.arrive_aid AND F.flight_num'" + flightnum + "';";
 		System.out.println(depDate);
 		
-
-		stmt.executeUpdate(updateFli);
 		//Close the connection.
 		con.close();
 
