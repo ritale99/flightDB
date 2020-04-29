@@ -58,7 +58,7 @@
 			}
 			
 			
-			String stringy = "SELECT R.res_num, R.res_date, R.res_fare,R.flight_no,R.num_passengers, F.airline_id, F.depart_aid, F.depart_time,F.arrive_aid,F.arrive_time FROM Reservations R, flights F WHERE F.flight_num = R.flight_no AND R.customer='" + u_email + "' ORDER BY R.res_date;";
+			String stringy = "SELECT Trips.flights, Trips.flights2, Trips.flights3, R.res_num, R.res_date, R.res_fare, R.flight_no,R.num_passengers, F.airline_id, F.depart_aid, F.depart_time,F.arrive_aid,F.arrive_time FROM Reservations R, flights F, trips WHERE Trips.res_num = R.res_num AND F.flight_num = R.flight_no AND R.customer='" + u_email + "' ORDER BY R.res_date;";
 			System.out.println(stringy);
 			ResultSet reservations = stmt.executeQuery(stringy);
 		    
@@ -91,7 +91,9 @@
 							out.print(reservations.getString("R.num_passengers"));
 						out.print("</td>");	
 						out.print("<td>");
-							out.print(reservations.getString("R.flight_no"));
+							out.print(reservations.getString("trips.flights") + "\n");
+							out.println(reservations.getString("Trips.flights2") + "\n");
+							out.println(reservations.getString("Trips.flights3"));
 						out.print("</td>");	
 						out.print("<td>");	
 							out.print(reservations.getString("R.res_fare"));

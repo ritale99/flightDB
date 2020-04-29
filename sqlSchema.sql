@@ -89,7 +89,9 @@ FOREIGN KEY (customer) REFERENCES users (email)
 
 CREATE TABLE Trips(
 res_num INT NOT NULL,
-flights INT
+flights INT,
+flights2 INT,
+flights3 INT
 );
 
 /*Insert a test account user*/
