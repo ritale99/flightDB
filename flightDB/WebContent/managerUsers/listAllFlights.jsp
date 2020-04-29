@@ -20,7 +20,6 @@
 		Class.forName("com.mysql.jdbc.Driver");
 				
 		String flightOption = request.getParameter("flight_option");
-
 		//Create a connection to your DB
 		Connection con = DriverManager.getConnection(url, "root", "password");
 		
@@ -177,12 +176,13 @@
 						out.print("</table>");					
 				}else if(flightOption.equals("By Flight")){
 					
-					String count = "SELECT COUNT(*) Reservations R;";
+
+					
+					String count = "SELECT COUNT(*) FROM Reservations R;";
 					PreparedStatement stmt0 = con.prepareStatement(count);
 					ResultSet county = stmt0.executeQuery(count);
 					county.next();
 
-					
 					if(county.getInt("COUNT(*)") == 0){
 						%>
 							<script>
@@ -191,34 +191,36 @@
 							</script>
 						<%
 					}
-					
-					//Match by flightID
-					String str0 = "SELECT R.flight_no, U.user_name FROM Reservations R JOIN Users U ON R.customer=U.email ORDER BY R.flight_no;";
-					System.out.println("Works up to checkpoint:2 ");
-					ResultSet flights0 = stmt0.executeQuery(str0);
-
-					
-					out.print("<input style=\"margin:auto\" type=\"text\" id=\"myInput\" onkeyup=\"myFunction4()\" placeholder=\"Search by Flight\">");
-					
-					System.out.println("Works up to checkpoint:4 ");
-					
-					out.print("<table id=\"myTable4\">");
-						out.print("</tr>");
-							out.print("<th>Flight</th>");
-							out.print("<th>Customer</th>");
-						out.print("</tr>");
-						while (flights0.next()) {
-							out.print("<tr>");
-								out.print("<td>");
-									out.print(flights0.getString("R.flight_no"));
-								out.print("</td>");
+						//Match by flightID
+						String str0 = "SELECT R.flight_no, U.user_name FROM Reservations R JOIN Users U ON R.customer=U.email ORDER BY R.flight_no";
+						System.out.println(str0);
+						System.out.println("Works up to checkpoint:2 ");
+						ResultSet flights0 = stmt0.executeQuery(str0);
+	
+						
+						out.print("<input style=\"margin:auto\" type=\"text\" id=\"myInput\" onkeyup=\"myFunction4()\" placeholder=\"Search by Flight\">");
+						
+						System.out.println("Works up to checkpoint:4 ");
+						
+						out.print("<table id=\"myTable4\">");
 							out.print("</tr>");
-						}
-						out.print("</table>");					
+								out.print("<th>Flight</th>");
+								out.print("<th>Customer</th>");
+							out.print("</tr>");
+							while (flights0.next()) {
+								System.out.println("i am here");
+								out.print("<tr>");
+									out.print("<td>");
+										out.print(flights0.getString("R.flight_no"));
+									out.print("</td>");
+									out.print("<td>");
+										out.print(flights0.getString("U.user_name"));
+									out.print("</td>");
+								out.print("</tr>");
+							}
+							out.print("</table>");
 				}
-
-				con.close();
-
+			con.close();
 			} catch (Exception e) {
 				out.print("failed");
 	%>
