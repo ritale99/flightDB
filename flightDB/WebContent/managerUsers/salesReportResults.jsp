@@ -94,7 +94,7 @@
 			} else if (filter.equals("By Destination City")) 
 			{
 				//Match by City
-				String str0 = "SELECT ap_name, city, state, country, profits FROM Airport A ORDER BY profits DESC";
+				String str0 = "SELECT Airport_id, ap_name, city, state, country, profits FROM Airport A ORDER BY profits DESC";
 				System.out.println("Works up to checkpoint:2 ");
 				System.out.println(str0);
 				PreparedStatement stmt0 = con.prepareStatement(str0);
@@ -104,6 +104,7 @@
 				out.print("<table>");
 					out.print("<thead>");
 						out.print("</tr>");
+							out.print("<th>Airport ID</th>");
 							out.print("<th>Airport Name</th>");
 							out.print("<th>City</th>");
 							out.print("<th>State</th>");
@@ -116,6 +117,9 @@
 				while (flights0.next()) {
 					//parse out the results
 					out.print("<tr>");
+						out.print("<td>");
+						out.print(flights0.getString("Airport_id"));
+						out.print("</td>");
 						out.print("<td>");
 						out.print(flights0.getString("ap_name"));
 						out.print("</td>");

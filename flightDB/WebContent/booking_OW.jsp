@@ -136,9 +136,14 @@
 		String updateFli = "UPDATE flights SET profits=profits+('" + totalPrice +"')"+ ", num_reserves=num_reserves+1 WHERE flight_num='" + flightnum + "';";
 		stmt.executeUpdate(updateFli);
 		
+// 		String findDepartAirport = "SELECT depart_aid FROM flights F WHERE F.flight_num='12345';";
+// 		ResultSet dep = stmt.executeQuery(findDepartAirport);
+// 		dep.next();
+// 		String depAirport = dep.getString("depart_aid");
+		
 		System.out.println("Checkpoint 2");
-		String updateAir = "UPDATE Airport SET profits=profits+('" + totalPrice +"')"+ " JOIN flights F ON Airport.Airport_id = F.arrive_aid WHERE flight_num='" + flightnum + "';";
-		System.out.println(depDate);
+		String updateAir = "UPDATE Airport SET profits=profits+'" + totalPrice + "' WHERE Airport.Airport_id=(SELECT depart_aid FROM flights F WHERE F.flight_num='"+ flightnum + "');";
+		stmt.executeUpdate(updateAir);
 		
 		//Close the connection.
 		con.close();

@@ -131,10 +131,15 @@
 		ps.executeUpdate();
 
 		//Close the connection. Don't forget to do it, otherwise you're keeping the resources of the server allocated.
+		
+		String getUser = "SELECT user_id FROM users WHERE user_name = '" + newName + "' AND email = '" + newEmail + "';";
+		ResultSet user = ps.executeQuery(getUser);
+		user.next();
+		int userid = user.getInt("user_id");
 		con.close();
 
 
-
+		session.setAttribute("user_id", userid);
 		session.setAttribute("user_name", newName);
 		session.setAttribute("user_email", newEmail);
 		%>

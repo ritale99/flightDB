@@ -117,7 +117,7 @@ INSERT INTO Airport VALUES('MIA', 'Miami International Airport', 'Miami', 'Flori
 INSERT INTO Airport VALUES('SFO', 'San Francisco International Airport', 'San Franciso', 'California', 'United States', 0);
 INSERT INTO Airport VALUES('MDW', 'Midway International Airport', 'Chicago', 'Illinois', 'United States', 0);
 INSERT INTO Airport VALUES ('LAX', 'Los Angeles International Airport', 'Los Angeles', 'California', 'United States', 0);
-INSERT INTO Airport VALUES ('ATL', 'Hartsfield–Jackson Atlanta International Airport','Atlanta' ,'Georgia', 'United States', 0);
+INSERT INTO Airport VALUES ('ATL', 'Hartsfield Jackson Atlanta International Airport','Atlanta' ,'Georgia', 'United States', 0);
 INSERT INTO Airport VALUES ('ORD', 'O Hare International Airport','Chicago', 'Illinois', 'United States', 0);
 INSERT INTO Airport VALUES ('DFW', 'Dallas/Forth Worth International Airport', 'Dallas','Texas', 'United States', 0);
 INSERT INTO Airport VALUES ('DEN', 'Denver International Airport','Denver' ,'Colorodo', 'United States', 0);
