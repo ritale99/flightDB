@@ -167,6 +167,7 @@ INSERT INTO flights VALUES('2 DIG airline id', '12345','STOPS','FARES', 'NUM_SEA
 /*Insertion of some domestic flights*/
 INSERT INTO flights VALUES ('BB', '12345','160','50', '11:02', 'MIA','14:10', 'EWR', 'MTWRFSaSu', 'domestic', 0, 0, 'ON TIME');
 INSERT INTO FlightDate VALUES('2020-05-05', '2020-05-06', '12345');
+INSERT INTO FlightDate VALUES('2020-05-08', '2020-05-08', '12345');
 
 INSERT INTO flights VALUES ('BB', '12346','160','50', '11:02', 'EWR','14:10', 'MIA', 'MTWRFSaSu', 'domestic', 0, 0, 'ON TIME');
 INSERT INTO FlightDate VALUES('2020-05-06', '2020-05-07', '12346');
