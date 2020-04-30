@@ -84,7 +84,14 @@
 			int totalReservations = countSums.getInt("COUNT(R.res_date)");
 			double totalProfits = countSums.getDouble("SUM(R.res_tot)");
 			
-			if(totalReservations > 0){
+			if(totalReservations == 0){
+				%>
+					<script>
+						alert("No reservations were made this month.");
+						window.location.href("monthlySales.jsp");
+					</script>
+				<%
+			}
 				out.print("<table>");
 					out.print("<tr>");
 						out.print("<th>Reservation Date</th>");
@@ -115,15 +122,6 @@
 						out.print("</td>");
 					out.print("</tr>");
 				out.print("</table>");
-			}else{
-				%>
-					<script>
-						alert("You don't have any reservations/profits for " + monthString + yearString);
-						window.location.href = "monthlySales.jsp";
-					</script>
-				<%
-				return;
-			}
 				
 	con.close();
 

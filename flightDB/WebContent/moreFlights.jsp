@@ -90,7 +90,7 @@
 				//request.getSession().removeAttribute("arriving_port");		
 				//request.getSession().removeAttribute("takeOffDate");		
 				//request.getSession().removeAttribute("flightid");		
-
+				
 			con.close();
 
 		}catch (Exception e) {
@@ -104,6 +104,16 @@
 		}
 	
 	%>
+	
+		<br>Type out the flightId of the flight you would like to book!
+			<form action="booking_OW.jsp">
+				<br><input type="text" placeholder="flight ID" name="flightnum" required> <br>
+			<br>How many Passengers for your reservation?<br>
+				<br><input type="text" placeholder="number Passengers" name="passengersNum" required> 
+			<br>What is the departure date?<br>
+				<br><input type="text" placeholder="YEAR-MM-DD" name="departure" required> 
+				<br><button type="submit">Book</button>		
+			</form>
 
 			
 	
