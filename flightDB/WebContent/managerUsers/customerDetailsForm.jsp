@@ -18,8 +18,8 @@
 			<form class="login-form" method="post"
 				action="managerInsertionsCustomer.jsp">
 
-				<label>Enter Customers current email:</label> 
-				<input type="text" placeholder="name" name="new_name" /> 
+				<label>Enter Customers user id:</label> 
+				<input type="password" placeholder="id" name="userid" /> 
 				<label>Update Customers name:</label> 
 				<input type="text" placeholder="name" name="new_name" /> 
 				<label>Update Customers email:</label> 

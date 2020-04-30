@@ -28,7 +28,7 @@
 			String filter = request.getParameter("filter");
 
 			if (filter.equals("By Customer")) {
-				String str0 = "SELECT user_name, profits FROM users ORDER BY profits DESC";
+				String str0 = "SELECT user_id, user_name, profits FROM users ORDER BY profits DESC";
 				System.out.println("Works up to checkpoint:2 ");
 				System.out.println(str0);
 				PreparedStatement stmt0 = con.prepareStatement(str0);
@@ -37,12 +37,16 @@
 		
 				out.print("<table>");
 				out.print("</tr>");
+				out.print("<th>Customer ID</th>");
 				out.print("<th>Customer Name</th>");
 				out.print("<th>Profits</th>");
 				out.print("</tr>");
 				while (flights0.next()) {
 					//parse out the results
 					out.print("<tr>");
+					out.print("<td>");
+					out.print(flights0.getString("user_id"));
+					out.print("</td>");
 					out.print("<td>");
 					out.print(flights0.getString("user_name"));
 					out.print("</td>");

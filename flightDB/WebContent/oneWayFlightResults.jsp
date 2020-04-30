@@ -45,11 +45,11 @@
 			stmt0.setString(1, flightid);
 			ResultSet flights0 = stmt0.executeQuery();
 			
-			String u_email = (String) session.getAttribute("user_email");
+			int u_id = (Integer) session.getAttribute("user_id");
 				
 			//Create the table
 			out.print("<table>");
-			out.print("</tr>");
+			out.print("</th>");
 			out.print("<th>FlightId</th>");
 			out.print("<th>Fare</th>");
 			out.print("<th>Flight Type</th>");
@@ -57,7 +57,7 @@
 			out.print("<th>Arrive</th>");
 			out.print("<th>Departing Airport</th>");
 			out.print("<th>Arriving Airport </th>");
-			out.print("</tr>");
+			out.print("</th>");
 					
 				while (flights0.next()) {
 					 

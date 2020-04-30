@@ -49,13 +49,14 @@
 			if(option.equals("Customer Name")){
 			
 			//if name is not empty then show the reservations by that name
-				String stringy = "SELECT U.user_name, R.customer, R.flight_no, R.res_date, R.num_passengers, R.res_fare, R.res_tot FROM Reservations R JOIN users U ON R.customer=U.email ORDER BY U.user_name";
+				String stringy = "SELECT U.user_name, R.customer, R.flight_no, R.res_date, R.num_passengers, R.res_fare, R.res_tot, U.email FROM Reservations R JOIN users U ON R.customer=U.user_id ORDER BY U.user_name";
 				System.out.println(stringy);
 				ResultSet flights0 = stmt.executeQuery(stringy);
 			    
 				out.print("<input style=\"margin:auto\" type=\"text\" id=\"myInput\" onkeyup=\"myFunction()\" placeholder=\"Search by Customer Name\">");
 				out.print("<table id=\"myTable\">");
 				out.print("</tr>");
+					out.print("<th>Customer ID</th>");
 					out.print("<th>Customer Name</th>");
 					out.print("<th>Customer Email</th>");
 					out.print("<th>Flight Number</th>");
@@ -68,10 +69,13 @@
 				//parse out the results
 					out.print("<tr>");
 					out.print("<td>");
+						out.print(flights0.getString("R.customer"));
+					out.print("</td>");
+					out.print("<td>");
 						out.print(flights0.getString("U.user_name"));
 					out.print("</td>");	
 					out.print("<td>");	
-						out.print(flights0.getString("R.customer"));
+						out.print(flights0.getString("U.email"));
 					out.print("</td>");
 					out.print("<td>");	
 						out.print(flights0.getString("R.flight_no"));
@@ -95,13 +99,14 @@
 			
 		else if ((option.equals("Flight Number"))){
 			
-			String stringy2 = "SELECT U.user_name, R.customer, R.flight_no, R.res_date, R.num_passengers, R.res_fare, R.res_tot FROM Reservations R JOIN users U ON R.customer=U.email ORDER BY R.flight_no";			
+			String stringy2 = "SELECT U.user_name, R.customer, R.flight_no, R.res_date, R.num_passengers, R.res_fare, R.res_tot, U.email FROM Reservations R JOIN users U ON R.customer=U.user_id ORDER BY R.flight_no";			
 			System.out.println(stringy2);
 			ResultSet flights1 = stmt.executeQuery(stringy2);
 			out.print("<input style=\"margin:auto\" type=\"text\" id=\"myInput2\" onkeyup=\"myFunction2()\" placeholder=\"Search by Flight Number\">");
 			out.print("<table id=\"myTable2\">");
 				out.print("</tr>");
 					out.print("<th>Flight Number</th>");
+					out.print("<th>Customer ID</th>");
 					out.print("<th>Customer Name</th>");
 					out.print("<th>Customer Email</th>");
 					out.print("<th>Reservation Date</th>");
@@ -116,10 +121,13 @@
 						out.print(flights1.getString("R.flight_no"));
 					out.print("</td>");
 					out.print("<td>");
+						out.print(flights1.getString("R.customer"));
+					out.print("</td>");
+					out.print("<td>");
 						out.print(flights1.getString("U.user_name"));
 					out.print("</td>");	
 					out.print("<td>");	
-						out.print(flights1.getString("R.customer"));
+						out.print(flights1.getString("U.email"));
 					out.print("</td>");
 					out.print("<td>");	
 						out.print(flights1.getString("R.res_date"));
@@ -156,7 +164,7 @@
 		<script>
 			function myFunction() {
 			  // Declare variables
-			  var input, filter, table, tr, td, i, txtValue;
+			  var input, filter, table, tr, td, td2, i, txtValue, txtValue2;
 			  input = document.getElementById("myInput");
 			  filter = input.value.toUpperCase();
 			  table = document.getElementById("myTable");
@@ -165,9 +173,11 @@
 			  // Loop through all table rows, and hide those who don't match the search query
 			  for (i = 0; i < tr.length; i++) {
 			    td = tr[i].getElementsByTagName("td")[0];
+			    td2 = tr[i].getElementsByTagName("td")[1];
 			    if (td) {
 			      txtValue = td.textContent || td.innerText;
-			      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+			      txtValue2 = td2.textContent || td2.innerText;
+			      if (txtValue.toUpperCase().indexOf(filter) > -1 || txtValue2.toUpperCase().indexOf(filter) > -1) {
 			        tr[i].style.display = "";
 			      } else {
 			        tr[i].style.display = "none";

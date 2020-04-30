@@ -11,6 +11,7 @@ DROP TABLE IF EXISTS Airline;
 DROP TABLE IF EXISTS Flightdate;
 
 CREATE TABLE users (
+user_id INT NOT NULL auto_increment,
 user_name varchar(25) NOT NULL,
 password1 varchar(25) NOT NULL, 
 email varchar(64) NOT NULL,
@@ -18,7 +19,7 @@ phone varchar(16),
 credit_card varchar(19),
 credit_cvv varchar(5),
 profits DECIMAL(15,2),
-primary key(email)
+primary key(user_id)
 );
 
 
@@ -80,12 +81,12 @@ res_num INT NOT NULL auto_increment,
 res_date date NOT NULL,
 res_fare DECIMAL,
 res_tot DECIMAL, 
-customer VARCHAR(64) NOT NULL,
+customer INT NOT NULL,
 num_passengers INT,
 flight_no INT NOT NULL,
 foreign key (flight_no) REFERENCES flights (flight_num),
 PRIMARY KEY (res_num),
-FOREIGN KEY (customer) REFERENCES users (email)
+FOREIGN KEY (customer) REFERENCES users (user_id)
 );
 
 CREATE TABLE Trips(
@@ -96,11 +97,11 @@ flights3 INT
 );
 
 /*Insert a test account user*/
-INSERT INTO users VALUES ('Tanmay', 'password', 'tanmay@test.com', NULL, NULL, NULL, 0);
-INSERT INTO users VALUES ('Rithvik', 'password', 'rithvik@test.com', NULL, NULL, NULL, 0);
-INSERT INTO users VALUES ('Harsh', 'password', 'harsh@test.com', NULL, NULL, NULL, 0);
-INSERT INTO users VALUES ('Bhasit', 'password', 'bhasit@test.com', NULL, NULL, NULL, 0);
-INSERT INTO users VALUES ('Noman', 'password', 'noman@test.com', NULL, NULL, NULL, 0);
+INSERT INTO users VALUES (1, 'Tanmay', 'password', 'tanmay@test.com', NULL, NULL, NULL, 0);
+INSERT INTO users VALUES (2, 'Rithvik', 'password', 'rithvik@test.com', NULL, NULL, NULL, 0);
+INSERT INTO users VALUES (3, 'Harsh', 'password', 'harsh@test.com', NULL, NULL, NULL, 0);
+INSERT INTO users VALUES (4, 'Bhasit', 'password', 'bhasit@test.com', NULL, NULL, NULL, 0);
+INSERT INTO users VALUES (5, 'Noman', 'password', 'noman@test.com', NULL, NULL, NULL, 0);
 
 /*insert manger accounts for login since manager account can't be created on the interface*/
 INSERT INTO managers VALUES ('Rithvik', 'password');

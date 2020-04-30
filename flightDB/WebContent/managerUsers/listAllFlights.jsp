@@ -192,7 +192,7 @@
 						<%
 					}
 						//Match by flightID
-						String str0 = "SELECT R.flight_no, U.user_name FROM Reservations R JOIN Users U ON R.customer=U.email ORDER BY R.flight_no";
+						String str0 = "SELECT R.flight_no, U.user_name, U.user_id, R.num_passengers FROM Reservations R JOIN Users U ON R.customer=U.user_id ORDER BY R.flight_no";
 						System.out.println(str0);
 						System.out.println("Works up to checkpoint:2 ");
 						ResultSet flights0 = stmt0.executeQuery(str0);
@@ -205,7 +205,9 @@
 						out.print("<table id=\"myTable4\">");
 							out.print("</tr>");
 								out.print("<th>Flight</th>");
-								out.print("<th>Customer</th>");
+								out.print("<th>Customer ID</th>");
+								out.print("<th>Customer Name</th>");
+								out.print("<th>Number of Passengers</th>");
 							out.print("</tr>");
 							while (flights0.next()) {
 								System.out.println("i am here");
@@ -214,7 +216,13 @@
 										out.print(flights0.getString("R.flight_no"));
 									out.print("</td>");
 									out.print("<td>");
+										out.print(flights0.getString("U.user_id"));
+									out.print("</td>");
+									out.print("<td>");
 										out.print(flights0.getString("U.user_name"));
+									out.print("</td>");
+									out.print("<td>");
+										out.print(flights0.getString("R.num_passengers"));
 									out.print("</td>");
 								out.print("</tr>");
 							}

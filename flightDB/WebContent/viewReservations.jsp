@@ -30,8 +30,8 @@
 			Statement stmt = con.createStatement();
 	
 			//parameters
-			String u_email = (String) session.getAttribute("user_email");
-			 if (u_email == null || u_email.equals("")){
+			int u_id = (Integer) session.getAttribute("user_id");
+			 if (u_id == 0){
 				 %> 
 					<!-- if error, show the alert and go back --> 
 					<script> 
@@ -41,7 +41,7 @@
 				<%
 			}
 			 
-			String string = "SELECT COUNT(*) FROM Reservations WHERE customer='" + u_email + "';";
+			String string = "SELECT COUNT(*) FROM Reservations WHERE customer='" + u_id + "';";
 			ResultSet resCount = stmt.executeQuery(string);
 			resCount.next();
 			if(resCount.getInt(1) == 0){
@@ -56,18 +56,18 @@
 			}
 			
 			
-			String stringy = "SELECT R.res_num, R.res_date, R.res_fare FROM Reservations R WHERE R.customer='" + u_email + "' ORDER BY R.res_date;";
+			String stringy = "SELECT R.res_num, R.res_date, R.res_fare, R.res_tot FROM Reservations R WHERE R.customer='" + u_id + "' ORDER BY R.res_date;";
 			System.out.println(stringy);
 			ResultSet reservations = stmt.executeQuery(stringy);
 		    
 			out.print("<table>");
-			out.print("</tr>");
+			out.print("</th>");
 				out.print("<th>Reservation number</th>");
 				out.print("<th>Date Reserved</th>");
-				out.print("<th>Cost of Fare</th>");
-			out.print("</tr>");
+				out.print("<th>Ticket Price (per passenger)</th>");
+				out.print("<th>Total Fare Price</th>");
+			out.print("</th>");
 			while (reservations.next()) {
-				
 				//parse out the results
 					out.print("<tr>");
 						out.print("<td>");
@@ -78,10 +78,13 @@
 						out.print("</td>");	
 						out.print("<td>");	
 							out.print(reservations.getString("R.res_fare"));
-						out.print("</td>");
+						out.print("</td>");	
+						out.print("<td>");	
+						out.print(reservations.getString("R.res_tot"));
+					out.print("</td>");
 					out.print("</tr>");
 			}
-			out.print("</form>");
+			out.print("</table>");
 			con.close();
 		}catch (Exception e) {
 			out.print("failed");

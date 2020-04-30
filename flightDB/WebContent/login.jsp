@@ -51,25 +51,17 @@
 				</script>
 				<% 
 			} else {
-				//have to change this sql!!!
-				String str = "SELECT * FROM users e WHERE e.email='" + newEmail + "' and e.password1='" + newPswd + "'";
+				String str = "SELECT user_id FROM users e WHERE e.email='" + newEmail + "' and e.password1='" + newPswd + "'";
 	
 				//Run the query against the database.
 				ResultSet result = stmt.executeQuery(str);
 	
 				if (result.next()) {
 					
-						
-						//session.setAttribute("user_name", result.getString("user_name"));
-						session.setAttribute("user_email", newEmail);
-						String u_email = (String) session.getAttribute("user_email");	
+						//Find user_id
+						session.setAttribute("user_id", result.getInt("user_id"));
+						int u_email = (Integer) session.getAttribute("user_id");	
 						response.sendRedirect("customerLandingPage.jsp");
-						%>
-						
-						<script> 
-				    	//	window.location.href = "customerLandingPage.jsp";
-						</script>
-					<%
 						
 					
 					//close the connection.
@@ -86,8 +78,6 @@
 			}
 	
 			con.close();
-			session.setAttribute("user_email", newEmail);
-			String u2_email = (String) session.getAttribute("user_email");
 
 			
 

@@ -25,19 +25,20 @@
 	String passengersNum = request.getParameter("passengersNum");
 	String depDate = request.getParameter("departure");
 	int passengersNumber = Integer.parseInt(passengersNum);
-	String u_email = (String) session.getAttribute("user_email");
+	int u_id = (Integer) session.getAttribute("user_id");
 	 
 	//2. Checking the session attributes to create reservation for that user
-	 if (u_email == null || u_email.equals("")){
+	 if (u_id == 0){
 		 %> 
 				<!-- if error, show the alert and go back --> 
 			<script> 
 			    alert("Sorry, session Invalidated! Please log in Again.");
 			    window.location.href = "logout.jsp";
 			</script>
-			<%
+		<%
 	 }
-
+		
+	System.out.println(u_id);
 	try {
 		//3. Databse Connection
 		String url = "jdbc:mysql://localhost:3306/cs336project";
@@ -99,6 +100,8 @@
 			<%
 		}
 		
+		
+		
         //get todays date!
         java.util.Date utilDate = new Date();
         java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
@@ -114,7 +117,7 @@
 		double totalPrice = Double.parseDouble(passengersNum)*fare;
 		
 		//Make an insert statement for the Reservations table:
-		String insert = "INSERT INTO Reservations (res_date, res_fare, res_tot, customer, num_passengers, flight_no) VALUES ('" + sqlDate + "','" + fare + "','" + (totalPrice) + "','" + u_email +  "','" + passengersNumber + "','" + flightnum + "');";
+		String insert = "INSERT INTO Reservations (res_date, res_fare, res_tot, customer, num_passengers, flight_no) VALUES ('" + sqlDate + "','" + fare + "','" + (totalPrice) + "','" + u_id +  "','" + passengersNumber + "','" + flightnum + "');";
 	
 		//Create a Prepared SQL statement allowing you to introduce the parameters of the query
 		PreparedStatement ps = con.prepareStatement(insert);
@@ -127,7 +130,7 @@
 		stmt.executeUpdate(insertTrip);
 		
 		//Update profits
-		String updateCus = "UPDATE users SET profits=profits+('" + totalPrice +"')"+ " WHERE email='" + u_email + "';";
+		String updateCus = "UPDATE users SET profits=profits+('" + totalPrice +"')"+ " WHERE user_id='" + u_id + "';";
 		stmt.executeUpdate(updateCus);
 		
 		String updateFli = "UPDATE flights SET profits=profits+('" + totalPrice +"')"+ ", num_reserves=num_reserves+1 WHERE flight_num='" + flightnum + "';";

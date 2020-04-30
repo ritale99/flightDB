@@ -51,8 +51,8 @@
 					stmt0.setString(1, flightID);
 					ResultSet flights0 = stmt0.executeQuery();
 				
-					String u_email = (String) session.getAttribute("user_email");
-					 System.out.println("Email ISOWR:" + u_email);
+					int u_id = (Integer) session.getAttribute("user_id");
+					 System.out.println("Email ISOWR:" + u_id);
 					
 					 out.print("<table>");
 						out.print("</tr>");

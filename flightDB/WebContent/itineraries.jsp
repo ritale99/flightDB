@@ -30,18 +30,18 @@
 			Statement stmt = con.createStatement();
 	
 			//parameters
-			String u_email = (String) session.getAttribute("user_email");
-			 if (u_email == null || u_email.equals("")){
+			Integer u_id = (Integer) session.getAttribute("user_id");
+			 if (u_id == 0){
 				 %>
-	<!-- if error, show the alert and go back -->
-	<script>
-		alert("Sorry, session Invalidated!, Please log in Again.");
-		window.location.href = "logout.jsp";
-	</script>
-	<%
+				<!-- if error, show the alert and go back -->
+					<script>
+						alert("Sorry, session Invalidated!, Please log in Again.");
+						window.location.href = "logout.jsp";
+					</script>
+				<%
 			}
 			 
-			String string = "SELECT COUNT(*) FROM Reservations WHERE customer='" + u_email + "';";
+			String string = "SELECT COUNT(*) FROM Reservations WHERE customer='" + u_id + "';";
 			ResultSet resCount = stmt.executeQuery(string);
 			resCount.next();
 			if(resCount.getInt(1) == 0){
@@ -58,7 +58,7 @@
 			}
 			
 			
-			String stringy = "SELECT Trips.flights, Trips.flights2, Trips.flights3, R.res_num, R.res_date, R.res_fare, R.flight_no,R.num_passengers, F.airline_id, F.depart_aid, F.depart_time,F.arrive_aid,F.arrive_time FROM Reservations R, flights F, trips WHERE Trips.res_num = R.res_num AND F.flight_num = R.flight_no AND R.customer='" + u_email + "' ORDER BY R.res_date;";
+			String stringy = "SELECT Trips.flights, Trips.flights2, Trips.flights3, R.res_num, R.res_date, R.res_fare, R.flight_no,R.num_passengers, F.airline_id, F.depart_aid, F.depart_time,F.arrive_aid,F.arrive_time FROM Reservations R, flights F, trips WHERE Trips.res_num = R.res_num AND F.flight_num = R.flight_no AND R.customer='" + u_id + "' ORDER BY R.res_date;";
 			System.out.println(stringy);
 			ResultSet reservations = stmt.executeQuery(stringy);
 		    
