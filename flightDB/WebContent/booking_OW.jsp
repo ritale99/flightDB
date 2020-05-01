@@ -142,7 +142,7 @@
 // 		String depAirport = dep.getString("depart_aid");
 		
 		System.out.println("Checkpoint 2");
-		String updateAir = "UPDATE Airport SET profits=profits+'" + totalPrice + "' WHERE Airport.Airport_id=(SELECT depart_aid FROM flights F WHERE F.flight_num='"+ flightnum + "');";
+		String updateAir = "UPDATE Airport SET profits=profits+'" + totalPrice + "' WHERE Airport.Airport_id=(SELECT arrive_aid FROM flights F WHERE F.flight_num='"+ flightnum + "');";
 		stmt.executeUpdate(updateAir);
 		
 		//Close the connection.

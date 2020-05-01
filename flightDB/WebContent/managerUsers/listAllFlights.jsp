@@ -33,7 +33,7 @@
 			
 			if(flightOption.equals("All Flights")){
 				//All flights
-				String str0 = "SELECT F.flight_num, F.airline_id, D.depart_date, F.depart_aid, D.arrive_date, F.arrive_aid, F.arr_dep_time FROM flights F, FlightDate D WHERE F.flight_num= D.flight_id ORDER BY D.depart_date;";
+				String str0 = "SELECT F.flight_num, F.airline_id, D.depart_date, F.depart_aid, D.arrive_date, F.arrive_aid, F.arr_dep_time FROM flights F, FlightDate D WHERE F.flight_num= D.flight_id ORDER BY F.flight_num;";
 				System.out.println("Works up to checkpoint:2 ");
 				
 				PreparedStatement stmt0 = con.prepareStatement(str0);
@@ -174,7 +174,33 @@
 							out.print("</tr>");
 						}
 						out.print("</table>");					
-				}else if(flightOption.equals("By Flight")){
+				}if(flightOption.equals("By Activity")){
+					//All flights
+					String str0 = "SELECT flight_num, num_reserves from flights ORDER BY num_reserves DESC;";
+					System.out.println("Works up to checkpoint:2 ");
+					
+					PreparedStatement stmt0 = con.prepareStatement(str0);
+					
+					ResultSet flights0 = stmt0.executeQuery();
+					
+					System.out.println("Works up to checkpoint:4 ");
+					
+					out.print("<table id=\"myTable\">");
+						out.print("</tr>");
+							out.print("<th>Flight</th>");
+							out.print("<th>Reservation Activity (num reserves)");
+						out.print("</tr>");
+						while (flights0.next()) {
+							out.print("<tr>");
+								out.print("<td>");
+									out.print(flights0.getString("flight_num"));
+								out.print("</td>");
+								out.print("<td>");
+									out.print(flights0.getString("num_reserves"));
+								out.print("</td>");
+						}
+						out.print("</table>");
+					}else if(flightOption.equals("By Flight")){
 					
 
 					

@@ -25,17 +25,18 @@
 			//Create a SQL statement
 			Statement stmt = con.createStatement();
 
-			String filter = request.getParameter("filter");
-
-			if (filter.equals("By Customer")) {
+			String filterOp = request.getParameter("filter");
+			
+			
+			if (filterOp.equals("By Customer")) {
 				String str0 = "SELECT user_id, user_name, profits FROM users ORDER BY profits DESC";
 				System.out.println("Works up to checkpoint:2 ");
 				System.out.println(str0);
 				PreparedStatement stmt0 = con.prepareStatement(str0);
 		
 				ResultSet flights0 = stmt0.executeQuery();
-		
-				out.print("<table>");
+				out.print("<input style=\"margin:auto\" type=\"text\" id=\"myInput\" onkeyup=\"myFunction()\" placeholder=\"Search by Customer Name\">");
+				out.print("<table id=\"myTable\">");
 				out.print("</tr>");
 				out.print("<th>Customer ID</th>");
 				out.print("<th>Customer Name</th>");
@@ -56,7 +57,7 @@
 					out.print("</tr>");
 				}
 				out.print("</table>");
-			} else if (filter.equals("By Flight")) {
+			} else if (filterOp.equals("By Flight")) {
 			//Match by flightID
 			String str0 = "SELECT flight_num, a_name, profits FROM flights F JOIN airlines A WHERE F.airline_id = A.airline_id ORDER BY profits DESC";
 			System.out.println("Works up to checkpoint:2 ");
@@ -64,8 +65,8 @@
 			PreparedStatement stmt0 = con.prepareStatement(str0);
 	
 			ResultSet flights0 = stmt0.executeQuery();
-	
-			out.print("<table>");
+			out.print("<input style=\"margin:auto\" type=\"text\" id=\"myInput\" onkeyup=\"myFunction2()\" placeholder=\"Search by flight\">");
+			out.print("<table id=\"myTable2\">");
 				out.print("<thead>");
 					out.print("</tr>");
 					out.print("<th>Flight Number</th>");
@@ -91,7 +92,7 @@
 				}
 				out.print("</tbody>");
 			out.print("</table>");
-			} else if (filter.equals("By Destination City")) 
+			} else if (filterOp.equals("By Destination City")) 
 			{
 				//Match by City
 				String str0 = "SELECT Airport_id, ap_name, city, state, country, profits FROM Airport A ORDER BY profits DESC";
@@ -100,8 +101,8 @@
 				PreparedStatement stmt0 = con.prepareStatement(str0);
 		
 				ResultSet flights0 = stmt0.executeQuery();
-		
-				out.print("<table>");
+				out.print("<input style=\"margin:auto\" type=\"text\" id=\"myInput\" onkeyup=\"myFunction3()\" placeholder=\"Search by City\">");
+				out.print("<table id=\"myTable3\">");
 					out.print("<thead>");
 						out.print("</tr>");
 							out.print("<th>Airport ID</th>");
@@ -152,7 +153,85 @@
 	<%
 		}
 	%>
-
+	<script>
+		function myFunction() {
+		  // Declare variables
+		  var input, filter, table, tr, td, td2, i, txtValue, txtValue2;
+		  input = document.getElementById("myInput");
+		  filter = input.value.toUpperCase();
+		  table = document.getElementById("myTable");
+		  tr = table.getElementsByTagName("tr");
+		
+		  // Loop through all table rows, and hide those who don't match the search query
+		  for (i = 0; i < tr.length; i++) {
+		    td = tr[i].getElementsByTagName("td")[0];
+		    td2 = tr[i].getElementsByTagName("td")[1];
+		    if (td) {
+		      txtValue = td.textContent || td.innerText;
+		      txtValue2 = td2.textContent || td2.innerText;
+		      if (txtValue.toUpperCase().indexOf(filter) > -1 || txtValue2.toUpperCase().indexOf(filter) > -1) {
+		        tr[i].style.display = "";
+		      } else {
+		        tr[i].style.display = "none";
+		      }
+		    }
+		  }
+		}
+	</script>
+	<%
+	
+	%>
+	<script>
+		function myFunction2() {
+		  // Declare variables
+		  var input, filter, table, tr, td, i, txtValue;
+		  input = document.getElementById("myInput");
+		  filter = input.value.toUpperCase();
+		  table = document.getElementById("myTable2");
+		  tr = table.getElementsByTagName("tr");
+		
+		  // Loop through all table rows, and hide those who don't match the search query
+		  for (i = 0; i < tr.length; i++) {
+		    td = tr[i].getElementsByTagName("td")[0];
+		    if (td) {
+		      txtValue = td.textContent || td.innerText;
+		      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+		        tr[i].style.display = "";
+		      } else {
+		        tr[i].style.display = "none";
+		      }
+		    }
+		  }
+		}
+	</script>
+	<%
+	%>
+	<script>
+		function myFunction3() {
+		  // Declare variables
+		  var input, filter, table, tr, td, i, txtValue;
+		  input = document.getElementById("myInput");
+		  filter = input.value.toUpperCase();
+		  table = document.getElementById("myTable3");
+		  tr = table.getElementsByTagName("tr");
+		
+		  // Loop through all table rows, and hide those who don't match the search query
+		  for (i = 0; i < tr.length; i++) {
+		    td = tr[i].getElementsByTagName("td")[2];
+		    if (td) {
+		      txtValue = td.textContent || td.innerText;
+		      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+		        tr[i].style.display = "";
+		      } else {
+		        tr[i].style.display = "none";
+		      }
+		    }
+		  }
+		}
+	</script>
+	<%
+	%>
+	
 	<button style="margin: 0 auto;"
 		onclick="window.location.href = 'salesReportForm.jsp'">GO BACK
 	</button>

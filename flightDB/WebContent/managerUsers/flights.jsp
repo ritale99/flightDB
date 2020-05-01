@@ -22,6 +22,7 @@
 					<option>All Flights</option>
 					<option>By Airport</option>
 					<option>By Departure/Arrival Status</option>
+					<option>By Activity</option>
 					<option>By Flight</option>
 					<input id="submit" type='submit' name="submit" value="SUBMIT">
 					<input id="button" type="button" value ="GO BACK" onclick="window.location.href = 'managerLandingPage.jsp'">
