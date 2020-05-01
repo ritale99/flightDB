@@ -17,20 +17,14 @@
 
 		try {
 			 
-			//Create a connection string
+			//Connect to database
 			String url = "jdbc:mysql://localhost:3306/cs336project";
-			//Load JDBC driver - the interface standardizing the connection procedure. Look at WEB-INF\lib for a mysql connector jar file, otherwise it fails.
 			Class.forName("com.mysql.jdbc.Driver");
-
-			//Create a connection to your DB
 			Connection con = DriverManager.getConnection(url, "root", "password");
-			if (con !=null){System.out.println("we connected !!");}
-			//Create a SQL statement
 			Statement stmt = con.createStatement();
 		
 			
 			//Get parameters from the HTML form at the editCustomerDetails.jsp
-			
 		     String u_idString = request.getParameter("userid");
 			 int u_id = Integer.parseInt(u_idString);
 		     String newPhone = request.getParameter("new_phone");
@@ -42,46 +36,38 @@
 			 System.out.println("New Name is:" + newName);
 			 System.out.println("New Email is:" + newEmail);
 			 System.out.println("New Phone is:" + newPhone);
+			 
 			 if (u_id == 0){
 				 %> 
 					<!-- if error, show the alert and go back --> 
 					<script> 
-					    alert("Sorry, session Invalidated!, Please log in Again.");
-					    window.location.href = "logout.jsp";
+					    alert("Sorry, you need a userID!.");
+					    window.location.href = "customerDetailsForm.jsp";
 					</script>
 					<%
 			 }
 		   
 		    //This if statement checks if the fields are left blank
 			if (!newPhone.equals("")){
-				//have to change this sql!!!
+				if(newPhone.equalsIgnoreCase("delete")){
+					//Run delete query
+					String deletePhone = "UPDATE users SET users.phone = null WHERE users.user_id = '" + u_id + "';";
+					System.out.println("DELETE PHONE: " + deletePhone);
+					stmt.executeUpdate(deletePhone);
+				}
+				else {
 				String str = "UPDATE users SET users.phone = '" + newPhone + "'WHERE users.user_id = '" + u_id + "';";
 				System.out.println("Works up to checkpoint:6 ");
-				
 				//Run the query against the database.
-				stmt.executeUpdate(str);
-	
-				//should we check if value was inserted??
-						
-				
-			} else if(newPhone.equalsIgnoreCase("delete")){
-				//Run delete query
-			}
+				stmt.executeUpdate(str);}
+			} 
 		    
 			if (!newName.equals("")){
-				//have to change this sql!!!
 				String str = "UPDATE users SET users.user_name = '" + newName + "'WHERE users.user_id = '" + u_id + "';";
 				System.out.println("Works up to checkpoint:6 ");
-				
 				//Run the query against the database.
-				stmt.executeUpdate(str);
-	
-				//should we check if value was inserted??
-						
-				
-			} else if(newName.equalsIgnoreCase("delete")){
-				//Run delete query
-			}
+				stmt.executeUpdate(str);} 
+			
 			
 			if (!newEmail.equals("")){
 				// 1. check email format
@@ -100,9 +86,6 @@
 
 				// 2. check if email already used
 			    String checkEmailStr = "SELECT * FROM users e WHERE e.email='" + newEmail + "'";
-				System.out.println(checkEmailStr);
-				System.out.println("Checked if exists");
-				//HAVE TO DOUBLECHECK THE LINES WHICH SAY "  window.location.href = "login.jsp?signup";" 
 				ResultSet checkEmailResult = stmt.executeQuery(checkEmailStr);
 				if( checkEmailResult.next() ){
 					System.out.println("email used!");
@@ -121,16 +104,20 @@
 				
 				//Run the query against the database.
 				stmt.executeUpdate(str);
-	
-				//should we check if value was inserted??
-						
-				
-			} else if(newEmail.equalsIgnoreCase("delete")){
-				//Run delete query
-			}
+			} 
 			
 			if (!newCC.equals("")){
-				if(!newCVV.equals("")){
+				
+				if(newCC.equalsIgnoreCase("delete")){
+					String deleteCC = "UPDATE users SET users.credit_card = null WHERE users.user_id = '" + u_id + "';";
+					System.out.println("DELETE CC: " + deleteCC);
+					stmt.executeUpdate(deleteCC);
+					//Run delete query
+					String deleteCVV = "UPDATE users SET users.credit_cvv = null WHERE users.user_id = '" + u_id + "';";
+					System.out.println("DELETE CVV: " + deleteCVV);
+					stmt.executeUpdate(deleteCVV);
+				}
+				else if(!newCVV.equals("")){
 				//have to change this sql!!!
 				String str = "UPDATE users SET users.credit_card = '" + newCC + "'WHERE users.user_id = '" + u_id + "';";
 				String str2 = "UPDATE users SET users.credit_cvv = '" + newCVV + "'WHERE users.user_id = '" + u_id + "';";
@@ -141,7 +128,7 @@
 				stmt.executeUpdate(str2);
 				//should we check if value was inserted??
 						
-				}else{
+				}else if (newCVV.equals("") && newCC.equalsIgnoreCase("delete")){
 					%>
 					<script>
 						alert("You need to enter a CVV");
@@ -149,9 +136,7 @@
 					</script>
 					<%
 				}
-			} else if(newCC.equalsIgnoreCase("delete")){
-				//Run delete query
-			}
+			} 
 			%>
 			<script> 
 		    	alert("User information has been successfully updated!\nReturning to Home Page...");
@@ -168,7 +153,7 @@
 			%>
 			<script> 
 		    	alert("Sorry, unexcepted error happened.");
-		    	window.location.href = "logout.jsp";
+		    	window.location.href = "customerDetailsForm.jsp";
 			</script>
 			<%			
 		}
