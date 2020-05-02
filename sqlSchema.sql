@@ -222,6 +222,8 @@ INSERT INTO FlightDate VALUES('2020-05-05', '2020-05-06', '85013');
 INSERT INTO flights VALUES ('VA', '97500', '940','210','09:02', 'SYD', '14:10','EWR', 'MTWRFSaSu', 'international', 0, 0, 'ON TIME');
 INSERT INTO FlightDate VALUES('2020-05-06', '2020-05-07', '97500');
 
+INSERT INTO flights VALUES ('VA', '98111', '940','210','09:02', 'LCY', '14:10','EWR', 'MTWRFSaSu', 'international', 0, 0, 'ON TIME');
+INSERT INTO FlightDate VALUES('2020-05-05', '2020-05-05', '98111');
 /*Insertion of international to international flights*/
 
  

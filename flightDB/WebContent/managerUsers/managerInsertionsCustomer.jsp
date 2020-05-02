@@ -121,13 +121,15 @@
 				//have to change this sql!!!
 				String str = "UPDATE users SET users.credit_card = '" + newCC + "'WHERE users.user_id = '" + u_id + "';";
 				String str2 = "UPDATE users SET users.credit_cvv = '" + newCVV + "'WHERE users.user_id = '" + u_id + "';";
-				System.out.println("Works up to checkpoint:6 ");
-				
+				System.out.println("Works up to checkpoint:7 ");
+				System.out.println(str);
+				System.out.println(str2);
 				//Run the query against the database.
 				stmt.executeUpdate(str);
 				stmt.executeUpdate(str2);
 				//should we check if value was inserted??
-						
+				System.out.println("Works up to checkpoint:8 ");
+
 				}else if (newCVV.equals("") && newCC.equalsIgnoreCase("delete")){
 					%>
 					<script>
