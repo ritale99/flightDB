@@ -9,7 +9,7 @@
 <link rel="stylesheet" type="text/css" href="css/HTMLTable.css">
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Showing One Way Flight Search Results</title>
+<title>Showing Round Trip Flight Search Results</title>
 </head>
 <body>
 	<%
@@ -123,7 +123,7 @@
 					 String str2 = 	"SELECT FlightDate.flight_id, flights.fare_first, flights.flight_type, flights.depart_aid, flights.arrive_aid, FlightDate.depart_date, FlightDate.arrive_date " +
 								"from FlightDate, flights " +
 								"WHERE FlightDate.flight_id = flights.flight_num "+
-								"and FlightDate.depart_date = ? " +
+								"and FlightDate.arrive_date = ? " +
 								"and flights.arrive_aid = ? " +
 								"and flights.depart_aid = ? AND flights.num_seats > 0;";
 						
