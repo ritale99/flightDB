@@ -47,7 +47,7 @@
 					</script>
 					<%
 			 }
-			 if(delete.equalsIgnoreCase("DELETE USER")){
+			 if(newName.isEmpty() && newEmail.isEmpty() && newPhone.isEmpty() && newCC.isEmpty()){
 					String deleteUser = "DELETE FROM users WHERE users.user_id = '" + u_id + "';";
 					stmt.executeUpdate(deleteUser);
 					%>
@@ -76,7 +76,8 @@
 				String str = "UPDATE users SET users.user_name = '" + newName + "'WHERE users.user_id = '" + u_id + "';";
 				System.out.println("Works up to checkpoint:6 ");
 				//Run the query against the database.
-				stmt.executeUpdate(str);} 
+				stmt.executeUpdate(str);
+			} 
 			
 			
 			if (!newEmail.equals("")){

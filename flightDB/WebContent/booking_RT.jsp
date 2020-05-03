@@ -27,10 +27,10 @@
 	String depDate = request.getParameter("departure");
 	String retDate = request.getParameter("");
 	int passengersNumber = Integer.parseInt(passengersNum);
-	String u_email = (String) session.getAttribute("user_email");
+	String u_id = (String) session.getAttribute("user_email");
 	
 	//2. check if the session attributes are valid 
-	 if (u_email == null || u_email.equals("")){
+	 if (u_id == null || u_id.equals("")){
 		 %> 
 			<!-- if error, show the alert and go back --> 
 			<script> 
@@ -153,7 +153,7 @@
 		System.out.println("fourth q:" + selectF);
 		
 		//Make an insert statement for the Reservations table:
-		String insert = "INSERT INTO Reservations (res_date, res_fare, customer, num_passengers, flight_no) VALUES ('" + sqlDate + "','" + fare + "','" + u_email +  "','" + passengersNumber + "','" + flightnum + "');";
+		String insert = "INSERT INTO Reservations (res_date, res_fare, customer, num_passengers, flight_no) VALUES ('" + sqlDate + "','" + fare + "','" + u_id +  "','" + passengersNumber + "','" + flightnum + "');";
 	
 		//Create a Prepared SQL statement allowing you to introduce the parameters of the query
 		PreparedStatement ps = con.prepareStatement(insert);
@@ -178,7 +178,7 @@
 		stmt.executeUpdate(insertTrip);
 		
 		//Update profits
-		String updateCus = "UPDATE users SET profits=profits+('" + fare + "'*'"+passengersNum+"')"+ " WHERE email='" + u_email + "';";
+		String updateCus = "UPDATE users SET profits=profits+('" + fare + "'*'"+passengersNum+"')"+ " WHERE email='" + u_id + "';";
 		stmt.executeUpdate(updateCus);
 		
 		String updateFli = "UPDATE flights SET profits=profits+('" + fare + "'*'"+passengersNum+"')"+ ", num_reserves=num_reserves+1 WHERE flight_num='" + flightnum + "';";
@@ -202,7 +202,7 @@
 				stmt.executeUpdate(insertTrip2); 
 
 				//Update profits
-				String updateCus2 = "UPDATE users SET profits=profits+'" + fare2 + "' WHERE email='" + u_email + "';";
+				String updateCus2 = "UPDATE users SET profits=profits+'" + fare2 + "' WHERE email='" + u_id + "';";
 				stmt.executeUpdate(updateCus2);
 				
 
