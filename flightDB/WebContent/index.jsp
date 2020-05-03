@@ -1,61 +1,54 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
+
 <head>
-<link rel="stylesheet" type="text/css" href="css/login.css">
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Flight Database</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RU-Flying</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/shorthandcss@1.1.1/dist/shorthand.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Muli:200,300,400,500,600,700,800,900&display=swap" />
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css" />
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/homepage.css" />
 </head>
-<body>
-<%
-session.setAttribute("user_name", "");
-session.setAttribute("user_email", "");
-%>
 
-<p class="app-name"> Flight Website Registration! </p>      
+<body class="bg-black muli">
+    <nav class="w-100pc flex flex-column md-flex-row md-px-10 py-5 bg-black">
+        <div class="flex justify-between">
+            <a href="#" class="flex items-center p-2 mr-4 no-underline">
+                <img class="max-h-l2 w-auto" src="images/airplane.png" />
+            </a>
+            <a data-toggle="toggle-nav" data-target="#nav-items" href="#"
+                class="flex items-center ml-auto md-hidden indigo-lighter opacity-50 hover-opacity-100 ease-300 p-1 m-3">
+                <i data-feather="menu"></i>
+            </a>
+        </div>
+        <div id="nav-items" class="hidden flex sm-w-100pc flex-column md-flex md-flex-row md-justify-end items-center">
+            <a href="#home" class="fs-s1 mx-3 py-3 blue no-underline hover-underline">Home</a>
+            <a href="loginPage.jsp" class="button bg-white black fw-600 no-underline mx-5">Login/Register</a>
+        </div>
+    </nav>
 
-<div class="login-page">
-  <div class="form">
-    <form class="register-form" method="post" action="register.jsp">
-      
-      <input type="text" placeholder="name" name="user_name"/>
-      
-      <input type="password" placeholder="password" name="password"/>
-      
-      <input type="email" placeholder="email" name="email"/>
-      
-      <button>create</button>
-      
-      <p class="message">Already registered? <a href="#">Sign In</a></p>
-    </form>
-    
-    <form class="login-form" method="post" action="login.jsp">
-      <input type="email" placeholder="email" name="email"/>
-      <input type="password" placeholder="password" name="password"/>
-      <button>login</button>
-      <p class="message">Not registered? <a href="#">Create an account</a></p>
-      
-      <!-- have to change this file path and filename to match ours -->
-      <p class="message">Manager? <a href="managerUsers/asLogin.jsp">Please log in here</a></p>
-      
-    </form>
-     
-  </div>
-</div>
+    <!-- hero section -->
+    <section id="home" class="min-h-100vh flex justify-start items-center">
+        <div class="mx-5 md-mx-l5">
+            <div>
+                <h1 class="white fs-l3 lh-2 md-fs-xl1 md-lh-1 fw-900 ">Book your <br />Flight Today</h1>
 
-<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-<script type="text/javascript">
-$(document).ready(function(){
-	if (window.location.href.indexOf('signup')!=-1){
-		$('.login-form').hide();
-		$('.register-form').show();
-	}
-});
-
-$('.message a').click(function(){
-	   $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
-	});
-</script>
+                <div class="br-8 mt-10 inline-flex">
+                    <input type="text"
+                        class="input-lg half bw-0 fw-200 bg-indigo-lightest-10 white ph-indigo-lightest focus-white opacity-80 fs-s3 py-5 min-w-25vw br-r-0"
+                        placeholder="Email Address">
+                    <button
+                        class="button-lg bg-indigo-lightest-20 indigo-lightest focus-white fw-300 fs-s3 mr-0 br-l-0">Get
+                        Started</button>
+                </div>
+                <div class="white opacity-20 fs-s3 mt-3">Quick and Easy registration!</span>
+            </div>
+        </div>
+    </section>
 </body>
 </html>

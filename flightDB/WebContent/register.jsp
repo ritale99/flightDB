@@ -47,7 +47,8 @@
 			<!-- if error, show the alert and go back to login page --> 
 			<script> 
 			    alert("Sorry, but all fields must be filled to create a new account.");
-			    window.location.href = "login.jsp?signup";
+			    window.location.href = "loginPage.jsp?signup";
+			    //window.location.href = "login.jsp?signup";
 			</script>
 			<%
 			//response.sendRedirect("emptyInput.html");
@@ -62,7 +63,7 @@
 			<!-- if error, show the alert and go back to login page --> 
 			<script> 
 			    alert("Sorry, it seems that the email you entered is not in correct format");
-			    window.location.href = "login.jsp?signup";
+			    window.location.href = "loginPage.jsp?signup";
 			</script>
 			<%
 			return;	
@@ -81,7 +82,7 @@
 			<!-- if error, show the alert and go back to login page --> 
 			<script> 
 			    alert("Sorry, but the email you entered has been used");
-			    window.location.href = "login.jsp?signup";
+			    window.location.href = "loginPage.jsp?signup";
 			</script>
 			<%
 			return;
@@ -95,7 +96,7 @@
 			<!-- if error, show the alert and go back to login page --> 
 			<script> 
 			    alert("Sorry, the password should be at least 8 characters");
-			    window.location.href = "login.jsp?signup";
+			    window.location.href = "loginPage.jsp?signup";
 			</script>
 			<%
 			return;			
@@ -106,7 +107,7 @@
 			<!-- if error, show the alert and go back to login page --> 
 			<script> 
 			    alert("Sorry, the password should be at most 45 characters");
-			    window.location.href = "login.jsp?signup";
+			    window.location.href = "loginPage.jsp?signup";
 			</script>
 			<%
 			return;			
@@ -155,7 +156,7 @@
 		<!-- if error, show the alert and go back to login page --> 
 		<script> 
 		    alert("Sorry, something went wrong on our server, failed to create your account");
-		    window.location.href = "login.jsp?signup";
+		    window.location.href = "loginPage.jsp?signup";
 		</script>
 		<%
 		return;
