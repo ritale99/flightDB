@@ -19,7 +19,7 @@ phone varchar(16),
 credit_card varchar(19),
 credit_cvv varchar(5),
 profits DECIMAL(15,2),
-primary key(user_id)
+primary key(user_id) 
 );
 
 
@@ -86,7 +86,7 @@ num_passengers INT,
 flight_no INT NOT NULL,
 foreign key (flight_no) REFERENCES flights (flight_num),
 PRIMARY KEY (res_num),
-FOREIGN KEY (customer) REFERENCES users (user_id)
+FOREIGN KEY (customer) REFERENCES users (user_id) ON DELETE CASCADE
 );
 
 CREATE TABLE Trips(
@@ -177,16 +177,6 @@ INSERT INTO FlightDate VALUES('2020-05-08', '2020-05-09', '12379');
 INSERT INTO FlightDate VALUES('2020-05-09', '2020-05-10', '12379');
 INSERT INTO FlightDate VALUES('2020-05-10', '2020-05-11', '12379');
 
-INSERT INTO flights VALUES ('AS', '12378','160','50', '11:02', 'EWR','14:10', 'MIA', 'MTWRFSaSu', 'domestic', 0, 0, 'ON TIME');
-INSERT INTO FlightDate VALUES('2020-05-06', '2020-05-07', '12378');
-INSERT INTO FlightDate VALUES('2020-05-07', '2020-05-08', '12378');
-INSERT INTO FlightDate VALUES('2020-05-08', '2020-05-09', '12378');
-
-INSERT INTO flights VALUES ('UA', '12377','160','50', '11:02', 'EWR','14:10', 'MIA', 'MTWRFSaSu', 'domestic', 0, 0, 'ON TIME');
-INSERT INTO FlightDate VALUES('2020-05-06', '2020-05-07', '12377');
-INSERT INTO FlightDate VALUES('2020-05-07', '2020-05-08', '12377');
-INSERT INTO FlightDate VALUES('2020-05-08', '2020-05-09', '12377');
-
 INSERT INTO flights VALUES ('UA', '38798', '250','200', '09:02', 'EWR', '14:10','LAX', 'MTWRFSaSu', 'domestic', 0, 0, 'ON TIME');
 INSERT INTO FlightDate VALUES('2020-05-05', '2020-05-06', '38798');
 INSERT INTO FlightDate VALUES('2020-05-06', '2020-05-07', '38798');
@@ -228,39 +218,10 @@ INSERT INTO FlightDate VALUES('2020-05-06', '2020-05-07', '79527');
 
 INSERT INTO flights VALUES ('VA', '85013', '940','210','09:02', 'EWR', '14:10','SYD', 'MTWRFSaSu', 'international', 0, 0, 'DEPARTING DELAYED');
 INSERT INTO FlightDate VALUES('2020-05-05', '2020-05-06', '85013');
-INSERT INTO FlightDate VALUES('2020-05-06', '2020-05-07', '85013');
-INSERT INTO FlightDate VALUES('2020-05-07', '2020-05-08', '85013');
-
-INSERT INTO flights VALUES ('AF', '85014', '940','210','09:02', 'EWR', '14:10','SYD', 'MTWRFSaSu', 'international', 0, 0, 'DEPARTING DELAYED');
-INSERT INTO FlightDate VALUES('2020-05-05', '2020-05-06', '85014');
-INSERT INTO FlightDate VALUES('2020-05-06', '2020-05-07', '85014');
-INSERT INTO FlightDate VALUES('2020-05-07', '2020-05-08', '85014');
-
-INSERT INTO flights VALUES ('BA', '85011', '940','210','09:02', 'EWR', '14:10','SYD', 'MTWRFSaSu', 'international', 0, 0, 'DEPARTING DELAYED');
-INSERT INTO FlightDate VALUES('2020-05-05', '2020-05-06', '85011');
-INSERT INTO FlightDate VALUES('2020-05-06', '2020-05-07', '85011');
-INSERT INTO FlightDate VALUES('2020-05-07', '2020-05-08', '85011');
 
 INSERT INTO flights VALUES ('VA', '97500', '940','210','09:02', 'SYD', '14:10','EWR', 'MTWRFSaSu', 'international', 0, 0, 'ON TIME');
 INSERT INTO FlightDate VALUES('2020-05-06', '2020-05-07', '97500');
-INSERT INTO FlightDate VALUES('2020-05-07', '2020-05-08', '97500');
-INSERT INTO FlightDate VALUES('2020-05-08', '2020-05-09', '97500');
-INSERT INTO FlightDate VALUES('2020-05-09', '2020-05-10', '97500');
 
-INSERT INTO flights VALUES ('BA', '97555', '940','210','09:02', 'SYD', '14:10','EWR', 'MTWRFSaSu', 'international', 0, 0, 'ON TIME');
-INSERT INTO FlightDate VALUES('2020-05-06', '2020-05-07', '97555');
-INSERT INTO FlightDate VALUES('2020-05-07', '2020-05-08', '97555');
-INSERT INTO FlightDate VALUES('2020-05-08', '2020-05-09', '97555');
-INSERT INTO FlightDate VALUES('2020-05-09', '2020-05-10', '97555');
-
-INSERT INTO flights VALUES ('AF', '99323', '940','210','09:02', 'SYD', '14:10','EWR', 'MTWRFSaSu', 'international', 0, 0, 'ON TIME');
-INSERT INTO FlightDate VALUES('2020-05-06', '2020-05-07', '99323');
-INSERT INTO FlightDate VALUES('2020-05-07', '2020-05-08', '99323');
-INSERT INTO FlightDate VALUES('2020-05-08', '2020-05-09', '99323');
-INSERT INTO FlightDate VALUES('2020-05-09', '2020-05-10', '99323');
-
-INSERT INTO flights VALUES ('VA', '98111', '940','210','09:02', 'LCY', '14:10','EWR', 'MTWRFSaSu', 'international', 0, 0, 'ON TIME');
-INSERT INTO FlightDate VALUES('2020-05-05', '2020-05-05', '98111');
 /*Insertion of international to international flights*/
 
  
