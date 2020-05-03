@@ -15,11 +15,11 @@
 
 	<div class="login-page">
 		<div class="form">
-			<form class="login-form" method="post"
-				action="managerInsertionsCustomer.jsp">
+			<form class="login-form" method="post" action="managerInsertionsCustomer.jsp">
 
 				<label>Enter Customers user id:</label> 
-				<input type="password" placeholder="id" name="userid" /> 
+				<input type="password" placeholder="id" name="userid" />
+				<input id="delete" type='submit' name="delete" value="DELETE USER"> 
 				<label>Update Customers name:</label> 
 				<input type="text" placeholder="name" name="new_name" /> 
 				<label>Update Customers email:</label> 

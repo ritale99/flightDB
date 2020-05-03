@@ -32,12 +32,13 @@
 			 String newEmail = request.getParameter("new_email");
 			 String newCC = request.getParameter("new_credit_card");
 			 String newCVV = request.getParameter("new_cvv");
+			 String delete  = request.getParameter("delete");
 			 System.out.println("User id is:" + u_id);
 			 System.out.println("New Name is:" + newName);
 			 System.out.println("New Email is:" + newEmail);
 			 System.out.println("New Phone is:" + newPhone);
 			 
-			 if (u_id == 0){
+			 if (u_idString.isEmpty()){
 				 %> 
 					<!-- if error, show the alert and go back --> 
 					<script> 
@@ -46,7 +47,16 @@
 					</script>
 					<%
 			 }
-		   
+			 if(delete.equalsIgnoreCase("DELETE USER")){
+					String deleteUser = "DELETE FROM users WHERE users.user_id = '" + u_id + "';";
+					stmt.executeUpdate(deleteUser);
+					%>
+						<script>
+							alert("Customer deleted");
+							window.location.href = "customerDetailsForm.jsp";
+						</script>
+					<%
+			 }
 		    //This if statement checks if the fields are left blank
 			if (!newPhone.equals("")){
 				if(newPhone.equalsIgnoreCase("delete")){

@@ -145,6 +145,23 @@ header, footer {
 #submit:hover{
 	background: Red;
 }
+#delete {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #696969;
+  cursor: pointer;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  color: White;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+#delete:hover{
+	background: #A9A9A9;
+}
 #button{
   font-family: "Roboto", sans-serif;
   outline: 0;
