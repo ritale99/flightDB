@@ -13,7 +13,7 @@ session.setAttribute("user_name", "");
 session.setAttribute("user_email", "");
 %>
 
-<p class="app-name"> Flight Website Registration! </p>      
+<p class="app-name"> Flight Website Login Page </p>      
 
 <div class="login-page">
   <div class="form">
