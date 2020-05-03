@@ -10,7 +10,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="css/login.css">
 
-<title>Creating new user</title>
+<title>Creating new user ...</title>
 </head>
 <body>
 
