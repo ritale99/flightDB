@@ -32,13 +32,12 @@
 			 String newEmail = request.getParameter("new_email");
 			 String newCC = request.getParameter("new_credit_card");
 			 String newCVV = request.getParameter("new_cvv");
-			 String delete  = request.getParameter("delete");
 			 System.out.println("User id is:" + u_id);
 			 System.out.println("New Name is:" + newName);
 			 System.out.println("New Email is:" + newEmail);
 			 System.out.println("New Phone is:" + newPhone);
 			 
-			 if (u_idString.isEmpty()){
+			 if (u_idString.equals("")){
 				 %> 
 					<!-- if error, show the alert and go back --> 
 					<script> 
@@ -46,6 +45,7 @@
 					    window.location.href = "customerDetailsForm.jsp";
 					</script>
 					<%
+					return;
 			 }
 			 if(newName.isEmpty() && newEmail.isEmpty() && newPhone.isEmpty() && newCC.isEmpty()){
 					String deleteUser = "DELETE FROM users WHERE users.user_id = '" + u_id + "';";
@@ -58,20 +58,6 @@
 					<%
 			 }
 		    //This if statement checks if the fields are left blank
-			if (!newPhone.equals("")){
-				if(newPhone.equalsIgnoreCase("delete")){
-					//Run delete query
-					String deletePhone = "UPDATE users SET users.phone = null WHERE users.user_id = '" + u_id + "';";
-					System.out.println("DELETE PHONE: " + deletePhone);
-					stmt.executeUpdate(deletePhone);
-				}
-				else {
-				String str = "UPDATE users SET users.phone = '" + newPhone + "'WHERE users.user_id = '" + u_id + "';";
-				System.out.println("Works up to checkpoint:6 ");
-				//Run the query against the database.
-				stmt.executeUpdate(str);}
-			} 
-		    
 			if (!newName.equals("")){
 				String str = "UPDATE users SET users.user_name = '" + newName + "'WHERE users.user_id = '" + u_id + "';";
 				System.out.println("Works up to checkpoint:6 ");
@@ -115,6 +101,19 @@
 				
 				//Run the query against the database.
 				stmt.executeUpdate(str);
+			} 
+			if (!newPhone.equals("")){
+				if(newPhone.equalsIgnoreCase("delete")){
+					//Run delete query
+					String deletePhone = "UPDATE users SET users.phone = null WHERE users.user_id = '" + u_id + "';";
+					System.out.println("DELETE PHONE: " + deletePhone);
+					stmt.executeUpdate(deletePhone);
+				}
+				else {
+				String str = "UPDATE users SET users.phone = '" + newPhone + "'WHERE users.user_id = '" + u_id + "';";
+				System.out.println("Works up to checkpoint:6 ");
+				//Run the query against the database.
+				stmt.executeUpdate(str);}
 			} 
 			
 			if (!newCC.equals("")){

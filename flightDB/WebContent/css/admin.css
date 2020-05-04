@@ -145,7 +145,7 @@ header, footer {
 #submit:hover{
 	background: Red;
 }
-#delete {
+#extend {
   font-family: "Roboto", sans-serif;
   outline: 0;
   background: #696969;
@@ -159,7 +159,7 @@ header, footer {
   font-size: 14px;
 }
 
-#delete:hover{
+#extend:hover{
 	background: #A9A9A9;
 }
 #button{
