@@ -25,12 +25,13 @@
 	String flightnum2 = request.getParameter("flightnum2");
 	String passengersNum = request.getParameter("passengersNum");
 	String depDate = request.getParameter("departure");
-	String retDate = request.getParameter("");
+	String retDate = request.getParameter("arrival");
 	int passengersNumber = Integer.parseInt(passengersNum);
-	String u_id = (String) session.getAttribute("user_email");
+	int u_id = (Integer) session.getAttribute("user_id");
 	
+	System.out.println(u_id);
 	//2. check if the session attributes are valid 
-	 if (u_id == null || u_id.equals("")){
+	 if (u_id == 0){
 		 %> 
 			<!-- if error, show the alert and go back --> 
 			<script> 
