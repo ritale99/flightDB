@@ -19,7 +19,7 @@
 	
 					<label>Enter Customers user id:</label> 
 					<input type="password" placeholder="id" name="userid" />
-					<label>Leave all the following fields empty to delete the customer</label>
+					<h3>Leave all the following fields empty to delete the customer</h3>
 					<label>Update Customers name:</label> 
 					<input type="text" placeholder="name" name="new_name" /> 
 					<label>Update Customers email:</label> 
