@@ -440,7 +440,5 @@ INSERT INTO FlightDate VALUES('2020-05-06', '2020-05-07', '97500');
 
 
 
-/*Insertion of international to international flights*/
-
  
 
