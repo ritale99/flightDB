@@ -438,7 +438,123 @@ INSERT INTO FlightDate VALUES('2020-05-05', '2020-05-06', '85013');
 INSERT INTO flights VALUES ('VA', '97500', '940','210','09:02', 'SYD', '14:10','EWR', 'MTWRFSaSu', 'international', 0, 0, 'ON TIME');
 INSERT INTO FlightDate VALUES('2020-05-06', '2020-05-07', '97500');
 
+/*Reservation 1, EWR to MIA: 12379*/
+SET @flight_num := 12379;
+SET @num_passengers := 1;
+SET @user_id := (SELECT user_id FROM users WHERE user_name = 'Bhasit');
+SET @flight_fare := (SELECT fare_first FROM flights WHERE flight_num = @flight_num);
+SET @total_fare := (@flight_fare * @num_passengers);
+SET @res_date := '2020-01-01';
+UPDATE flights SET num_seats = (num_seats - @num_passengers) WHERE flights.flight_num = @flight_num;
+INSERT INTO Reservations (res_date, res_fare, res_tot, customer, num_passengers, flight_no) VALUES (@res_date, @flight_fare, @total_fare, @user_id, @num_passengers, @flight_num);
+INSERT INTO Trips (res_num, flights) VALUES (@@identity, @flight_num);
+UPDATE users SET profits=(profits+@total_fare) WHERE user_id= @user_id;
+UPDATE flights SET profits=(profits+@total_fare), num_reserves=num_reserves+1 WHERE flight_num=@flight_num;
+UPDATE Airport SET profits=(profits+@total_fare) WHERE Airport.Airport_id=(SELECT arrive_aid FROM flights F WHERE F.flight_num=@flight_num);
 
+/*Reservation 2, MIA to EWR: 12345*/
+SET @flight_num := 12345;
+SET @num_passengers := 1;
+SET @user_id := (SELECT user_id FROM users WHERE user_name = 'Bhasit');
+SET @flight_fare := (SELECT fare_first FROM flights WHERE flight_num = @flight_num);
+SET @total_fare := (@flight_fare * @num_passengers);
+SET @res_date := '2020-01-29';
+UPDATE flights SET num_seats = (num_seats - @num_passengers) WHERE flights.flight_num = @flight_num;
+INSERT INTO Reservations (res_date, res_fare, res_tot, customer, num_passengers, flight_no) VALUES (@res_date, @flight_fare, @total_fare, @user_id, @num_passengers, @flight_num);
+INSERT INTO Trips (res_num, flights) VALUES (@@identity, @flight_num);
+UPDATE users SET profits=(profits+@total_fare) WHERE user_id= @user_id;
+UPDATE flights SET profits=(profits+@total_fare), num_reserves=num_reserves+1 WHERE flight_num=@flight_num;
+UPDATE Airport SET profits=(profits+@total_fare) WHERE Airport.Airport_id=(SELECT arrive_aid FROM flights F WHERE F.flight_num=@flight_num);
 
- 
+/*Reservation 3, EWR to LAX: 12345*/
+SET @flight_num := 38798;
+SET @num_passengers := 1;
+SET @user_id := (SELECT user_id FROM users WHERE user_name = 'Bhasit');
+SET @flight_fare := (SELECT fare_first FROM flights WHERE flight_num = @flight_num);
+SET @total_fare := (@flight_fare * @num_passengers);
+SET @res_date := '2020-02-21';
+UPDATE flights SET num_seats = (num_seats - @num_passengers) WHERE flights.flight_num = @flight_num;
+INSERT INTO Reservations (res_date, res_fare, res_tot, customer, num_passengers, flight_no) VALUES (@res_date, @flight_fare, @total_fare, @user_id, @num_passengers, @flight_num);
+INSERT INTO Trips (res_num, flights) VALUES (@@identity, @flight_num);
+UPDATE users SET profits=(profits+@total_fare) WHERE user_id= @user_id;
+UPDATE flights SET profits=(profits+@total_fare), num_reserves=num_reserves+1 WHERE flight_num=@flight_num;
+UPDATE Airport SET profits=(profits+@total_fare) WHERE Airport.Airport_id=(SELECT arrive_aid FROM flights F WHERE F.flight_num=@flight_num);
 
+/*Reservation 4, EWR to MIA: 12345*/
+SET @flight_num := 12379;
+SET @num_passengers := 2;
+SET @user_id := (SELECT user_id FROM users WHERE user_name = 'Tanmay');
+SET @flight_fare := (SELECT fare_first FROM flights WHERE flight_num = @flight_num);
+SET @total_fare := (@flight_fare * @num_passengers);
+SET @res_date := '2020-01-02';
+UPDATE flights SET num_seats = (num_seats - @num_passengers) WHERE flights.flight_num = @flight_num;
+INSERT INTO Reservations (res_date, res_fare, res_tot, customer, num_passengers, flight_no) VALUES (@res_date, @flight_fare, @total_fare, @user_id, @num_passengers, @flight_num);
+INSERT INTO Trips (res_num, flights) VALUES (@@identity, @flight_num);
+UPDATE users SET profits=(profits+@total_fare) WHERE user_id= @user_id;
+UPDATE flights SET profits=(profits+@total_fare), num_reserves=num_reserves+1 WHERE flight_num=@flight_num;
+UPDATE Airport SET profits=(profits+@total_fare) WHERE Airport.Airport_id=(SELECT arrive_aid FROM flights F WHERE F.flight_num=@flight_num);
+
+/*Reservation 5, MIA to EWR: 12345*/
+SET @flight_num := 12345;
+SET @num_passengers := 2;
+SET @user_id := (SELECT user_id FROM users WHERE user_name = 'Tanmay');
+SET @flight_fare := (SELECT fare_first FROM flights WHERE flight_num = @flight_num);
+SET @total_fare := (@flight_fare * @num_passengers);
+SET @res_date := '2020-04-21';
+UPDATE flights SET num_seats = (num_seats - @num_passengers) WHERE flights.flight_num = @flight_num;
+INSERT INTO Reservations (res_date, res_fare, res_tot, customer, num_passengers, flight_no) VALUES (@res_date, @flight_fare, @total_fare, @user_id, @num_passengers, @flight_num);
+INSERT INTO Trips (res_num, flights) VALUES (@@identity, @flight_num);
+UPDATE users SET profits=(profits+@total_fare) WHERE user_id= @user_id;
+UPDATE flights SET profits=(profits+@total_fare), num_reserves=num_reserves+1 WHERE flight_num=@flight_num;
+UPDATE Airport SET profits=(profits+@total_fare) WHERE Airport.Airport_id=(SELECT arrive_aid FROM flights F WHERE F.flight_num=@flight_num);
+
+/*Reservation 6, JFK to LCY: 64257*/
+SET @flight_num := 64257;
+SET @num_passengers := 3;
+SET @user_id := (SELECT user_id FROM users WHERE user_name = 'Harsh');
+SET @flight_fare := (SELECT fare_first FROM flights WHERE flight_num = @flight_num);
+SET @total_fare := (@flight_fare * @num_passengers);
+SET @res_date := '2019-05-21';
+UPDATE flights SET num_seats = (num_seats - @num_passengers) WHERE flights.flight_num = @flight_num;
+INSERT INTO Reservations (res_date, res_fare, res_tot, customer, num_passengers, flight_no) VALUES (@res_date, @flight_fare, @total_fare, @user_id, @num_passengers, @flight_num);
+INSERT INTO Trips (res_num, flights) VALUES (@@identity, @flight_num);
+UPDATE users SET profits=(profits+@total_fare) WHERE user_id= @user_id;
+UPDATE flights SET profits=(profits+@total_fare), num_reserves=num_reserves+1 WHERE flight_num=@flight_num;
+UPDATE Airport SET profits=(profits+@total_fare) WHERE Airport.Airport_id=(SELECT arrive_aid FROM flights F WHERE F.flight_num=@flight_num);
+
+/*Reservation 7, EWR to SYD: 85013*/
+SET @flight_num := 85013;
+SET @num_passengers := 5;
+SET @user_id := (SELECT user_id FROM users WHERE user_name = 'Rithvik');
+SET @flight_fare := (SELECT fare_first FROM flights WHERE flight_num = @flight_num);
+SET @total_fare := (@flight_fare * @num_passengers);
+SET @res_date := '2019-09-24';
+UPDATE flights SET num_seats = (num_seats - @num_passengers) WHERE flights.flight_num = @flight_num;
+INSERT INTO Reservations (res_date, res_fare, res_tot, customer, num_passengers, flight_no) VALUES (@res_date, @flight_fare, @total_fare, @user_id, @num_passengers, @flight_num);
+INSERT INTO Trips (res_num, flights) VALUES (@@identity, @flight_num);
+UPDATE users SET profits=(profits+@total_fare) WHERE user_id= @user_id;
+UPDATE flights SET profits=(profits+@total_fare), num_reserves=num_reserves+1 WHERE flight_num=@flight_num;
+UPDATE Airport SET profits=(profits+@total_fare) WHERE Airport.Airport_id=(SELECT arrive_aid FROM flights F WHERE F.flight_num=@flight_num);
+
+/*Reservation 3, EWR to LAX -> LAX to EWR: 38798 -> 38765*/
+SET @flight_num := 38798;
+SET @num_passengers := 1;
+SET @user_id := (SELECT user_id FROM users WHERE user_name = 'Bhasit');
+SET @flight_fare := (SELECT fare_first FROM flights WHERE flight_num = @flight_num);
+SET @total_fare := (@flight_fare * @num_passengers);
+SET @res_date := '2019-12-04';
+#flight 1
+UPDATE flights SET num_seats = (num_seats - @num_passengers) WHERE flights.flight_num = @flight_num;
+INSERT INTO Reservations (res_date, res_fare, res_tot, customer, num_passengers, flight_no) VALUES (@res_date, @flight_fare, @total_fare, @user_id, @num_passengers, @flight_num);
+INSERT INTO Trips (res_num, flights) VALUES (@@identity, @flight_num);
+UPDATE users SET profits=(profits+@total_fare) WHERE user_id= @user_id;
+UPDATE flights SET profits=(profits+@total_fare), num_reserves=num_reserves+1 WHERE flight_num=@flight_num;
+UPDATE Airport SET profits=(profits+@total_fare) WHERE Airport.Airport_id=(SELECT arrive_aid FROM flights F WHERE F.flight_num=@flight_num);
+#flight 2
+SET @flight_num2 := 38765;
+SET @flight_fare2 := (SELECT fare_first FROM flights WHERE flight_num = @flight_num2);
+SET @total_fare2 := (@flight_fare2 * @num_passengers);
+UPDATE Trips SET flights2 = @flight_num2 WHERE res_num =@@identity;
+UPDATE users SET profits=(profits+@total_fare2) WHERE user_id=@user_id;
+UPDATE flights SET profits=(profits+@total_fare2), num_reserves=num_reserves+1 WHERE flight_num=@flight_num2;
+UPDATE Airport SET profits=(profits+@total_fare2) WHERE Airport.Airport_id=(SELECT arrive_aid FROM flights F WHERE F.flight_num=@flight_num2);
