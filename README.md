@@ -1,6 +1,8 @@
 # flightDB
 ## Final Project for CS336 (Prof. Dong (Dr. Dong))
 
+## Grade Received: 100
+
 ### Group 20:
 - Rithvik Aleshetty
 - Harsh Patel
@@ -34,5 +36,3 @@
 * ERD to plan out database
  
 ### Presented to Bingchen Liu
- 
- ## Grade Received: 
